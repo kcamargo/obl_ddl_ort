@@ -14,7 +14,7 @@ import java.util.Observable;
  *
  * @author Owner
  */
-class Juego extends Observable {
+public class Juego extends Observable {
 
     private float apuestaInicial;
 
@@ -39,7 +39,8 @@ class Juego extends Observable {
     public enum Eventos {
 
         JuegoTerminado, JuegoComenzado, NuevaApuesta
-             }
+             
+    }
 
     public Juego(float apuestaInicial) {
         this.apuestaInicial = apuestaInicial;

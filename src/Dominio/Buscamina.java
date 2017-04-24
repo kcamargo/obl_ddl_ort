@@ -38,6 +38,10 @@ class Buscamina {
         }
     }
 
+    public void cargarJuegos() {
+
+    }
+
     public ArrayList<Juego> getJuegos() {
         return juegos;
     }
@@ -50,7 +54,6 @@ class Buscamina {
         }
         return false;
     }
-
 
     public Juego getJuegoByOid(int oid) {
         for (Juego j : juegos) {

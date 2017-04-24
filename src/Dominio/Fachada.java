@@ -12,7 +12,7 @@ import java.util.Observable;
  *
  * @author Owner
  */
-public class Fachada extends Observable{
+public class Fachada extends Observable {
 
     private SistemaUsuarios sistemaUsuarios;
     private Buscamina buscamina;
@@ -22,14 +22,14 @@ public class Fachada extends Observable{
         sistemaUsuarios = new SistemaUsuarios();
         buscamina = new Buscamina();
     }
-    
+
     public static Fachada getInstancia() {
-        if(instancia == null) {
+        if (instancia == null) {
             instancia = new Fachada();
         }
         return instancia;
     }
-    
+
     public Administrador loginAdmin(Administrador a) {
         return sistemaUsuarios.loginAdmin(a);
     }
@@ -45,7 +45,7 @@ public class Fachada extends Observable{
     public void logoutJugador(Jugador j) {
         sistemaUsuarios.logoutJugador(j);
     }
-    
+
     protected void avisar(Juego.Eventos e) {
         setChanged();
         notifyObservers(e);
@@ -63,9 +63,12 @@ public class Fachada extends Observable{
         return sistemaUsuarios.getJugadorByUser(user);
     }
 
+    public void cargarDatos() {
+        buscamina.cargarJuegos();
+    }
+
     public Juego getJuegoByOid(int oid) {
         return buscamina.getJuegoByOid(oid);
     }
-    
-    
+
 }
