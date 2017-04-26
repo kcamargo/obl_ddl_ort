@@ -24,12 +24,10 @@ public class PanelDatos extends javax.swing.JPanel {
         lblOponente = new javax.swing.JLabel();
         lblApuesta = new javax.swing.JLabel();
         lblTimerTurno = new javax.swing.JLabel();
-        btnTirar = new javax.swing.JButton();
         btnApostar = new javax.swing.JButton();
         lblJugador = new javax.swing.JLabel();
         lblSaldo = new javax.swing.JLabel();
         lblTimerApuesta = new javax.swing.JLabel();
-        btnRobarFicha = new javax.swing.JButton();
         txtApuesta = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(750, 70));
@@ -47,14 +45,6 @@ public class PanelDatos extends javax.swing.JPanel {
         lblTimerTurno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTimerTurno.setText("Tiempo Restante:");
         add(lblTimerTurno);
-
-        btnTirar.setText("Tirar");
-        btnTirar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTirarActionPerformed(evt);
-            }
-        });
-        add(btnTirar);
 
         btnApostar.setText("Apostar");
         btnApostar.addActionListener(new java.awt.event.ActionListener() {
@@ -76,24 +66,10 @@ public class PanelDatos extends javax.swing.JPanel {
         lblTimerApuesta.setText("Timer Apuesta:");
         add(lblTimerApuesta);
 
-        btnRobarFicha.setText("Robar Ficha");
-        btnRobarFicha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRobarFichaActionPerformed(evt);
-            }
-        });
-        add(btnRobarFicha);
-
         txtApuesta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtApuesta.setText("0");
         add(txtApuesta);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnTirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTirarActionPerformed
-    }//GEN-LAST:event_btnTirarActionPerformed
-
-    private void btnRobarFichaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRobarFichaActionPerformed
-    }//GEN-LAST:event_btnRobarFichaActionPerformed
 
     private void btnApostarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApostarActionPerformed
         controlador.apostar(Float.parseFloat(txtApuesta.getText()));
@@ -102,8 +78,6 @@ public class PanelDatos extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnApostar;
-    private javax.swing.JButton btnRobarFicha;
-    private javax.swing.JButton btnTirar;
     private javax.swing.JLabel lblApuesta;
     private javax.swing.JLabel lblJugador;
     private javax.swing.JLabel lblOponente;

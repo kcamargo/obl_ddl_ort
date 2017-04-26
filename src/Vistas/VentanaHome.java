@@ -73,7 +73,7 @@ public class VentanaHome extends javax.swing.JFrame implements VistaHome{
         getContentPane().add(btnCerrar);
         btnCerrar.setBounds(150, 230, 73, 23);
 
-        pack();
+        setBounds(0, 0, 416, 339);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnUserLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserLoginActionPerformed

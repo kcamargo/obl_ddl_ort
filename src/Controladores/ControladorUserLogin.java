@@ -9,6 +9,7 @@ import Dominio.DominoException;
 import Dominio.Fachada;
 import Dominio.Jugador;
 import Vistas.VentanaJuego;
+import Vistas.VentanaNivel;
 
 /**
  *
@@ -35,7 +36,8 @@ public class ControladorUserLogin implements ControladorLogin{
                 vista.error("El usuario y la contraseña no coinciden.");
             } else {
                 vista.cerrar();
-                new VentanaJuego(j).setVisible(true);
+                  new VentanaNivel().setVisible(true);
+//                new VentanaJuego(j).setVisible(true);
             }
         } catch (DominoException ex) {
             vista.error(ex.getMessage());

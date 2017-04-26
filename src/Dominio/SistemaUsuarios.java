@@ -31,7 +31,7 @@ class SistemaUsuarios {
         return null;
     }
 
-    public Jugador loginJugador(Jugador jugador) throws DominoException {
+    public Jugador loginJugador(Jugador jugador) throws DominoException {//cambiar nombre domino
         for (Jugador j : jugadores) {
             if (j.equals(jugador)) {
                 if (j.isLogueado()) {

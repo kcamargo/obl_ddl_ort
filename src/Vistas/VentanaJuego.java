@@ -21,22 +21,20 @@ import javax.swing.ScrollPaneConstants;
  */
 public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
-    private final ControladorJuego controlador;
-    private final vistas.PanelDatos datos;
+    private final ControladorJuego controlador ;
+//    private final vistas.PanelDatos datos;
     
     public VentanaJuego(Jugador j) {
         initComponents();
         controlador = new ControladorJuego();
-
-        JPanel panel = (JPanel) getContentPane();
-        GridLayout layout = new GridLayout(3, 1);
-        panel.setLayout(layout);
-
-        datos = new PanelDatos(controlador);
-        panel.add(datos);
-
-
-
+//
+//        JPanel panel = (JPanel) getContentPane();
+//        GridLayout layout = new GridLayout(3, 1);
+//        panel.setLayout(layout);
+//
+//        datos = new PanelDatos(controlador);
+//        panel.add(datos);
+//
         controlador.setVista(this);
         controlador.setJugador(j);
     }
@@ -59,7 +57,7 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
         });
         getContentPane().setLayout(null);
 
-        pack();
+        setBounds(0, 0, 416, 339);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -85,17 +83,17 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
     public void confirmarApuesta(float apuestaPendiente) {
         int result = JOptionPane.showConfirmDialog(this, "¿Desea igualar la apuesta de: $" + apuestaPendiente + "?","¡Atención!", JOptionPane.YES_NO_OPTION);
         
-        controlador.contestarApuesta(result == JOptionPane.YES_OPTION);
+//        controlador.contestarApuesta(result == JOptionPane.YES_OPTION);
     }
 
     @Override
     public void deshabilitar() {
-        datos.deshabilitar();
+//        datos.deshabilitar();
     }
     
     @Override
     public void habilitar() {
-        datos.habilitar();
+//        datos.habilitar();
     }
 
 

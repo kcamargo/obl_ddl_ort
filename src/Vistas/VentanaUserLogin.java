@@ -48,7 +48,7 @@ public class VentanaUserLogin extends javax.swing.JFrame implements VistaUserLog
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        pack();
+        setBounds(0, 0, 416, 339);
     }// </editor-fold>//GEN-END:initComponents
 
     @Override
