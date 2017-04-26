@@ -5,7 +5,7 @@
  */
 package Controladores;
 
-import Dominio.DominoException;
+import Dominio.BuscaminaException;
 import Dominio.Fachada;
 import Dominio.Juego;
 import Dominio.Jugador;
@@ -23,7 +23,6 @@ public class ControladorJuego implements Observer {
     private Juego juego;
 
     private VistaJuego vista;
-
 
     public ControladorJuego() {
 
@@ -51,12 +50,9 @@ public class ControladorJuego implements Observer {
         this.vista = vista;
     }
 
- 
     private void refreshVista() {
 
     }
-
-
 
     private void juegoTerminado() {
         juego.deleteObserver(this);
@@ -66,12 +62,10 @@ public class ControladorJuego implements Observer {
         vista.cerrar();
     }
 
-
-
     public void apostar(float monto) {
         try {
             juego.aumentarApuesta(monto, jugador);
-        } catch (DominoException | IllegalArgumentException ex) {
+        } catch (BuscaminaException | IllegalArgumentException ex) {
             vista.error(ex.getMessage());
         }
     }
@@ -89,7 +83,7 @@ public class ControladorJuego implements Observer {
             if (ok) {
                 refreshVista();
             }
-        } catch (DominoException ex) {
+        } catch (BuscaminaException ex) {
             vista.error(ex.getMessage());
         }
 
@@ -103,8 +97,23 @@ public class ControladorJuego implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        switch ((Juego.Eventos) arg) {
+            case JuegoTerminado:
+                juegoTerminado();
+                break;
+            case Bajo:
+                initJuego();
+                break;
+            case Medio:
+                initJuego();
+                break;
+            case Avanzado:
+                initJuego();
+                break;
+            default:
+                throw new AssertionError(((Juego.Eventos) arg).name());
 
+        }
+    }
 
 }

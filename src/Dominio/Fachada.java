@@ -34,11 +34,11 @@ public class Fachada extends Observable {
         return sistemaUsuarios.loginAdmin(a);
     }
 
-    public Jugador loginJugador(Jugador j) throws DominoException {
+    public Jugador loginJugador(Jugador j) throws BuscaminaException {
         return sistemaUsuarios.loginJugador(j);
     }
 
-    public void agregarAJuego(Jugador j) throws DominoException {
+    public void agregarAJuego(Jugador j) throws BuscaminaException {
         buscamina.agregarAJuego(j);
     }
 

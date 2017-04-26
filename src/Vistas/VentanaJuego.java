@@ -7,6 +7,7 @@ package Vistas;
 
 import Controladores.ControladorJuego;
 import Controladores.VistaJuego;
+import Dominio.Juego.Eventos;
 import Dominio.Jugador;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -14,6 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import Vistas.PanelDatos;
 
 /**
  *
@@ -21,20 +23,20 @@ import javax.swing.ScrollPaneConstants;
  */
 public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
-    private final ControladorJuego controlador ;
-//    private final vistas.PanelDatos datos;
-    
-    public VentanaJuego(Jugador j) {
+    private final ControladorJuego controlador;
+    private final Vistas.PanelDatos datos;
+
+    public VentanaJuego(Jugador j, Eventos o) {
         initComponents();
         controlador = new ControladorJuego();
-//
-//        JPanel panel = (JPanel) getContentPane();
-//        GridLayout layout = new GridLayout(3, 1);
-//        panel.setLayout(layout);
-//
-//        datos = new PanelDatos(controlador);
-//        panel.add(datos);
-//
+
+        JPanel panel = (JPanel) getContentPane();
+        GridLayout layout = new GridLayout(3, 1);
+        panel.setLayout(layout);
+
+        datos = new PanelDatos(controlador);
+        panel.add(datos);
+
         controlador.setVista(this);
         controlador.setJugador(j);
     }
@@ -62,11 +64,12 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
+        controlador.abandonarJuego();
     }//GEN-LAST:event_formWindowClosing
 
     @Override
     public void mostrarDatos(String jugador, String oponente, float saldo, float apuesta, int cantFichas) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        datos.refreshDatos(jugador, oponente, saldo, apuesta, cantFichas);
     }
 
     @Override
@@ -81,19 +84,19 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
     @Override
     public void confirmarApuesta(float apuestaPendiente) {
-        int result = JOptionPane.showConfirmDialog(this, "¿Desea igualar la apuesta de: $" + apuestaPendiente + "?","¡Atención!", JOptionPane.YES_NO_OPTION);
-        
-//        controlador.contestarApuesta(result == JOptionPane.YES_OPTION);
+        int result = JOptionPane.showConfirmDialog(this, "¿Desea igualar la apuesta de: $" + apuestaPendiente + "?", "¡Atención!", JOptionPane.YES_NO_OPTION);
+
+        controlador.contestarApuesta(result == JOptionPane.YES_OPTION);
     }
 
     @Override
     public void deshabilitar() {
-//        datos.deshabilitar();
+        datos.deshabilitar();
     }
-    
+
     @Override
     public void habilitar() {
-//        datos.habilitar();
+        datos.habilitar();
     }
 
 

@@ -23,12 +23,12 @@ class Buscamina {
         //cargarJuegos();
     }
 
-    public void agregarAJuego(Jugador j) throws DominoException {
+    public void agregarAJuego(Jugador j) throws BuscaminaException {
         if (juegoEnEspera.getJug1() != null) {
             juegos.add(juegoEnEspera);
             try {
                 juegoEnEspera.addJugador(j);
-            } catch (DominoException ex) {
+            } catch (BuscaminaException ex) {
                 juegos.remove(juegoEnEspera);
                 throw ex;
             }

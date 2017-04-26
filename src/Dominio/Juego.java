@@ -38,7 +38,7 @@ public class Juego extends Observable {
 
     public enum Eventos {
 
-        JuegoTerminado, JuegoComenzado, NuevaApuesta
+        JuegoTerminado, JuegoComenzado, NuevaApuesta, Bajo, Medio, Avanzado
              
     }
 
@@ -147,19 +147,19 @@ public class Juego extends Observable {
         movimientos.add(t);
     }
 
-    public void aumentarApuesta(float apuesta, Jugador j) throws DominoException {
+    public void aumentarApuesta(float apuesta, Jugador j) throws BuscaminaException {
         if (ultApuesta != null && j.equals(ultApuesta)) {
-            throw new DominoException("Este jugador no puede realizar una apuesta.");
+            throw new BuscaminaException("Este jugador no puede realizar una apuesta.");
         }
 
         if (!apuestaAceptada) {
-            throw new DominoException("No puede apostar. Existe una apuesta pendiente.");
+            throw new BuscaminaException("No puede apostar. Existe una apuesta pendiente.");
         }
 
         float apuestaMaxima = Math.min(jug1.getSaldo(), jug2.getSaldo());
 
         if (apuesta > apuestaMaxima) {
-            throw new DominoException("La apuesta no puede ser mayor a " + apuestaMaxima);
+            throw new BuscaminaException("La apuesta no puede ser mayor a " + apuestaMaxima);
         }
 
         turnoActual.aumentarApuesta(apuesta);
@@ -172,10 +172,10 @@ public class Juego extends Observable {
 
     }
 
-    public void contestarApuesta(boolean aceptada, Jugador j) throws DominoException {
+    public void contestarApuesta(boolean aceptada, Jugador j) throws BuscaminaException {
         if (ganador == null) {
             if (j.equals(ultApuesta)) {
-                throw new DominoException("El jugador contrario debe aceptar su apuesta.");
+                throw new BuscaminaException("El jugador contrario debe aceptar su apuesta.");
             }
 
             if (aceptada) {
@@ -231,9 +231,9 @@ public class Juego extends Observable {
         j.agregarSaldo(apuestaInicial * -1);
     }
 
-    public void addJugador(Jugador j) throws DominoException {
+    public void addJugador(Jugador j) throws BuscaminaException {
         if (j.getSaldo() < this.apuestaInicial) {
-            throw new DominoException("El jugador no tiene el saldo suficiente para esta partida.");
+            throw new BuscaminaException("El jugador no tiene el saldo suficiente para esta partida.");
         }
         if (jug1 == null) {
             jug1 = j;
@@ -244,7 +244,7 @@ public class Juego extends Observable {
             initJuego();
             initJugador(j);
         } else {
-            throw new DominoException("El juego ya está completo.");
+            throw new BuscaminaException("El juego ya está completo.");
         }
     }
 

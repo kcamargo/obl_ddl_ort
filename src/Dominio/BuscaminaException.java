@@ -9,8 +9,8 @@ package Dominio;
  *
  * @author Owner
  */
-public class DominoException extends Exception {
-    public DominoException(String message) {
+public class BuscaminaException extends Exception {
+    public BuscaminaException(String message) {
         super(message);
     }
 }

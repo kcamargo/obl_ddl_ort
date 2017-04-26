@@ -31,11 +31,11 @@ class SistemaUsuarios {
         return null;
     }
 
-    public Jugador loginJugador(Jugador jugador) throws DominoException {//cambiar nombre domino
+    public Jugador loginJugador(Jugador jugador) throws BuscaminaException {//cambiar nombre domino
         for (Jugador j : jugadores) {
             if (j.equals(jugador)) {
                 if (j.isLogueado()) {
-                    throw new DominoException("El jugador ya se encuentra logueado en el sistema.");
+                    throw new BuscaminaException("El jugador ya se encuentra logueado en el sistema.");
                 } else {
                     j.setLogueado(true);
                     Fachada.getInstancia().agregarAJuego(j);
