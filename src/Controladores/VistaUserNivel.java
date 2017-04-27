@@ -5,24 +5,13 @@
  */
 package Controladores;
 
-import java.util.List;
-
 /**
  *
  * @author Owner
  */
-public interface VistaJuego {
-
-    public void mostrarDatos(String jugador, String oponente, float saldo, float apuesta);
+public interface VistaUserNivel {
 
     public void error(String message);
 
     public void cerrar();
-
-    public void confirmarApuesta(float apuestaPendiente);
-
-    public void deshabilitar();
-
-    public void habilitar();
-
 }

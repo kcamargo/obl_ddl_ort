@@ -6,24 +6,25 @@
 package Vistas;
 
 import Controladores.ControladorUserLogin;
+import Controladores.VistaUserNivel;
 import Dominio.Juego;
 import Dominio.Juego.Eventos;
 import Dominio.Jugador;
 import java.util.Observable;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Owner
  */
-public class VentanaNivel extends javax.swing.JFrame {
+public class VentanaNivel extends javax.swing.JFrame implements VistaUserNivel {
 
     /**
      * Creates new form VentanaNivel
      */
-    
     private ControladorUserLogin controlador;
     private Jugador jugador;
-    
+
     public VentanaNivel(Jugador j) {
         initComponents();
         controlador = new ControladorUserLogin();
@@ -85,16 +86,19 @@ public class VentanaNivel extends javax.swing.JFrame {
     private void btnNivelMedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNivelMedioActionPerformed
         // TODO add your handling code here:
         ingresar(Juego.Eventos.Medio);
+        this.dispose();
     }//GEN-LAST:event_btnNivelMedioActionPerformed
 
     private void btnNivelBajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNivelBajoActionPerformed
         // TODO add your handling code here:
         ingresar(Juego.Eventos.Bajo);
+        this.dispose();
     }//GEN-LAST:event_btnNivelBajoActionPerformed
 
     private void btnNivelAvanzadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNivelAvanzadoActionPerformed
         // TODO add your handling code here:
         ingresar(Juego.Eventos.Avanzado);
+        this.dispose();
     }//GEN-LAST:event_btnNivelAvanzadoActionPerformed
 
 
@@ -106,6 +110,16 @@ public class VentanaNivel extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void ingresar(Eventos o) {
-        new VentanaJuego(jugador,o).setVisible(true);
+        new VentanaJuego(jugador, o).setVisible(true);
+    }
+
+    @Override
+    public void error(String message) {
+        JOptionPane.showMessageDialog(this, message);
+    }
+
+    @Override
+    public void cerrar() {
+        this.dispose();
     }
 }

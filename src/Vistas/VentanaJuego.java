@@ -68,8 +68,8 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
     }//GEN-LAST:event_formWindowClosing
 
     @Override
-    public void mostrarDatos(String jugador, String oponente, float saldo, float apuesta, int cantFichas) {
-        datos.refreshDatos(jugador, oponente, saldo, apuesta, cantFichas);
+    public void mostrarDatos(String jugador, String oponente, float saldo, float apuesta) {
+        datos.refreshDatos(jugador, oponente, saldo, apuesta);
     }
 
     @Override

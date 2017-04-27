@@ -51,7 +51,8 @@ public class ControladorJuego implements Observer {
     }
 
     private void refreshVista() {
-
+        vista.mostrarDatos(jugador.getNombreCompleto(), oponente.getNombreCompleto(),
+                jugador.getSaldo(), juego.getApuestaActual());
     }
 
     private void juegoTerminado() {
@@ -100,6 +101,9 @@ public class ControladorJuego implements Observer {
         switch ((Juego.Eventos) arg) {
             case JuegoTerminado:
                 juegoTerminado();
+                break;
+            case JuegoComenzado:
+                initJuego();
                 break;
             case Bajo:
                 initJuego();
