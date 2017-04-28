@@ -28,6 +28,8 @@ public class Juego extends Observable {
     private Turno turnoActual;
     private float apuestaActual;
     private float apuestaPendiente;
+    private int fila;
+    private int columna;
 
     private boolean comenzo;
     private boolean apuestaAceptada;
@@ -39,7 +41,7 @@ public class Juego extends Observable {
     public enum Eventos {
 
         JuegoTerminado, JuegoComenzado, NuevaApuesta, Bajo, Medio, Avanzado
-             
+
     }
 
     public Juego(float apuestaInicial) {
@@ -135,13 +137,32 @@ public class Juego extends Observable {
         this.apuestaInicial = apuestaInicial;
     }
 
+    public int getFila() {
+        return fila;
+    }
+
+    public void setFila(int fila) {
+        this.fila = fila;
+    }
+
+    public int getColumna() {
+        return columna;
+    }
+
+    public void setColumna(int columna) {
+        this.columna = columna;
+    }
 
 //</editor-fold>
+    
     private void initJuego() {
         comenzo = true;
         avisar(Eventos.JuegoComenzado);
     }
 
+    private void inicio(int f, int c) {
+
+    }
 
     public void addTurno(Turno t) {
         movimientos.add(t);
@@ -187,7 +208,6 @@ public class Juego extends Observable {
         }
     }
 
-    
     protected void tiempoFueraApuesta() {
         abandonarJuego(getOponente(ultApuesta));
     }
@@ -209,9 +229,6 @@ public class Juego extends Observable {
 //            terminarJuego();
 //        }
 //    }
-
-
-
     protected void avisar(Juego.Eventos e) {
         this.setChanged();
         this.notifyObservers(e);
@@ -231,7 +248,7 @@ public class Juego extends Observable {
         j.agregarSaldo(apuestaInicial * -1);
     }
 
-    public void addJugador(Jugador j) throws BuscaminaException {
+    public void addJugador(Jugador j) throws BuscaminaException {// tienen que machear la cantidad de casilleros
         if (j.getSaldo() < this.apuestaInicial) {
             throw new BuscaminaException("El jugador no tiene el saldo suficiente para esta partida.");
         }
@@ -248,5 +265,4 @@ public class Juego extends Observable {
         }
     }
 
-   
 }

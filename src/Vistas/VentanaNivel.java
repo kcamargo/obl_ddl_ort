@@ -41,9 +41,10 @@ public class VentanaNivel extends javax.swing.JFrame implements VistaUserNivel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        btnNivelBajo = new javax.swing.JButton();
-        btnNivelMedio = new javax.swing.JButton();
-        btnNivelAvanzado = new javax.swing.JButton();
+        nCol = new javax.swing.JTextField();
+        nFila = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        btnNivel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -52,65 +53,50 @@ public class VentanaNivel extends javax.swing.JFrame implements VistaUserNivel {
         jLabel1.setText("Elija el tamaño de su Buscaminas:");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(60, 40, 250, 40);
+        getContentPane().add(nCol);
+        nCol.setBounds(220, 90, 50, 30);
+        getContentPane().add(nFila);
+        nFila.setBounds(100, 90, 50, 30);
 
-        btnNivelBajo.setText("Nivel Bajo");
-        btnNivelBajo.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setText("X");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(180, 100, 10, 10);
+
+        btnNivel.setText("comenzar");
+        btnNivel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNivelBajoActionPerformed(evt);
+                btnNivelActionPerformed(evt);
             }
         });
-        getContentPane().add(btnNivelBajo);
-        btnNivelBajo.setBounds(140, 100, 110, 30);
-
-        btnNivelMedio.setText("Nivel Medio");
-        btnNivelMedio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNivelMedioActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnNivelMedio);
-        btnNivelMedio.setBounds(140, 160, 110, 30);
-
-        btnNivelAvanzado.setText("Nivel Avanzado");
-        btnNivelAvanzado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNivelAvanzadoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnNivelAvanzado);
-        btnNivelAvanzado.setBounds(140, 220, 110, 30);
+        getContentPane().add(btnNivel);
+        btnNivel.setBounds(140, 180, 90, 30);
 
         setBounds(0, 0, 416, 339);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNivelMedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNivelMedioActionPerformed
+    private void btnNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNivelActionPerformed
         // TODO add your handling code here:
-        ingresar(Juego.Eventos.Medio);
-        this.dispose();
-    }//GEN-LAST:event_btnNivelMedioActionPerformed
-
-    private void btnNivelBajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNivelBajoActionPerformed
-        // TODO add your handling code here:
-        ingresar(Juego.Eventos.Bajo);
-        this.dispose();
-    }//GEN-LAST:event_btnNivelBajoActionPerformed
-
-    private void btnNivelAvanzadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNivelAvanzadoActionPerformed
-        // TODO add your handling code here:
-        ingresar(Juego.Eventos.Avanzado);
-        this.dispose();
-    }//GEN-LAST:event_btnNivelAvanzadoActionPerformed
+        valores();
+    }//GEN-LAST:event_btnNivelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnNivelAvanzado;
-    private javax.swing.JButton btnNivelBajo;
-    private javax.swing.JButton btnNivelMedio;
+    private javax.swing.JButton btnNivel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField nCol;
+    private javax.swing.JTextField nFila;
     // End of variables declaration//GEN-END:variables
 
-    private void ingresar(Eventos o) {
-        new VentanaJuego(jugador, o).setVisible(true);
+    private void ingresar(int fila, int columna) {
+        new VentanaJuego(jugador,fila, columna).setVisible(true);
+    }
+    
+    private void valores(){
+        int fila, columna;
+        fila = Integer.parseInt(this.nFila.getText());
+        columna = Integer.parseInt(this.nCol.getText());
+        ingresar(fila,columna);
     }
 
     @Override
@@ -122,4 +108,6 @@ public class VentanaNivel extends javax.swing.JFrame implements VistaUserNivel {
     public void cerrar() {
         this.dispose();
     }
+
+
 }

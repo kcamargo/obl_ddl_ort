@@ -25,10 +25,14 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
     private final ControladorJuego controlador;
     private final Vistas.PanelDatos datos;
+    private int cantFilas;
+    private int cantColumnas;
 
-    public VentanaJuego(Jugador j, Eventos o) {
+    public VentanaJuego(Jugador j, int fila, int columna) {
         initComponents();
         controlador = new ControladorJuego();
+        cantFilas = fila;
+        cantColumnas = columna;
 
         JPanel panel = (JPanel) getContentPane();
         GridLayout layout = new GridLayout(3, 1);
@@ -37,6 +41,8 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
         datos = new PanelDatos(controlador);
         panel.add(datos);
 
+        this.panelBuscamina.setLayout(new java.awt.GridLayout(fila, columna));
+        this.paintAll(this.getGraphics());
         controlador.setVista(this);
         controlador.setJugador(j);
     }
@@ -50,6 +56,8 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelBuscamina = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Buscamina");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -58,6 +66,8 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
             }
         });
         getContentPane().setLayout(null);
+        getContentPane().add(panelBuscamina);
+        panelBuscamina.setBounds(40, 30, 320, 240);
 
         setBounds(0, 0, 416, 339);
     }// </editor-fold>//GEN-END:initComponents
@@ -67,6 +77,9 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
         controlador.abandonarJuego();
     }//GEN-LAST:event_formWindowClosing
 
+    
+    
+    
     @Override
     public void mostrarDatos(String jugador, String oponente, float saldo, float apuesta) {
         datos.refreshDatos(jugador, oponente, saldo, apuesta);
@@ -101,5 +114,6 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel panelBuscamina;
     // End of variables declaration//GEN-END:variables
 }
