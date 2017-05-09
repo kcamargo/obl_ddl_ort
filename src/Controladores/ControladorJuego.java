@@ -114,6 +114,9 @@ public class ControladorJuego implements Observer {
             case Avanzado:
                 initJuego();
                 break;
+            case juego:
+                initJuego();
+                break;
             default:
                 throw new AssertionError(((Juego.Eventos) arg).name());
 

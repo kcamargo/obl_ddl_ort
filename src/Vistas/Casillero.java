@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Dominio;
+package Vistas;
 
 import javax.swing.JButton;
 
@@ -23,7 +23,6 @@ public class Casillero extends JButton {
         } else {
             mina = false;
         }
-
     }
     
     public boolean estaMinado(){

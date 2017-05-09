@@ -34,13 +34,15 @@ public class Juego extends Observable {
     private boolean comenzo;
     private boolean apuestaAceptada;
 
+    int contadorMinas = 0;
+
     // private TimerApuesta timerApuesta;
     // private TimerTurno timerTurno;
     private int oid;
 
     public enum Eventos {
 
-        JuegoTerminado, JuegoComenzado, NuevaApuesta, Bajo, Medio, Avanzado
+        JuegoTerminado, JuegoComenzado, NuevaApuesta, Bajo, Medio, Avanzado, juego
 
     }
 
@@ -154,14 +156,9 @@ public class Juego extends Observable {
     }
 
 //</editor-fold>
-    
     private void initJuego() {
         comenzo = true;
         avisar(Eventos.JuegoComenzado);
-    }
-
-    private void inicio(int f, int c) {
-
     }
 
     public void addTurno(Turno t) {

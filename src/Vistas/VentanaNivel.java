@@ -77,6 +77,7 @@ public class VentanaNivel extends javax.swing.JFrame implements VistaUserNivel {
     private void btnNivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNivelActionPerformed
         // TODO add your handling code here:
         valores();
+        cerrar();
     }//GEN-LAST:event_btnNivelActionPerformed
 
 
