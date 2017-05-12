@@ -6,11 +6,15 @@
 package Controladores;
 
 import Dominio.BuscaminaException;
+import Dominio.Casillero;
 import Dominio.Fachada;
+import Dominio.ICasillero;
 import Dominio.Juego;
 import Dominio.Jugador;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import Dominio.ICasillero;
 
 /**
  *
@@ -21,11 +25,14 @@ public class ControladorJuego implements Observer {
     private Jugador jugador;
     private Jugador oponente;
     private Juego juego;
+    private int size;
 
     private VistaJuego vista;
 
-    public ControladorJuego() {
+    private ArrayList<ICasillero> casilleros;
 
+    public ControladorJuego() {
+        
     }
 
     private void initJuego() {
@@ -46,8 +53,14 @@ public class ControladorJuego implements Observer {
         }
     }
 
+    public void setSize(int size) {
+        this.size = size;
+    }
+    
     public void setVista(VistaJuego vista) {
         this.vista = vista;
+        this.vista.mostrarTablero(size,casilleros);
+
     }
 
     private void refreshVista() {
@@ -121,6 +134,20 @@ public class ControladorJuego implements Observer {
                 throw new AssertionError(((Juego.Eventos) arg).name());
 
         }
+    }
+
+    public void destapar(ICasillero c) {
+        c.destapar(jugador);
+        vista.mostrarTablero(size, casilleros);
+    }
+
+    public void generarCasillerosPrueba(int t) {
+        t = size;
+        ArrayList<ICasillero> lista = new ArrayList();
+        for (int x = 1; x <= (t * t); x++) {
+            lista.add(new Casillero());
+        }
+        casilleros = lista;
     }
 
 }

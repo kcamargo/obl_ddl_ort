@@ -5,12 +5,10 @@
  */
 package Vistas;
 
+import Controladores.ControladorJuego;
 import Controladores.ControladorUserLogin;
 import Controladores.VistaUserNivel;
-import Dominio.Juego;
-import Dominio.Juego.Eventos;
 import Dominio.Jugador;
-import java.util.Observable;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,7 +22,7 @@ public class VentanaNivel extends javax.swing.JFrame implements VistaUserNivel {
      */
     private ControladorUserLogin controlador;
     private Jugador jugador;
-
+    
     public VentanaNivel(Jugador j) {
         initComponents();
         controlador = new ControladorUserLogin();
@@ -41,9 +39,7 @@ public class VentanaNivel extends javax.swing.JFrame implements VistaUserNivel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        nCol = new javax.swing.JTextField();
-        nFila = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        tamano = new javax.swing.JTextField();
         btnNivel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -53,14 +49,14 @@ public class VentanaNivel extends javax.swing.JFrame implements VistaUserNivel {
         jLabel1.setText("Elija el tamaño de su Buscaminas:");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(60, 40, 250, 40);
-        getContentPane().add(nCol);
-        nCol.setBounds(220, 90, 50, 30);
-        getContentPane().add(nFila);
-        nFila.setBounds(100, 90, 50, 30);
 
-        jLabel2.setText("X");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(180, 100, 10, 10);
+        tamano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tamanoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tamano);
+        tamano.setBounds(150, 90, 50, 30);
 
         btnNivel.setText("comenzar");
         btnNivel.addActionListener(new java.awt.event.ActionListener() {
@@ -69,7 +65,7 @@ public class VentanaNivel extends javax.swing.JFrame implements VistaUserNivel {
             }
         });
         getContentPane().add(btnNivel);
-        btnNivel.setBounds(140, 180, 90, 30);
+        btnNivel.setBounds(130, 150, 90, 30);
 
         setBounds(0, 0, 416, 339);
     }// </editor-fold>//GEN-END:initComponents
@@ -80,24 +76,27 @@ public class VentanaNivel extends javax.swing.JFrame implements VistaUserNivel {
         cerrar();
     }//GEN-LAST:event_btnNivelActionPerformed
 
+    private void tamanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tamanoActionPerformed
+        // TODO add your handling code here:
+        valores();
+        cerrar();
+    }//GEN-LAST:event_tamanoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNivel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField nCol;
-    private javax.swing.JTextField nFila;
+    private javax.swing.JTextField tamano;
     // End of variables declaration//GEN-END:variables
 
-    private void ingresar(int fila, int columna) {
-        new VentanaJuego(jugador,fila, columna).setVisible(true);
+    private void ingresar(int size) {
+        new VentanaJuego(jugador, size).setVisible(true);
     }
     
     private void valores(){
-        int fila, columna;
-        fila = Integer.parseInt(this.nFila.getText());
-        columna = Integer.parseInt(this.nCol.getText());
-        ingresar(fila,columna);
+        int size = 0;
+        size = Integer.parseInt(this.tamano.getText());
+        ingresar(size);
     }
 
     @Override

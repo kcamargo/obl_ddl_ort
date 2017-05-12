@@ -5,7 +5,8 @@
  */
 package Controladores;
 
-import java.util.List;
+import java.util.ArrayList;
+import Dominio.ICasillero;
 
 /**
  *
@@ -14,6 +15,8 @@ import java.util.List;
 public interface VistaJuego {
 
     public void mostrarDatos(String jugador, String oponente, float saldo, float apuesta);
+    
+    public void mostrarTablero(int tamaño, ArrayList<ICasillero> casilleros);
 
     public void error(String message);
 

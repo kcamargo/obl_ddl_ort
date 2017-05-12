@@ -28,8 +28,7 @@ public class Juego extends Observable {
     private Turno turnoActual;
     private float apuestaActual;
     private float apuestaPendiente;
-    private int fila;
-    private int columna;
+    private int size;
 
     private boolean comenzo;
     private boolean apuestaAceptada;
@@ -139,21 +138,14 @@ public class Juego extends Observable {
         this.apuestaInicial = apuestaInicial;
     }
 
-    public int getFila() {
-        return fila;
+    public int getSize() {
+        return size;
     }
 
-    public void setFila(int fila) {
-        this.fila = fila;
+    public void setSize(int size) {
+        this.size = size;
     }
-
-    public int getColumna() {
-        return columna;
-    }
-
-    public void setColumna(int columna) {
-        this.columna = columna;
-    }
+    
 
 //</editor-fold>
     private void initJuego() {

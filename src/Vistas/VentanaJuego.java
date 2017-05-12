@@ -7,15 +7,13 @@ package Vistas;
 
 import Controladores.ControladorJuego;
 import Controladores.VistaJuego;
-import Dominio.Juego.Eventos;
+import Dominio.ICasillero;
 import Dominio.Jugador;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
-import Vistas.PanelDatos;
+import java.util.ArrayList;
+import javax.swing.JSplitPane;
 
 /**
  *
@@ -25,17 +23,15 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
     private final ControladorJuego controlador;
     private final Vistas.PanelDatos datos;
-    private int cantFilas;
-    private int cantColumnas;
+    private final Vistas.PanelTablero datosT;
 
-    int numeroCuadros = 0;
-    int contador = 0;
+    JSplitPane split;
 
-    public VentanaJuego(Jugador j, int fila, int columna) {
+    public VentanaJuego(Jugador j, int size) {
         initComponents();
         controlador = new ControladorJuego();
-        cantFilas = fila;
-        cantColumnas = columna;
+        controlador.setSize(size);
+        controlador.generarCasillerosPrueba(size);
 
         JPanel panel = (JPanel) getContentPane();
         GridLayout layout = new GridLayout(3, 1);
@@ -44,11 +40,15 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
         datos = new PanelDatos(controlador);
         panel.add(datos);
 
-        this.panel_juego.setLayout(new java.awt.GridLayout(fila, columna));
+        JPanel panelT = (JPanel) getContentPane();
+        GridLayout layoutT = new GridLayout(3, 1);
+        panel.setLayout(layoutT);
+
+        datosT = new PanelTablero(controlador);
+        panelT.add(datosT);
 
         controlador.setVista(this);
         controlador.setJugador(j);
-        algo();
     }
 
     /**
@@ -60,8 +60,6 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panel_juego = new javax.swing.JPanel();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Buscamina");
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -70,8 +68,6 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
             }
         });
         getContentPane().setLayout(null);
-        getContentPane().add(panel_juego);
-        panel_juego.setBounds(40, 30, 320, 240);
 
         setBounds(0, 0, 416, 339);
     }// </editor-fold>//GEN-END:initComponents
@@ -80,24 +76,6 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
         // TODO add your handling code here:
         controlador.abandonarJuego();
     }//GEN-LAST:event_formWindowClosing
-
-    public void algo() {
-        this.panel_juego.removeAll();
-        this.panel_juego.setLayout(new java.awt.GridLayout(cantFilas, cantColumnas));
-        this.numeroCuadros = cantFilas * cantColumnas;
-        
-        for (int i = 0; i < cantFilas; i++) {
-            for (int j = 0; j < cantColumnas; j++) {
-                Casillero casillero = new Casillero();
-//                if (casillero.estaMinado()) {
-//                    contadorMinas++;
-//                }
-                casillero.setVisible(true);
-                this.panel_juego.add(casillero);
-            }
-        }
-//        avisar(Eventos.juego);
-    }
 
     @Override
     public void mostrarDatos(String jugador, String oponente, float saldo, float apuesta) {
@@ -132,8 +110,17 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
         datos.habilitar();
     }
 
+    @Override
+    public void mostrarTablero(int tamaño, ArrayList<ICasillero> casilleros) {
+        PanelTablero p = new PanelTablero(controlador);
+        p.mostrar(tamaño, casilleros);
+        setContentPane(p);
+//        split.setBottomComponent(p);
+        validate();
+//        split.setDividerLocation(200);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel panel_juego;
     // End of variables declaration//GEN-END:variables
 }
