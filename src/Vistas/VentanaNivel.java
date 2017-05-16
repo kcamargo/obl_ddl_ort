@@ -6,6 +6,7 @@
 package Vistas;
 
 import Controladores.ControladorJuego;
+import Controladores.ControladorNivel;
 import Controladores.ControladorUserLogin;
 import Controladores.VistaUserNivel;
 import Dominio.Jugador;
@@ -20,12 +21,12 @@ public class VentanaNivel extends javax.swing.JFrame implements VistaUserNivel {
     /**
      * Creates new form VentanaNivel
      */
-    private ControladorUserLogin controlador;
+    private ControladorNivel controlador;
     private Jugador jugador;
     
     public VentanaNivel(Jugador j) {
         initComponents();
-        controlador = new ControladorUserLogin();
+        controlador = new ControladorNivel();
         jugador = j;
     }
 
@@ -90,7 +91,7 @@ public class VentanaNivel extends javax.swing.JFrame implements VistaUserNivel {
     // End of variables declaration//GEN-END:variables
 
     private void ingresar(int size) {
-        new VentanaJuego(jugador, size).setVisible(true);
+        controlador.setSize(jugador, size);
     }
     
     private void valores(){

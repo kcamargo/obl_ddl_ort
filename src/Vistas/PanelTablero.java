@@ -53,8 +53,8 @@ public class PanelTablero extends javax.swing.JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         BotonCasillero b = (BotonCasillero) e.getSource();
-        //System.out.println("Click:" + b.getCasillero());
         controlador.destapar(b.getCasillero());
+        
     }
 
 

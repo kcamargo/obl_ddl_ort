@@ -7,6 +7,7 @@ package Controladores;
 
 import Dominio.BuscaminaException;
 import Dominio.Fachada;
+import Dominio.Juego;
 import Dominio.Jugador;
 import Vistas.VentanaJuego;
 import Vistas.VentanaNivel;
@@ -36,7 +37,13 @@ public class ControladorUserLogin implements ControladorLogin{
                 vista.error("El usuario y la contraseña no coinciden.");
             } else {
                 vista.cerrar();
-                  new VentanaNivel(j).setVisible(true);
+                Juego juego = modelo.getJuegoDisponible(j);
+                if(juego == null) {
+                    new VentanaNivel(j).setVisible(true);
+                } else {
+                    new VentanaJuego(j, juego.getSize()).setVisible(true);
+                }
+                  
                 
             }
         } catch (BuscaminaException ex) {

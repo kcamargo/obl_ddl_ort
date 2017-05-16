@@ -63,4 +63,17 @@ class Buscamina {
         }
         return null;
     }
+
+    public Juego getJuegoDisponible(Jugador j) {
+        for (Juego a : juegos) {
+            if (a.getJug1().equals(j) || a.getJug2().equals(j)) {
+                return a;
+            }
+        }
+        return null;
+    }
+
+    public Juego getJuegoEnEspera() {
+        return juegoEnEspera;
+    }
 }

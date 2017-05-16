@@ -141,7 +141,7 @@ public class ControladorJuego implements Observer {
         vista.mostrarTablero(size, casilleros);
     }
 
-    public void generarCasillerosPrueba(int t) {
+    public void generarCasilleros(int t) {
         t = size;
         ArrayList<ICasillero> lista = new ArrayList();
         for (int x = 1; x <= (t * t); x++) {

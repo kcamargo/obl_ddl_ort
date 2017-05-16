@@ -71,4 +71,12 @@ public class Fachada extends Observable {
         return buscamina.getJuegoByOid(oid);
     }
 
+    public Juego getJuegoDisponible(Jugador j) {
+        return buscamina.getJuegoDisponible(j);
+    }
+    
+    public Juego getJuegoEnEspera() {
+        return buscamina.getJuegoEnEspera();
+    }
+
 }

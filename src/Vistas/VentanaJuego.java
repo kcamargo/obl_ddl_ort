@@ -23,7 +23,6 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
     private final ControladorJuego controlador;
     private final Vistas.PanelDatos datos;
-    private final Vistas.PanelTablero datosT;
 
     JSplitPane split;
 
@@ -31,7 +30,7 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
         initComponents();
         controlador = new ControladorJuego();
         controlador.setSize(size);
-        controlador.generarCasillerosPrueba(size);
+        controlador.generarCasilleros(size);
 
         JPanel panel = (JPanel) getContentPane();
         GridLayout layout = new GridLayout(3, 1);
@@ -39,13 +38,12 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
         datos = new PanelDatos(controlador);
         panel.add(datos);
+        
+        split = new JSplitPane();
+        split.setTopComponent(new PanelDatos(controlador));
+        
+        setContentPane(split);
 
-        JPanel panelT = (JPanel) getContentPane();
-        GridLayout layoutT = new GridLayout(3, 1);
-        panel.setLayout(layoutT);
-
-        datosT = new PanelTablero(controlador);
-        panelT.add(datosT);
 
         controlador.setVista(this);
         controlador.setJugador(j);

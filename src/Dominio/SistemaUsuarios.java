@@ -31,7 +31,7 @@ class SistemaUsuarios {
         return null;
     }
 
-    public Jugador loginJugador(Jugador jugador) throws BuscaminaException {//cambiar nombre domino
+    public Jugador loginJugador(Jugador jugador) throws BuscaminaException {
         for (Jugador j : jugadores) {
             if (j.equals(jugador)) {
                 if (j.isLogueado()) {
