@@ -22,7 +22,7 @@ public class PanelDatos extends javax.swing.JPanel {
     private void initComponents() {
 
         lblOponente = new javax.swing.JLabel();
-        lblApuesta = new javax.swing.JLabel();
+        lblSaldo2 = new javax.swing.JLabel();
         btnApostar = new javax.swing.JButton();
         lblJugador = new javax.swing.JLabel();
         lblSaldo = new javax.swing.JLabel();
@@ -36,9 +36,9 @@ public class PanelDatos extends javax.swing.JPanel {
         lblOponente.setAlignmentX(0.5F);
         add(lblOponente);
 
-        lblApuesta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblApuesta.setText("$-----");
-        add(lblApuesta);
+        lblSaldo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSaldo2.setText("$-----");
+        add(lblSaldo2);
 
         btnApostar.setText("Apostar");
         btnApostar.addActionListener(new java.awt.event.ActionListener() {
@@ -62,24 +62,25 @@ public class PanelDatos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnApostarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApostarActionPerformed
-        controlador.apostar(Float.parseFloat(txtApuesta.getText()));
+      //  controlador.apostar(Float.parseFloat(txtApuesta.getText()));
     }//GEN-LAST:event_btnApostarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnApostar;
-    private javax.swing.JLabel lblApuesta;
     private javax.swing.JLabel lblJugador;
     private javax.swing.JLabel lblOponente;
     private javax.swing.JLabel lblSaldo;
+    private javax.swing.JLabel lblSaldo2;
     private javax.swing.JTextField txtApuesta;
     // End of variables declaration//GEN-END:variables
 
-    public void refreshDatos(String jugador, String oponente, float saldo, float apuesta) {
+    public void refreshDatos(String jugador, String oponente, float saldo, float saldo2, float apuesta) {
        lblJugador.setText("Jug.: " + jugador);
        lblOponente.setText("Op.: " + oponente);
-       lblSaldo.setText("Saldo: $" + saldo);
-       lblApuesta.setText("Apuesta: $" + apuesta);
+       lblSaldo.setText("Saldo Jug1: $" + saldo);
+       lblSaldo2.setText("Saldo Jug2: $" + saldo2);
+       txtApuesta.setText("Apuesta: $" + apuesta);
     }
 
 

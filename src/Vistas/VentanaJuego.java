@@ -23,11 +23,12 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
     private final ControladorJuego controlador;
     private final Vistas.PanelDatos datos;
-
+    Jugador jugador;
     JSplitPane split;
 
     public VentanaJuego(Jugador j, int size) {
         initComponents();
+        jugador = j;
         controlador = new ControladorJuego();
         controlador.setSize(size);
         controlador.generarCasilleros(size);
@@ -46,7 +47,7 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
 
         controlador.setVista(this);
-        controlador.setJugador(j);
+        
     }
 
     /**
@@ -72,12 +73,12 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
-        controlador.abandonarJuego();
+        controlador.abandonarJuego(jugador);
     }//GEN-LAST:event_formWindowClosing
 
     @Override
-    public void mostrarDatos(String jugador, String oponente, float saldo, float apuesta) {
-        datos.refreshDatos(jugador, oponente, saldo, apuesta);
+    public void mostrarDatos(String jugador, String oponente, float saldo1, float saldo2, float apuesta) {
+        datos.refreshDatos(jugador, oponente, saldo1,saldo2, apuesta);
         this.paintAll(this.getGraphics());
     }
 
@@ -95,7 +96,7 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
     public void confirmarApuesta(float apuestaPendiente) {
         int result = JOptionPane.showConfirmDialog(this, "¿Desea igualar la apuesta de: $" + apuestaPendiente + "?", "¡Atención!", JOptionPane.YES_NO_OPTION);
 
-        controlador.contestarApuesta(result == JOptionPane.YES_OPTION);
+//        controlador.contestarApuesta(result == JOptionPane.YES_OPTION);
     }
 
     @Override
@@ -110,10 +111,15 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
     @Override
     public void mostrarTablero(int tamaño, ArrayList<ICasillero> casilleros) {
-        PanelTablero p = new PanelTablero(controlador);
+        PanelTablero p = new PanelTablero(controlador, jugador);
         p.mostrar(tamaño, casilleros);
+
 //        setContentPane(p);
         split.setBottomComponent(p);
+
+        //setContentPane(p);
+       split.setBottomComponent(p);
+
         validate();
         split.setDividerLocation(200);
     }

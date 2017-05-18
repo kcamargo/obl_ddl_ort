@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Owner
  */
-class Buscamina {
+public class Buscamina {
 
     private ArrayList<Juego> juegos;
     private Juego juegoEnEspera;
@@ -24,18 +24,14 @@ class Buscamina {
     }
 
     public void agregarAJuego(Jugador j) throws BuscaminaException {
-        if (juegoEnEspera.getJug1() != null) {
-            juegos.add(juegoEnEspera);
-            try {
-                juegoEnEspera.addJugador(j);
-            } catch (BuscaminaException ex) {
-                juegos.remove(juegoEnEspera);
-                throw ex;
-            }
-            juegoEnEspera = new Juego(APUESTAINICIAL);
-        } else {
+        if(juegoEnEspera!= null){
             juegoEnEspera.addJugador(j);
+            if (juegoEnEspera.getJug2() != null) {
+                juegos.add(juegoEnEspera);
+                juegoEnEspera = null;
+            }
         }
+        //juegoEnEspera = new Juego(APUESTAINICIAL);
     }
 
     public void cargarJuegos() {

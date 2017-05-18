@@ -16,5 +16,6 @@ class Movimiento {
     Color getColor() {
         return Color.BLUE;
     }
+    
 
 }

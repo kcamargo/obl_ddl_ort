@@ -233,10 +233,10 @@ public class Juego extends Observable {
         Fachada.getInstancia().avisar(e);
     }
 
-    private void terminarJuego() {
-        ganador.agregarSaldo(apuestaActual * 2);
+    public void terminarJuego() {
+      ganador.agregarSaldo(apuestaActual * 2);
         jug1.setJuegoActivo(null);
-        jug2.setJuegoActivo(null);
+       jug2.setJuegoActivo(null);
         avisar(Eventos.JuegoTerminado);
 
     }
