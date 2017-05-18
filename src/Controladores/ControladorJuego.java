@@ -118,18 +118,18 @@ public class ControladorJuego implements Observer {
             case JuegoComenzado:
                 initJuego();
                 break;
-            case Bajo:
-                initJuego();
-                break;
-            case Medio:
-                initJuego();
-                break;
-            case Avanzado:
-                initJuego();
-                break;
-            case juego:
-                initJuego();
-                break;
+//            case Bajo:
+//                initJuego();
+//                break;
+//            case Medio:
+//                initJuego();
+//                break;
+//            case Avanzado:
+//                initJuego();
+//                break;
+//            case juego:
+//                initJuego();
+//                break;
             default:
                 throw new AssertionError(((Juego.Eventos) arg).name());
 
@@ -149,5 +149,13 @@ public class ControladorJuego implements Observer {
         }
         casilleros = lista;
     }
-
+    
+    public void generarMina(){
+    //cuando comienza el juego tiene que poner 1 mina
+    //despues de haber judado 1 turno cada uno y no haber explotado, agrega otra
+    }
+    
+    public void mostrarMinas(){
+    //al finalizar el juego destapa todos los casilleros y muestra donde estan las minas
+    }
 }

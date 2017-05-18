@@ -23,11 +23,9 @@ public class PanelDatos extends javax.swing.JPanel {
 
         lblOponente = new javax.swing.JLabel();
         lblApuesta = new javax.swing.JLabel();
-        lblTimerTurno = new javax.swing.JLabel();
         btnApostar = new javax.swing.JButton();
         lblJugador = new javax.swing.JLabel();
         lblSaldo = new javax.swing.JLabel();
-        lblTimerApuesta = new javax.swing.JLabel();
         txtApuesta = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(750, 70));
@@ -41,10 +39,6 @@ public class PanelDatos extends javax.swing.JPanel {
         lblApuesta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblApuesta.setText("$-----");
         add(lblApuesta);
-
-        lblTimerTurno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTimerTurno.setText("Tiempo Restante:");
-        add(lblTimerTurno);
 
         btnApostar.setText("Apostar");
         btnApostar.addActionListener(new java.awt.event.ActionListener() {
@@ -62,10 +56,6 @@ public class PanelDatos extends javax.swing.JPanel {
         lblSaldo.setText("$-----");
         add(lblSaldo);
 
-        lblTimerApuesta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTimerApuesta.setText("Timer Apuesta:");
-        add(lblTimerApuesta);
-
         txtApuesta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtApuesta.setText("0");
         add(txtApuesta);
@@ -82,8 +72,6 @@ public class PanelDatos extends javax.swing.JPanel {
     private javax.swing.JLabel lblJugador;
     private javax.swing.JLabel lblOponente;
     private javax.swing.JLabel lblSaldo;
-    private javax.swing.JLabel lblTimerApuesta;
-    private javax.swing.JLabel lblTimerTurno;
     private javax.swing.JTextField txtApuesta;
     // End of variables declaration//GEN-END:variables
 

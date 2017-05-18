@@ -22,6 +22,7 @@ public class Juego extends Observable {
     private Jugador jug1;
     private Jugador jug2;
     private Jugador ultApuesta;
+    private boolean mina;
 
     private ArrayList<Turno> movimientos;
 
@@ -35,13 +36,12 @@ public class Juego extends Observable {
 
     int contadorMinas = 0;
 
-    // private TimerApuesta timerApuesta;
-    // private TimerTurno timerTurno;
+
     private int oid;
 
     public enum Eventos {
 
-        JuegoTerminado, JuegoComenzado, NuevaApuesta, Bajo, Medio, Avanzado, juego
+        JuegoTerminado, PiezaMovida, JuegoComenzado, SinFichas, NuevaApuesta
 
     }
 
@@ -145,6 +145,15 @@ public class Juego extends Observable {
     public void setSize(int size) {
         this.size = size;
     }
+
+    public boolean isMina() {
+        return mina;
+    }
+
+    public void setMina(boolean mina) {
+        this.mina = mina;
+    }
+    
     
 
 //</editor-fold>

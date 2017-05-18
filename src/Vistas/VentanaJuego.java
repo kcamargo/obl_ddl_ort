@@ -112,10 +112,10 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
     public void mostrarTablero(int tamaño, ArrayList<ICasillero> casilleros) {
         PanelTablero p = new PanelTablero(controlador);
         p.mostrar(tamaño, casilleros);
-        setContentPane(p);
-//        split.setBottomComponent(p);
+//        setContentPane(p);
+        split.setBottomComponent(p);
         validate();
-//        split.setDividerLocation(200);
+        split.setDividerLocation(200);
     }
 
 
