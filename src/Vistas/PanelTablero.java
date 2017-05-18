@@ -54,7 +54,6 @@ public class PanelTablero extends javax.swing.JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         BotonCasillero b = (BotonCasillero) e.getSource();
         controlador.destapar(b.getCasillero());
-        
     }
 
 

@@ -12,8 +12,15 @@ import java.awt.Color;
  * @author Owner
  */
 public class Casillero implements ICasillero{
-
+    
+    
     private Movimiento movimiento;
+    public int estado=1;
+
+    public int getEstado() {
+        return estado;
+    }
+    
 
     @Override
     public Color getColor() {
@@ -25,10 +32,11 @@ public class Casillero implements ICasillero{
     }
 
     @Override
-    public void destapar(Jugador jugador) {
+    public void destapar() {
         //validar cosas, para eso tal vez delego esto a la partida
         //tal vez miPartida.destapar(this,jugador)  u otra cosa que quieran...
         movimiento = new Movimiento();
+        estado=2;
     }
     
 }

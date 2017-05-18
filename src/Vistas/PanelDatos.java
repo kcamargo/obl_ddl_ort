@@ -22,6 +22,7 @@ public class PanelDatos extends javax.swing.JPanel {
     private void initComponents() {
 
         lblOponente = new javax.swing.JLabel();
+        lblSaldo2 = new javax.swing.JLabel();
         lblApuesta = new javax.swing.JLabel();
         lblTimerTurno = new javax.swing.JLabel();
         btnApostar = new javax.swing.JButton();
@@ -37,6 +38,9 @@ public class PanelDatos extends javax.swing.JPanel {
         lblOponente.setText("ESPERANDO A OTRO JUGADOR...");
         lblOponente.setAlignmentX(0.5F);
         add(lblOponente);
+
+        lblSaldo2.setText("$-----");
+        add(lblSaldo2);
 
         lblApuesta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblApuesta.setText("$-----");
@@ -72,7 +76,7 @@ public class PanelDatos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnApostarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApostarActionPerformed
-        controlador.apostar(Float.parseFloat(txtApuesta.getText()));
+      //  controlador.apostar(Float.parseFloat(txtApuesta.getText()));
     }//GEN-LAST:event_btnApostarActionPerformed
 
 
@@ -82,15 +86,17 @@ public class PanelDatos extends javax.swing.JPanel {
     private javax.swing.JLabel lblJugador;
     private javax.swing.JLabel lblOponente;
     private javax.swing.JLabel lblSaldo;
+    private javax.swing.JLabel lblSaldo2;
     private javax.swing.JLabel lblTimerApuesta;
     private javax.swing.JLabel lblTimerTurno;
     private javax.swing.JTextField txtApuesta;
     // End of variables declaration//GEN-END:variables
 
-    public void refreshDatos(String jugador, String oponente, float saldo, float apuesta) {
+    public void refreshDatos(String jugador, String oponente, float saldo, float saldo2, float apuesta) {
        lblJugador.setText("Jug.: " + jugador);
        lblOponente.setText("Op.: " + oponente);
-       lblSaldo.setText("Saldo: $" + saldo);
+       lblSaldo.setText("Saldo Jug1: $" + saldo);
+       lblSaldo2.setText("Saldo Jug2: $" + saldo2);
        lblApuesta.setText("Apuesta: $" + apuesta);
     }
 

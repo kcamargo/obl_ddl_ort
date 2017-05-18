@@ -15,7 +15,9 @@ import Dominio.Jugador;
 public interface ICasillero {
 
     public Color getColor();
-
-    public void destapar(Jugador jugador);
+    public int getEstado();
+    
+    
+    public void destapar();
     
 }
