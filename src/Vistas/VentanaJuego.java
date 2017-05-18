@@ -96,7 +96,7 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
     public void confirmarApuesta(float apuestaPendiente) {
         int result = JOptionPane.showConfirmDialog(this, "¿Desea igualar la apuesta de: $" + apuestaPendiente + "?", "¡Atención!", JOptionPane.YES_NO_OPTION);
 
-        controlador.contestarApuesta(result == JOptionPane.YES_OPTION);
+       // controlador.contestarApuesta(result == JOptionPane.YES_OPTION);
     }
 
     @Override
@@ -111,7 +111,7 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
     @Override
     public void mostrarTablero(int tamaño, ArrayList<ICasillero> casilleros) {
-        PanelTablero p = new PanelTablero(controlador);
+        PanelTablero p = new PanelTablero(controlador,jugador);
         p.mostrar(tamaño, casilleros);
         //setContentPane(p);
        split.setBottomComponent(p);

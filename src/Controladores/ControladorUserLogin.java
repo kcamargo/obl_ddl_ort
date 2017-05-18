@@ -38,6 +38,7 @@ public class ControladorUserLogin implements ControladorLogin{
             } else {
                 vista.cerrar();
                 Juego juego = modelo.getJuegoDisponible(j);
+         
                 if(juego == null) {
                     new VentanaNivel(j).setVisible(true);
                 } else {

@@ -7,6 +7,7 @@ package Vistas;
 
 import Controladores.ControladorJuego;
 import Dominio.ICasillero;
+import Dominio.Jugador;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,10 +23,11 @@ public class PanelTablero extends javax.swing.JPanel implements ActionListener {
      * Creates new form PanelTablero
      */
     private ControladorJuego controlador;
-
-    public PanelTablero(ControladorJuego c) {
+    Jugador jugador;
+    public PanelTablero(ControladorJuego c, Jugador j) {
         initComponents();
         controlador = c;
+        jugador=j;
     }
 
     public void mostrar(int tamaño, ArrayList<ICasillero> casilleros) {
@@ -53,7 +55,7 @@ public class PanelTablero extends javax.swing.JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         BotonCasillero b = (BotonCasillero) e.getSource();
-        controlador.destapar(b.getCasillero());
+        controlador.destapar(b.getCasillero(),jugador);
     }
 
 
