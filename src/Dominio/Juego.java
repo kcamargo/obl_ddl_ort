@@ -24,9 +24,9 @@ public class Juego extends Observable {
     private Jugador ultApuesta;
     private boolean mina;
 
-    private ArrayList<Turno> movimientos;
+    private ArrayList<Movimiento> movimientos;
 
-    private Turno turnoActual;
+    private Movimiento turnoActual;
     private float apuestaActual;
     private float apuestaPendiente;
     private int size;
@@ -66,11 +66,11 @@ public class Juego extends Observable {
         return ultApuesta;
     }
 
-    public ArrayList<Turno> getMovimientos() {
+    public ArrayList<Movimiento> getMovimientos() {
         return movimientos;
     }
 
-    public Turno getTurnoActual() {
+    public Movimiento getTurnoActual() {
         return turnoActual;
     }
 
@@ -162,7 +162,7 @@ public class Juego extends Observable {
         avisar(Eventos.JuegoComenzado);
     }
 
-    public void addTurno(Turno t) {
+    public void addTurno(Movimiento t) {
         movimientos.add(t);
     }
 
@@ -206,13 +206,6 @@ public class Juego extends Observable {
         }
     }
 
-    protected void tiempoFueraApuesta() {
-        abandonarJuego(getOponente(ultApuesta));
-    }
-
-    protected void tiempoFueraTurno() {
-        abandonarJuego(turnoActual.getJugador());
-    }
 
     public void abandonarJuego(Jugador j) {
         ganador = j.equals(jug1) ? jug2 : jug1;
@@ -253,7 +246,7 @@ public class Juego extends Observable {
         if (jug1 == null) {
             jug1 = j;
             initJugador(j);
-            turnoActual = new Turno(j);
+            turnoActual = new Movimiento(j);
         } else if (jug2 == null) {
             jug2 = j;
             initJuego();

@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Owner/Desktop/ORT/DDA/Segunda%20Vez/Buscaminas/src/Vistas/PanelTablero.java</file>
-            <file>file:/C:/Users/Owner/Desktop/ORT/DDA/Segunda%20Vez/Buscaminas/src/Vistas/PanelDatos.java</file>
+            <file>file:/C:/Users/Owner/Desktop/ORT/DDA/Segunda%20Vez/Buscaminas/src/Dominio/Buscamina.java</file>
+            <file>file:/C:/Users/Owner/Desktop/ORT/DDA/Segunda%20Vez/Buscaminas/src/Dominio/Juego.java</file>
+            <file>file:/C:/Users/Owner/Desktop/ORT/DDA/Segunda%20Vez/Buscaminas/src/Controladores/ControladorJuego.java</file>
+            <file>file:/C:/Users/Owner/Desktop/ORT/DDA/Segunda%20Vez/Buscaminas/src/Dominio/Fachada.java</file>
         </group>
     </open-files>
 </project-private>
