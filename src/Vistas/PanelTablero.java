@@ -23,6 +23,7 @@ public class PanelTablero extends javax.swing.JPanel implements ActionListener {
      * Creates new form PanelTablero
      */
     private ControladorJuego controlador;
+
     private Jugador jugador;
 
     public PanelTablero(ControladorJuego c, Jugador j) {
@@ -56,7 +57,9 @@ public class PanelTablero extends javax.swing.JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         BotonCasillero b = (BotonCasillero) e.getSource();
+
         controlador.destapar(b.getCasillero(), jugador);
+
     }
 
 

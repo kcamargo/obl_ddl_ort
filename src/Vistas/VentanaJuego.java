@@ -39,15 +39,14 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
         datos = new PanelDatos(controlador);
         panel.add(datos);
-        
+
         split = new JSplitPane();
         split.setTopComponent(new PanelDatos(controlador));
-        
+
         setContentPane(split);
 
-
         controlador.setVista(this);
-        
+
     }
 
     /**
@@ -78,7 +77,7 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
     @Override
     public void mostrarDatos(String jugador, String oponente, float saldo1, float saldo2, float apuesta) {
-        datos.refreshDatos(jugador, oponente, saldo1,saldo2, apuesta);
+        datos.refreshDatos(jugador, oponente, saldo1, saldo2, apuesta);
         this.paintAll(this.getGraphics());
     }
 
@@ -96,7 +95,6 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
     public void confirmarApuesta(float apuestaPendiente) {
         int result = JOptionPane.showConfirmDialog(this, "¿Desea igualar la apuesta de: $" + apuestaPendiente + "?", "¡Atención!", JOptionPane.YES_NO_OPTION);
 
-//        controlador.contestarApuesta(result == JOptionPane.YES_OPTION);
     }
 
     @Override
@@ -111,14 +109,14 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
     @Override
     public void mostrarTablero(int tamaño, ArrayList<ICasillero> casilleros) {
+
         PanelTablero p = new PanelTablero(controlador, jugador);
+
         p.mostrar(tamaño, casilleros);
 
 //        setContentPane(p);
         split.setBottomComponent(p);
 
-        //setContentPane(p);
-       split.setBottomComponent(p);
 
         validate();
         split.setDividerLocation(200);

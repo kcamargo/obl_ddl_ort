@@ -70,6 +70,7 @@ public class ControladorJuego implements Observer {
     private void refreshVista() {
         vista.mostrarDatos(juego.getJug1().getNombreCompleto(), juego.getJug2().getNombreCompleto(),
                 juego.getJug1().getSaldo(), juego.getJug2().getSaldo(), juego.getApuestaActual());
+        vista.mostrarTablero(size, casilleros);
        
     }
 
