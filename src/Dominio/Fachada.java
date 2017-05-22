@@ -17,6 +17,7 @@ public class Fachada extends Observable {
     private SistemaUsuarios sistemaUsuarios;
     private Buscamina buscamina;
     private static Fachada instancia;
+    public ArrayList<Juego> getJuegosDePrueba;
 
     private Fachada() {
         sistemaUsuarios = new SistemaUsuarios();

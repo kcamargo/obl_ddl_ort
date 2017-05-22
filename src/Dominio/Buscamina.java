@@ -39,7 +39,7 @@ public class Buscamina {
     }
 
     public ArrayList<Juego> getJuegos() {
-        return juegos;
+        return cargarJugosPrueba();
     }
 
     public boolean juegosActivos() {
@@ -71,5 +71,11 @@ public class Buscamina {
 
     public Juego getJuegoEnEspera() {
         return juegoEnEspera;
+    }
+
+    private ArrayList<Juego> cargarJugosPrueba() {// para borrar
+        juegos.add(new Juego(2000,new Jugador("pepe","1234"),new Jugador("pepe","1234"),new Jugador("jorge","1234")));
+        juegos.add(new Juego(5000,new Jugador("jorge","1234"),new Jugador("pepe","1234"),new Jugador("jorge","1234")));
+        return juegos;
     }
 }

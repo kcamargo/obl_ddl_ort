@@ -30,6 +30,7 @@ public class Jugador extends Usuario{
         super(usuario, password,nombreCompleto);
         this.saldo = saldo;
     }
+     
 
     public float getSaldo() {
         return saldo;

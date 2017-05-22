@@ -36,7 +36,6 @@ public class Juego extends Observable {
 
     int contadorMinas = 0;
 
-
     private int oid;
 
     public enum Eventos {
@@ -55,6 +54,13 @@ public class Juego extends Observable {
 
     public Juego() {
         movimientos = new ArrayList<>();
+    }
+
+    public Juego(float ai, Jugador g, Jugador j1, Jugador j2) { //es de prueba para cargar las listas del administrador
+        apuestaInicial = ai;
+        ganador = g;
+        jug1 = j1;
+        jug2 = j2;
     }
 
     //<editor-fold defaultstate="collapsed" desc="Getters & Setters">
@@ -153,8 +159,6 @@ public class Juego extends Observable {
     public void setMina(boolean mina) {
         this.mina = mina;
     }
-    
-    
 
 //</editor-fold>
     private void initJuego() {
@@ -206,7 +210,6 @@ public class Juego extends Observable {
         }
     }
 
-
     public void abandonarJuego(Jugador j) {
         ganador = j.equals(jug1) ? jug2 : jug1;
         terminarJuego();
@@ -227,9 +230,9 @@ public class Juego extends Observable {
     }
 
     public void terminarJuego() {
-      ganador.agregarSaldo(apuestaActual * 2);
+        ganador.agregarSaldo(apuestaActual * 2);
         jug1.setJuegoActivo(null);
-       jug2.setJuegoActivo(null);
+        jug2.setJuegoActivo(null);
         avisar(Eventos.JuegoTerminado);
 
     }
