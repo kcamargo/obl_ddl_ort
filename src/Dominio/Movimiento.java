@@ -15,6 +15,7 @@ class Movimiento {
 
     private float apuesta;
     private Jugador jugador;
+    private Casillero casillero;
 
     public Movimiento(Jugador jugador) {
         if (jugador != null) {
