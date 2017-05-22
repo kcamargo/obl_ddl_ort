@@ -22,25 +22,31 @@ import java.util.Random;
  *
  * @author Owner
  */
-public class ControladorJuego implements Observer {
+public final class ControladorJuego implements Observer {
 
-//    private Jugador jugador;
-//    private Jugador oponente;
+
     private Juego juego;
-//    private Buscamina buscamina; 
+    private Jugador jugador;
     private int size;
-
     private VistaJuego vista;
-
     private ArrayList<ICasillero> casilleros;
+    
+    public ControladorJuego(int tamaño, VistaJuego vista, Jugador j) {
+    this.vista = vista;
+    size=tamaño;
+    juego = j.getJuegoActivo();
+    juego.addObserver(this);
+    casilleros=juego.casilleros(tamaño);
+  
+  //juego.generarCasilleros(size);
+    
 
-    public ControladorJuego() {
-        
+       
     }
 
     private void initJuego() {
 //        this.juego.setJug2(juego.getOponente(jugador)); 
-        vista.habilitar();
+        vista.habilitar();   
         refreshVista();
     }
 
@@ -48,32 +54,28 @@ public class ControladorJuego implements Observer {
 //        this.jugador = j;
 //        this.juego = jugador.getJuegoActivo();
 //        this.oponente = juego.getOponente(jugador);
-        juego.addObserver(this);
+       // juego.addObserver(this);
         if (juego.comenzo()) {
+          //  generarCasilleros(size);
             refreshVista();
         } else {
             vista.deshabilitar();
         }
     }
-
+ 
     public void setSize(int size) {      
-        this.size = size;
-          
-    }
-    
+        this.size = size;      
+    } 
     public void setVista(VistaJuego vista) {
         this.vista = vista;
-        this.vista.mostrarTablero(size,casilleros);
-
+//        this.vista.mostrarTablero(size,casilleros);
     }
-
     private void refreshVista() {
         vista.mostrarDatos(juego.getJug1().getNombreCompleto(), juego.getJug2().getNombreCompleto(),
                 juego.getJug1().getSaldo(), juego.getJug2().getSaldo(), juego.getApuestaActual());
-        vista.mostrarTablero(size, casilleros);
+      //  vista.mostrarTablero(size, casilleros);
        
     }
-
     private void juegoTerminado() {
         juego.deleteObserver(this);
         vista.error("¡Ganó el jugador " + juego.getGanador().getNombreCompleto()
@@ -142,48 +144,17 @@ public class ControladorJuego implements Observer {
         }
     }
 
-    public void destapar(ICasillero c, Jugador j) {
-        if(c.getEstado()==3){
-            System.out.println("EXPLOTO TODOOOOO");
-            juego.terminarJuego();
-        }
-        else if (c.getEstado()==1){
-            c.destapar();
-            vista.mostrarTablero(size, casilleros);    
-        }
-        
+  public void destaparTablero(ICasillero casillero,Jugador j){
+       juego.destapar(casillero, j);
+        vista.mostrarTablero(size,casilleros);
     }
-    
-    public int GenerarMina()
-    {
-        int num=size*size;
+  
+    public void vistaLista() {
         
-        Random x = new Random();
-        
-        return x.nextInt(num);
+        vista.mostrarTablero(size,casilleros);
+    }
 
     
-    }
-
-    public void generarCasilleros(int t) {
-        t = size;
-        int n= GenerarMina();
-        System.out.println("NUMERO MINA " + n);
-        
-        ArrayList<ICasillero> lista = new ArrayList();
-        for (int x = 1; x <= (t * t); x++) {
-            Casillero c = new Casillero();
-            if(x==n){
-                c.estado=3;
-            }
-            
-            lista.add(c);
-            
-            
-        }
-        casilleros = lista;
-    }
-
     public Juego getJuego() {
         return juego;
     }

@@ -13,8 +13,13 @@ import java.awt.Color;
  */
 class Movimiento {
 
+    private Juego juego;
+    
     Color getColor() {
-        return Color.BLUE;
+    
+     
+           return Color.BLUE;
+      
     }
     
 

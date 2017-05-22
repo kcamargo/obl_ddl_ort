@@ -2,25 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/User/Desktop/DDA%202017/Obli/obl_ddl_ort/src/Vistas/PanelDatos.java</file>
-            <file>file:/C:/Users/User/Desktop/DDA%202017/Obli/obl_ddl_ort/src/Vistas/PanelTablero.java</file>
-            <file>file:/C:/Users/User/Desktop/DDA%202017/Obli/obl_ddl_ort/src/Vistas/VentanaNivel.java</file>
-            <file>file:/C:/Users/User/Desktop/DDA%202017/Obli/obl_ddl_ort/src/Vistas/Buscaminas.java</file>
-            <file>file:/C:/Users/User/Desktop/DDA%202017/Obli/obl_ddl_ort/src/Vistas/VentanaHome.java</file>
-            <file>file:/C:/Users/User/Desktop/DDA%202017/Obli/obl_ddl_ort/src/Dominio/Jugador.java</file>
-            <file>file:/C:/Users/User/Desktop/DDA%202017/Obli/obl_ddl_ort/src/Vistas/VentanaJuego.java</file>
-            <file>file:/C:/Users/User/Desktop/DDA%202017/Obli/obl_ddl_ort/src/Vistas/VentanaUserLogin.java</file>
-            <file>file:/C:/Users/User/Desktop/DDA%202017/Obli/obl_ddl_ort/src/Dominio/Casillero.java</file>
-            <file>file:/C:/Users/User/Desktop/DDA%202017/Obli/obl_ddl_ort/src/Dominio/ICasillero.java</file>
-            <file>file:/C:/Users/User/Desktop/DDA%202017/Obli/obl_ddl_ort/src/Controladores/ControladorLogin.java</file>
-            <file>file:/C:/Users/User/Desktop/DDA%202017/Obli/obl_ddl_ort/src/Controladores/ControladorNivel.java</file>
-            <file>file:/C:/Users/User/Desktop/DDA%202017/Obli/obl_ddl_ort/src/Controladores/ControladorJuego.java</file>
-            <file>file:/C:/Users/User/Desktop/DDA%202017/Obli/obl_ddl_ort/src/Controladores/ControladorUserLogin.java</file>
-            <file>file:/C:/Users/User/Desktop/DDA%202017/Obli/obl_ddl_ort/src/Dominio/SistemaUsuarios.java</file>
-            <file>file:/C:/Users/User/Desktop/DDA%202017/Obli/obl_ddl_ort/src/Dominio/Buscamina.java</file>
-            <file>file:/C:/Users/User/Desktop/DDA%202017/Obli/obl_ddl_ort/src/Dominio/Fachada.java</file>
-            <file>file:/C:/Users/User/Desktop/DDA%202017/Obli/obl_ddl_ort/src/Dominio/Juego.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

@@ -24,29 +24,29 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
     private final ControladorJuego controlador;
     private final Vistas.PanelDatos datos;
     Jugador jugador;
+    
     JSplitPane split;
 
+    //public VentanaJuego(Jugador j, int size) {
     public VentanaJuego(Jugador j, int size) {
         initComponents();
         jugador = j;
-        controlador = new ControladorJuego();
-        controlador.setSize(size);
-        controlador.generarCasilleros(size);
+        //En vez de pedir controlador debo pedir el juego de la lista de juegos en buscaminas pasado por fachada
+        //En realidad no quiero la lista, quiero el juego activo que pertenece a ese jugador de la ventana
+        //Hacer un metodo que busque que juego activo tiene el jugador de la ventana, hecho en sistema
 
-        JPanel panel = (JPanel) getContentPane();
-        GridLayout layout = new GridLayout(3, 1);
-        panel.setLayout(layout);
-
+        controlador = new ControladorJuego(size,this,jugador);
+       
         datos = new PanelDatos(controlador);
-        panel.add(datos);
-        
+       // panel.add(datos);  
         split = new JSplitPane();
-        split.setTopComponent(new PanelDatos(controlador));
-        
+        split.setTopComponent(new PanelDatos(controlador));   
         setContentPane(split);
-
-
-        controlador.setVista(this);
+     
+       // controlador.setVista(this);
+        controlador.vistaLista();
+   
+              
         
     }
 
@@ -113,8 +113,7 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
     public void mostrarTablero(int tamaño, ArrayList<ICasillero> casilleros) {
         PanelTablero p = new PanelTablero(controlador,jugador);
         p.mostrar(tamaño, casilleros);
-        //setContentPane(p);
-       split.setBottomComponent(p);
+        split.setBottomComponent(p);
         validate();
         split.setDividerLocation(200);
     }
@@ -122,4 +121,6 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
+   
 }
