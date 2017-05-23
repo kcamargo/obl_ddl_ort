@@ -51,8 +51,8 @@ class SistemaUsuarios {
     }
 
     private void cargarDatosPrueba() {
-        jugadores.add(new Jugador("pepe", "1234", "Pepe Gómez",23400));
-        jugadores.add(new Jugador("jorge", "1234", "Jorge Ramírez",30040));
+        jugadores.add(new Jugador("a", "a", "Pepe Gómez",23400));
+        jugadores.add(new Jugador("s", "s", "Jorge Ramírez",30040));
         jugadores.add(new Jugador("toto", "1234", "Toto Pérez",25890));
         jugadores.add(new Jugador("ernesto", "1234", "Ernesto Pérez",5890));
         jugadores.add(new Jugador("luis", "1234", "Luis José Pérez",205890));
@@ -69,5 +69,4 @@ class SistemaUsuarios {
         }
         return null;
     }
-
 }
