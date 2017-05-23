@@ -13,6 +13,8 @@ import java.awt.Color;
  */
 public class Movimiento {
 
+    private Juego juego;
+
     private float apuesta;
     private Jugador jugador;
     private Casillero casillero;
@@ -59,6 +61,7 @@ public class Movimiento {
 
     Color getColor() {
         return Color.BLUE;
+
     }
 
 }

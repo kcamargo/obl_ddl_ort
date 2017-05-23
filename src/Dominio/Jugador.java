@@ -5,6 +5,7 @@
  */
 package Dominio;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 /**
@@ -16,6 +17,8 @@ public class Jugador extends Usuario{
     private float saldo;
     private boolean logueado;
     private Juego juegoActivo;
+   
+
 
     //CONSTRUCTORES
     public Jugador(String usuario, String password) {
@@ -64,5 +67,7 @@ public class Jugador extends Usuario{
     boolean equalsUser(String user) {
         return this.getNombreUsuario().equals(user);
     }
+   
+   
 
 }

@@ -20,7 +20,8 @@ public class ControladorUserLogin implements ControladorLogin{
 
     private VistaUserLogin vista;
     private Fachada modelo;
-
+    private ControladorJuego controlador;
+    
     public ControladorUserLogin() {
         this.modelo = Fachada.getInstancia();
     }
@@ -38,14 +39,11 @@ public class ControladorUserLogin implements ControladorLogin{
             } else {
                 vista.cerrar();
                 Juego juego = modelo.getJuegoDisponible(j);
-         
                 if(juego == null) {
                     new VentanaNivel(j).setVisible(true);
                 } else {
-                    new VentanaJuego(j, juego.getSize()).setVisible(true);
-                }
-                  
-                
+                   new VentanaJuego(j, juego.getSize()).setVisible(true);
+                }     
             }
         } catch (BuscaminaException ex) {
             vista.error(ex.getMessage());

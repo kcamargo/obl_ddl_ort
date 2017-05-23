@@ -5,10 +5,12 @@
  */
 package Dominio;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Observable;
+import java.util.Random;
 
 /**
  *
@@ -23,6 +25,8 @@ public class Juego extends Observable {
     private Jugador jug2;
     private Jugador ultApuesta;
     private boolean mina;
+
+    private ArrayList<ICasillero> casilleros;
 
     private ArrayList<Movimiento> movimientos;
 
@@ -267,4 +271,72 @@ public class Juego extends Observable {
         }
     }
 
+
+    
+      public void destapar(ICasillero c, Jugador j) {
+        if(c.getEstado()==3){
+            System.out.println("EXPLOTO TODOOOOO");
+            this.terminarJuego();
+        }
+        else if (c.getEstado()==1){
+            c.destapar();
+            
+//            vista.mostrarTablero(size, casilleros);    
+        }
+        
+    }
+    
+    public int GenerarMina(int cant)
+    {
+
+        Random x = new Random();
+        
+        int num = x.nextInt(cant*cant);
+        
+        return num;
+    }
+    
+
+    public ArrayList<ICasillero> casilleros(int tamaño) {
+        int t = tamaño;
+        //size= tamaño;
+        int n= GenerarMina(t);
+        System.out.println("NUMERO MINA " + n);
+        
+        ArrayList<ICasillero> lista = new ArrayList();
+        for (int x = 1; x <= (t * t); x++) {
+            Casillero c = new Casillero();
+            if(x==n){
+                c.estado=3;
+            }
+            
+            lista.add(c);
+            
+            
+        }
+        casilleros = lista;
+        
+        return  lista;
+    }
+    
+       public void generarCasilleros(int tamaño) {
+       int t= tamaño;
+        int n= GenerarMina(t);
+        System.out.println("NUMERO MINA " + n);
+        
+        ArrayList<ICasillero> lista = new ArrayList();
+        for (int x = 1; x <= (t * t); x++) {
+            Casillero c = new Casillero();
+            if(x==n){
+                c.estado=3;
+            }
+            
+            lista.add(c);
+            
+            
+        }
+        casilleros = lista;
+    }
+
+    
 }
