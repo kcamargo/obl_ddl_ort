@@ -40,7 +40,7 @@ public class Casillero implements ICasillero{
             return Color.GRAY;
               
         } else {
-            return movimiento.getColor();
+            return movimiento.getJugador().getColor();
         }
     }
 

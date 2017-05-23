@@ -248,7 +248,7 @@ public class Juego extends Observable {
         }
         if (jug1 == null) {
             jug1 = j;
-            jug1.setColor(Color.BLUE);
+            jug1.setColor(Color.YELLOW);
             initJugador(j);
             turnoActual = new Movimiento(j);
         } else if (jug2 == null) {
@@ -269,6 +269,7 @@ public class Juego extends Observable {
                 this.terminarJuego();
             } else if (c.getEstado() == 1) {
                 c.destapar(j);
+                movimientos.add(turnoActual);
                 cambiarTurno(j);   
                 avisar(Eventos.juego);
             }
@@ -288,7 +289,7 @@ public class Juego extends Observable {
              banderaMina= AgregarNuevaMina();
             }
         }
-        System.out.println("turno actual " + this.turnoActual.getJugador().getNombreCompleto());
+    //    System.out.println("turno actual " + this.turnoActual.getJugador().getNombreCompleto());
     }
     
     public void MostrarMina()
@@ -342,10 +343,11 @@ public class Juego extends Observable {
         return bandera;
     }
 
-    public ArrayList<ICasillero> casilleros() {
+    public ArrayList<ICasillero> casilleros(int t) {
 
         if (casilleros == null) {
-            int t = size;
+//            int t = size;
+            t=size;
             int n = GenerarMina(t);
             System.out.println("NUMERO MINA " + n);
             ArrayList<ICasillero> lista = new ArrayList();

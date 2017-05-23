@@ -34,9 +34,10 @@ public final class ControladorJuego implements Observer {
     public ControladorJuego(int tamaño, VistaJuego vista, Jugador j) {
     this.vista = vista;
     size=tamaño;
+    
     juego = j.getJuegoActivo();
     juego.addObserver(this);
-   casilleros=juego.casilleros();
+   casilleros=juego.casilleros(size);
 
     
 

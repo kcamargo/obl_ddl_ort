@@ -28,9 +28,9 @@ public class Jugador extends Usuario{
         super(usuario, password);
     }
 
-    public Jugador() {
-        
-    }
+//    public Jugador() {
+//        
+//    }
     
      public Jugador(String usuario,String password, String nombreCompleto, float saldo) {
         super(usuario, password,nombreCompleto);
