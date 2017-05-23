@@ -31,6 +31,8 @@ public class Juego extends Observable {
     private float apuestaPendiente;
     private int size;
 
+    private Date ultDescarte;
+
     private boolean comenzo;
     private boolean apuestaAceptada;
 
@@ -48,12 +50,14 @@ public class Juego extends Observable {
         this.apuestaInicial = apuestaInicial;
         this.apuestaAceptada = true;
 
+        ultDescarte = new Date();
         movimientos = new ArrayList<>();
         apuestaActual = apuestaInicial;
     }
 
     public Juego() {
         movimientos = new ArrayList<>();
+        ultDescarte = new Date();
     }
 
     public Juego(float ai, Jugador g, Jugador j1, Jugador j2) { //es de prueba para cargar las listas del administrador
@@ -114,6 +118,10 @@ public class Juego extends Observable {
 
     public float getApuestaPendiente() {
         return apuestaPendiente;
+    }
+
+    public Date ultDescarte() {
+        return ultDescarte;
     }
 
     public int getOid() {
@@ -186,6 +194,7 @@ public class Juego extends Observable {
         }
 
         turnoActual.aumentarApuesta(apuesta);
+        ultDescarte = new Date();
         ultApuesta = j;
         j.agregarSaldo(apuesta * -1);
         apuestaActual += apuesta;
@@ -215,7 +224,6 @@ public class Juego extends Observable {
         terminarJuego();
     }
 
-// TODO
 //    private void verificarGanador(Jugador j) {
 //        Jugador oponente = getOponente(j);
 //        if (!j.hasFichas() || !puedeDescartar(oponente)) {

@@ -64,9 +64,6 @@ public class Fachada extends Observable {
         return sistemaUsuarios.getJugadorByUser(user);
     }
 
-    public void cargarDatos() {
-        buscamina.cargarJuegos();
-    }
 
     public Juego getJuegoByOid(int oid) {
         return buscamina.getJuegoByOid(oid);

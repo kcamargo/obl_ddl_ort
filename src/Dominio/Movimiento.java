@@ -11,7 +11,7 @@ import java.awt.Color;
  *
  * @author Owner
  */
-class Movimiento {
+public class Movimiento {
 
     private float apuesta;
     private Jugador jugador;
@@ -25,7 +25,8 @@ class Movimiento {
         }
         apuesta = 0;
     }
-    public Movimiento(){
+
+    public Movimiento() {
     }
 
     protected void aumentarApuesta(float num) {
@@ -50,6 +51,10 @@ class Movimiento {
 
     public void setJugador(Jugador jugador) {
         this.jugador = jugador;
+    }
+
+    public Casillero getCasilleroDestapado() {
+        return casillero;
     }
 
     Color getColor() {

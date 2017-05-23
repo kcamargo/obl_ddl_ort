@@ -8,6 +8,7 @@ package Controladores;
 import Dominio.Fachada;
 import Dominio.ICasillero;
 import Dominio.Juego;
+import Dominio.Movimiento;
 import static Dominio.Juego.Eventos.PiezaMovida;
 import java.util.LinkedList;
 import java.util.Observable;
@@ -51,39 +52,38 @@ public class ControladorReplayJuego implements Observer{
     }
 
     public void nextTurno() {
-//        if(posicion < modelo.getMovimientos().size()) {
-//            Turno t = modelo.getMovimientos().get(posicion);
-//            if(t.getFichaMovida() != null) {
-//                if(t.getDireccion().equals(Ficha.Direcciones.derecha)) {
-//                    fichasEnMuestra.addLast(t.getFichaMovida());
+        if(posicion < modelo.getMovimientos().size()) {
+            Movimiento m = modelo.getMovimientos().get(posicion);
+            if(m.getCasilleroDestapado()!= null) {
+//                if(m.getDireccion().equals(Casillero.Direcciones.derecha)) {
+                    casillerosAMostrar.addLast(m.getCasilleroDestapado());
 //                }else {
-//                    fichasEnMuestra.addFirst(t.getFichaMovida());
+//                    fichasEnMuestra.addFirst(m.getFichaMovida());
 //                }
-//                apuesta += t.getApuesta();
-//                
-//                vista.cargarDatos(t.getJugador().getNombreCompleto(),
-//                        modelo.ultDescarte(), apuesta, fichasEnMuestra);
-//                posicion++;
-//            }else {
-//                vista.error("No hay más turnos disponibles.");
-//            }
-//        }else {
-//            
-//            if(modelo.getGanador() == null) {
-//                vista.error("No hay más turnos disponibles.");
-//            }else {
-//                vista.error("Ganó " + modelo.getGanador().getNombreCompleto());
-//            }
-//        }
+                apuesta += m.getApuesta();
+                
+                vista.cargarDatos(m.getJugador().getNombreCompleto(),modelo.ultDescarte(),apuesta, casillerosAMostrar);
+                posicion++;
+            }else {
+                vista.error("No hay más turnos disponibles.");
+            }
+        }else {
+            
+            if(modelo.getGanador() == null) {
+                vista.error("No hay más turnos disponibles.");
+            }else {
+                vista.error("Ganó " + modelo.getGanador().getNombreCompleto());
+            }
+        }
     }
 
     @Override
     public void update(Observable o, Object arg) {
-//        switch((Juego.Eventos)arg) {
-//            case PiezaMovida:
-//                vista.cargarHora(modelo.ultDescarte());
-//                break;
-//        }
+        switch((Juego.Eventos)arg) {
+            case PiezaMovida:
+                vista.cargarHora(modelo.ultDescarte());
+                break;
+        }
     }
     
     public void cerrar() {

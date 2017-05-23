@@ -34,11 +34,8 @@ public class Buscamina {
         //juegoEnEspera = new Juego(APUESTAINICIAL);
     }
 
-    public void cargarJuegos() {
-
-    }
-
     public ArrayList<Juego> getJuegos() {
+        //return juegos;
         return cargarJugosPrueba();
     }
 
