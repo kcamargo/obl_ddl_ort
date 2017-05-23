@@ -71,8 +71,8 @@ public class Buscamina {
     }
 
     private ArrayList<Juego> cargarJugosPrueba() {// para borrar
-        juegos.add(new Juego(2000,new Jugador("pepe","1234"),new Jugador("pepe","1234"),new Jugador("jorge","1234")));
-        juegos.add(new Juego(5000,new Jugador("jorge","1234"),new Jugador("pepe","1234"),new Jugador("jorge","1234")));
+//        juegos.add(new Juego(2000,new Jugador("pepe","1234"),new Jugador("pepe","1234"),new Jugador("jorge","1234")));
+//        juegos.add(new Juego(5000,new Jugador("jorge","1234"),new Jugador("pepe","1234"),new Jugador("jorge","1234")));
         return juegos;
     }
 }

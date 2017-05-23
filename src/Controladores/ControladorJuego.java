@@ -36,32 +36,32 @@ public final class ControladorJuego implements Observer {
     size=tamaño;
     juego = j.getJuegoActivo();
     juego.addObserver(this);
-    casilleros=juego.casilleros(tamaño);
-  
-  //juego.generarCasilleros(size);
+   casilleros=juego.casilleros();
+
     
 
        
     }
 
     private void initJuego() {
-//        this.juego.setJug2(juego.getOponente(jugador)); 
-        vista.habilitar();   
+    //    this.juego.setJug2(juego.getOponente(jugador));   
+       vista.habilitar();   
         refreshVista();
+
     }
 
-    public void setJugador() {
-//        this.jugador = j;
-//        this.juego = jugador.getJuegoActivo();
-//        this.oponente = juego.getOponente(jugador);
-       // juego.addObserver(this);
-        if (juego.comenzo()) {
-          //  generarCasilleros(size);
-            refreshVista();
-        } else {
-            vista.deshabilitar();
-        }
-    }
+//    public void setJugador() {
+////        this.jugador = j;
+////        this.juego = jugador.getJuegoActivo();
+////        this.oponente = juego.getOponente(jugador);
+//       // juego.addObserver(this);
+//        if (juego.comenzo()) {
+//          //  generarCasilleros(size);
+//            refreshVista();
+//        } else {
+//            vista.deshabilitar();
+//        }
+//    }
  
     public void setSize(int size) {      
         this.size = size;      
@@ -71,17 +71,21 @@ public final class ControladorJuego implements Observer {
 //        this.vista.mostrarTablero(size,casilleros);
     }
     private void refreshVista() {
-        vista.mostrarDatos(juego.getJug1().getNombreCompleto(), juego.getJug2().getNombreCompleto(),
-                juego.getJug1().getSaldo(), juego.getJug2().getSaldo(), juego.getApuestaActual());
-      //  vista.mostrarTablero(size, casilleros);
+      
+//        vista.mostrarDatos(juego.getJug1().getNombreCompleto(), juego.getJug2().getNombreCompleto(),
+//                juego.getJug1().getSaldo(), juego.getJug2().getSaldo(), juego.getApuestaActual());
+       vista.mostrarTablero(size, casilleros);
        
     }
     private void juegoTerminado() {
+      
         juego.deleteObserver(this);
-        vista.error("¡Ganó el jugador " + juego.getGanador().getNombreCompleto()
-                + " con un premio de $" + juego.getApuestaActual() + "!");
-        //Fachada.getInstancia().logoutJugador(j);
-        vista.cerrar();
+//        vista.error("¡Ganó el jugador " + juego.getGanador().getNombreCompleto()
+//                + " con un premio de $" + juego.getApuestaActual() + "!");
+       // Fachada.getInstancia().logoutJugador(jugador);
+
+        
+         vista.cerrar();
     }
 
     public void apostar(float monto, Jugador j) {
@@ -126,31 +130,16 @@ public final class ControladorJuego implements Observer {
             case JuegoComenzado:
                 initJuego();
                 break;
-//            case Bajo:
-//                initJuego();
-//                break;
-//            case Medio:
-//                initJuego();
-//                break;
-//            case Avanzado:
-//                initJuego();
-//                break;
-
-//            case juego:
-//                initJuego();
-//                break;
-
-//            case juego:
-//                initJuego();
-//                break;
-
+            case juego:
+                initJuego();
+                break;
             default:
                 throw new AssertionError(((Juego.Eventos) arg).name());
 
         }
     }
 
-  public void destaparTablero(ICasillero casillero,Jugador j){
+  public void destaparTablero(ICasillero casillero,Jugador j) {
        juego.destapar(casillero, j);
         vista.mostrarTablero(size,casilleros);
     }
@@ -161,10 +150,10 @@ public final class ControladorJuego implements Observer {
     }
 
     
-
     public Juego getJuego() {
         return juego;
     }
 
+  
 
 }

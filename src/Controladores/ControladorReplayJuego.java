@@ -9,7 +9,6 @@ import Dominio.Fachada;
 import Dominio.ICasillero;
 import Dominio.Juego;
 import Dominio.Movimiento;
-import static Dominio.Juego.Eventos.PiezaMovida;
 import java.util.LinkedList;
 import java.util.Observable;
 import java.util.Observer;
@@ -62,7 +61,7 @@ public class ControladorReplayJuego implements Observer{
 //                }
                 apuesta += m.getApuesta();
                 
-                vista.cargarDatos(m.getJugador().getNombreCompleto(),modelo.ultDescarte(),apuesta, casillerosAMostrar);
+//                vista.cargarDatos(m.getJugador().getNombreCompleto(),modelo.ultDescarte(),apuesta, casillerosAMostrar);
                 posicion++;
             }else {
                 vista.error("No hay más turnos disponibles.");
@@ -79,14 +78,14 @@ public class ControladorReplayJuego implements Observer{
 
     @Override
     public void update(Observable o, Object arg) {
-        switch((Juego.Eventos)arg) {
-            case PiezaMovida:
-                vista.cargarHora(modelo.ultDescarte());
-                break;
-        }
+//        switch((Juego.Eventos)arg) {
+//            case PiezaMovida:
+//                vista.cargarHora(modelo.ultDescarte());
+//                break;
+//        }
     }
-    
-    public void cerrar() {
-        modelo.deleteObserver(this);
-    }
+//    
+//    public void cerrar() {
+//        modelo.deleteObserver(this);
+//    }
 }

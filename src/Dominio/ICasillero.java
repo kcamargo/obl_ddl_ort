@@ -13,11 +13,9 @@ import Dominio.Jugador;
  * @author docenteFI
  */
 public interface ICasillero {
-
+    public void setColor(Color c);
     public Color getColor();
     public int getEstado();
-    
-    
-    public void destapar();
-    
+    public void setEstado(int estado);
+    public void destapar(Jugador j);
 }
