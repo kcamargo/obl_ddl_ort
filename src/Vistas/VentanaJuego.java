@@ -35,17 +35,16 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
         //En realidad no quiero la lista, quiero el juego activo que pertenece a ese jugador de la ventana
         //Hacer un metodo que busque que juego activo tiene el jugador de la ventana, hecho en sistema
 
-        controlador = new ControladorJuego(size, this, jugador);
-
+        controlador = new ControladorJuego(size,this,jugador);
+       
         datos = new PanelDatos(controlador);
-
-        // panel.add(datos);  
+       // panel.add(datos);  
         split = new JSplitPane();
-        split.setTopComponent(new PanelDatos(controlador));
+        split.setTopComponent(new PanelDatos(controlador));   
         setContentPane(split);
-
-        controlador.setVista(this);
-
+     
+       // controlador.setVista(this);
+        controlador.vistaLista();
     }
 
     /**
@@ -73,10 +72,9 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
         // TODO add your handling code here:
         controlador.abandonarJuego(jugador);
     }//GEN-LAST:event_formWindowClosing
-
-    @Override
+ @Override
     public void mostrarDatos(String jugador, String oponente, float saldo1, float saldo2, float apuesta) {
-        datos.refreshDatos(jugador, oponente, saldo1, saldo2, apuesta);
+        datos.refreshDatos(jugador, oponente, saldo1,saldo2, apuesta);
         this.paintAll(this.getGraphics());
     }
 
@@ -94,6 +92,7 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
     public void confirmarApuesta(float apuestaPendiente) {
         int result = JOptionPane.showConfirmDialog(this, "¿Desea igualar la apuesta de: $" + apuestaPendiente + "?", "¡Atención!", JOptionPane.YES_NO_OPTION);
 
+       // controlador.contestarApuesta(result == JOptionPane.YES_OPTION);
     }
 
     @Override
@@ -108,12 +107,12 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
     @Override
     public void mostrarTablero(int tamaño, ArrayList<ICasillero> casilleros) {
-        PanelTablero p = new PanelTablero(controlador, jugador);
+        PanelTablero p = new PanelTablero(controlador,jugador);     
         p.mostrar(tamaño, casilleros);
-//        setContentPane(p);
         split.setBottomComponent(p);
-        validate();
+         validate();
         split.setDividerLocation(200);
+       
     }
 
 
