@@ -59,9 +59,6 @@ public class Movimiento {
         return casillero;
     }
 
-    Color getColor() {
-        return Color.BLUE;
 
-    }
 
 }

@@ -23,15 +23,18 @@ public class Buscamina {
         //cargarJuegos();
     }
 
-    public void agregarAJuego(Jugador j) throws BuscaminaException {
+
+    
+     public void agregarAJuego(Jugador j) throws BuscaminaException {
         if(juegoEnEspera!= null){
             juegoEnEspera.addJugador(j);
             if (juegoEnEspera.getJug2() != null) {
                 juegos.add(juegoEnEspera);
                 juegoEnEspera = null;
+                juegoEnEspera = new Juego(APUESTAINICIAL);
             }
         }
-        //juegoEnEspera = new Juego(APUESTAINICIAL);
+   
     }
 
     public ArrayList<Juego> getJuegos() {
@@ -67,6 +70,10 @@ public class Buscamina {
     }
 
     public Juego getJuegoEnEspera() {
+
+//        if(juegoEnEspera==null){
+//        juegoEnEspera = new Juego(APUESTAINICIAL);
+//        }
         return juegoEnEspera;
     }
 
