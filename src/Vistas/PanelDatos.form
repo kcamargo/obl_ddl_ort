@@ -35,19 +35,8 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblSaldo2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="$-----"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblApuesta">
-      <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="$-----"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblTimerTurno">
-      <Properties>
-        <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Tiempo Restante:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnApostar">
@@ -68,12 +57,6 @@
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="$-----"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblTimerApuesta">
-      <Properties>
-        <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Timer Apuesta:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtApuesta">

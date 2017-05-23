@@ -135,9 +135,15 @@ public final class ControladorJuego implements Observer {
 //            case Avanzado:
 //                initJuego();
 //                break;
-            case juego:
-                initJuego();
-                break;
+
+//            case juego:
+//                initJuego();
+//                break;
+
+//            case juego:
+//                initJuego();
+//                break;
+
             default:
                 throw new AssertionError(((Juego.Eventos) arg).name());
 
@@ -155,8 +161,22 @@ public final class ControladorJuego implements Observer {
     }
 
     
+<<<<<<< HEAD
+=======
+    public void generarMina(){
+    //cuando comienza el juego tiene que poner 1 mina
+    //despues de haber judado 1 turno cada uno y no haber explotado, agrega otra
+    }
+    
+    public void mostrarMinas(){
+    //al finalizar el juego destapa todos los casilleros y muestra donde estan las minas
+    }
+
+
+>>>>>>> 932e3d9c28be3de6cbef035fbb7113d55647b7b0
     public Juego getJuego() {
         return juego;
     }
+
 
 }

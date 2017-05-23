@@ -38,6 +38,7 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
         controlador = new ControladorJuego(size,this,jugador);
        
         datos = new PanelDatos(controlador);
+<<<<<<< HEAD
        // panel.add(datos);  
         split = new JSplitPane();
         split.setTopComponent(new PanelDatos(controlador));   
@@ -48,6 +49,17 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
    
               
         
+=======
+        panel.add(datos);
+
+        split = new JSplitPane();
+        split.setTopComponent(new PanelDatos(controlador));
+
+        setContentPane(split);
+
+        controlador.setVista(this);
+
+>>>>>>> 932e3d9c28be3de6cbef035fbb7113d55647b7b0
     }
 
     /**
@@ -78,7 +90,7 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
     @Override
     public void mostrarDatos(String jugador, String oponente, float saldo1, float saldo2, float apuesta) {
-        datos.refreshDatos(jugador, oponente, saldo1,saldo2, apuesta);
+        datos.refreshDatos(jugador, oponente, saldo1, saldo2, apuesta);
         this.paintAll(this.getGraphics());
     }
 
@@ -96,7 +108,6 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
     public void confirmarApuesta(float apuestaPendiente) {
         int result = JOptionPane.showConfirmDialog(this, "¿Desea igualar la apuesta de: $" + apuestaPendiente + "?", "¡Atención!", JOptionPane.YES_NO_OPTION);
 
-       // controlador.contestarApuesta(result == JOptionPane.YES_OPTION);
     }
 
     @Override
@@ -111,9 +122,19 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
     @Override
     public void mostrarTablero(int tamaño, ArrayList<ICasillero> casilleros) {
-        PanelTablero p = new PanelTablero(controlador,jugador);
+
+        PanelTablero p = new PanelTablero(controlador, jugador);
+
         p.mostrar(tamaño, casilleros);
+<<<<<<< HEAD
         split.setBottomComponent(p);
+=======
+
+//        setContentPane(p);
+        split.setBottomComponent(p);
+
+
+>>>>>>> 932e3d9c28be3de6cbef035fbb7113d55647b7b0
         validate();
         split.setDividerLocation(200);
     }

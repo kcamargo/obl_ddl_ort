@@ -23,12 +23,9 @@ public class PanelDatos extends javax.swing.JPanel {
 
         lblOponente = new javax.swing.JLabel();
         lblSaldo2 = new javax.swing.JLabel();
-        lblApuesta = new javax.swing.JLabel();
-        lblTimerTurno = new javax.swing.JLabel();
         btnApostar = new javax.swing.JButton();
         lblJugador = new javax.swing.JLabel();
         lblSaldo = new javax.swing.JLabel();
-        lblTimerApuesta = new javax.swing.JLabel();
         txtApuesta = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(750, 70));
@@ -39,16 +36,9 @@ public class PanelDatos extends javax.swing.JPanel {
         lblOponente.setAlignmentX(0.5F);
         add(lblOponente);
 
+        lblSaldo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSaldo2.setText("$-----");
         add(lblSaldo2);
-
-        lblApuesta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblApuesta.setText("$-----");
-        add(lblApuesta);
-
-        lblTimerTurno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTimerTurno.setText("Tiempo Restante:");
-        add(lblTimerTurno);
 
         btnApostar.setText("Apostar");
         btnApostar.addActionListener(new java.awt.event.ActionListener() {
@@ -66,10 +56,6 @@ public class PanelDatos extends javax.swing.JPanel {
         lblSaldo.setText("$-----");
         add(lblSaldo);
 
-        lblTimerApuesta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTimerApuesta.setText("Timer Apuesta:");
-        add(lblTimerApuesta);
-
         txtApuesta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtApuesta.setText("0");
         add(txtApuesta);
@@ -82,13 +68,10 @@ public class PanelDatos extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnApostar;
-    private javax.swing.JLabel lblApuesta;
     private javax.swing.JLabel lblJugador;
     private javax.swing.JLabel lblOponente;
     private javax.swing.JLabel lblSaldo;
     private javax.swing.JLabel lblSaldo2;
-    private javax.swing.JLabel lblTimerApuesta;
-    private javax.swing.JLabel lblTimerTurno;
     private javax.swing.JTextField txtApuesta;
     // End of variables declaration//GEN-END:variables
 
@@ -97,7 +80,7 @@ public class PanelDatos extends javax.swing.JPanel {
        lblOponente.setText("Op.: " + oponente);
        lblSaldo.setText("Saldo Jug1: $" + saldo);
        lblSaldo2.setText("Saldo Jug2: $" + saldo2);
-       lblApuesta.setText("Apuesta: $" + apuesta);
+       txtApuesta.setText("Apuesta: $" + apuesta);
     }
 
 

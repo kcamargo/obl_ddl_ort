@@ -1,0 +1,255 @@
+@startuml
+annotation java.lang.Override
+annotation java.lang.SuppressWarnings
+class Controladores.ControladorAdminLogin
+class Controladores.ControladorHome
+class Controladores.ControladorJuego
+class Controladores.ControladorListaJuegos
+class Controladores.ControladorNivel
+class Controladores.ControladorReplayJuego
+class Controladores.ControladorUserLogin
+class Dominio.Administrador
+class Dominio.Buscamina
+class Dominio.BuscaminaException
+class Dominio.Casillero
+class Dominio.Fachada
+class Dominio.Juego
+class Dominio.Juego.Eventos
+class Dominio.Jugador
+class Dominio.Movimiento
+class Dominio.SistemaUsuarios
+class Dominio.Turno
+class Dominio.Usuario
+class Vistas.BotonCasillero
+class Vistas.Buscaminas
+class Vistas.PanelControlReplay
+class Vistas.PanelDatos
+class Vistas.PanelLista
+class Vistas.PanelLogin
+class Vistas.PanelTablero
+class Vistas.VentanaAdminLogin
+class Vistas.VentanaHome
+class Vistas.VentanaJuego
+class Vistas.VentanaListaJuegos
+class Vistas.VentanaNivel
+class Vistas.VentanaReplayJuego
+class Vistas.VentanaUserLogin
+class java.awt.BorderLayout
+class java.awt.Color
+class java.awt.Component
+class java.awt.GridLayout
+class java.awt.ScrollPane
+class java.awt.event.ActionEvent
+class java.awt.event.MouseAdapter
+class java.awt.event.MouseEvent
+class java.lang.Exception
+class java.text.DateFormat
+class java.text.SimpleDateFormat
+class java.util.ArrayList
+class java.util.Date
+class java.util.LinkedList
+class java.util.List
+class java.util.Observable
+class java.util.Random
+class javax.swing.JButton
+class javax.swing.JFrame
+class javax.swing.JLabel
+class javax.swing.JList
+class javax.swing.JOptionPane
+class javax.swing.JPanel
+class javax.swing.JScrollPane
+class javax.swing.JSplitPane
+class javax.swing.ListCellRenderer
+class javax.swing.ListSelectionModel
+interface Controladores.ControladorLogin
+interface Controladores.VistaAdminLogin
+interface Controladores.VistaHome
+interface Controladores.VistaJuego
+interface Controladores.VistaListaJuegos
+interface Controladores.VistaReplayJuego
+interface Controladores.VistaUserLogin
+interface Controladores.VistaUserNivel
+interface Dominio.ICasillero
+interface java.awt.event.ActionListener
+interface java.util.Observer
+Controladores.ControladorAdminLogin ..> java.lang.Override
+Controladores.ControladorAdminLogin ..> Dominio.Administrador
+Controladores.ControladorAdminLogin ..> Dominio.Fachada
+Controladores.ControladorAdminLogin --|> Controladores.ControladorLogin
+Controladores.ControladorHome ..> Dominio.Fachada
+Controladores.ControladorHome ..> Vistas.VentanaAdminLogin
+Controladores.ControladorHome ..> Vistas.VentanaUserLogin
+Controladores.ControladorJuego ..> java.lang.Override
+Controladores.ControladorJuego ..> Dominio.Buscamina
+Controladores.ControladorJuego ..> Dominio.BuscaminaException
+Controladores.ControladorJuego ..> Dominio.Casillero
+Controladores.ControladorJuego ..> Dominio.Fachada
+Controladores.ControladorJuego ..> Dominio.Juego
+Controladores.ControladorJuego ..> Dominio.Jugador
+Controladores.ControladorJuego ..> java.util.ArrayList
+Controladores.ControladorJuego ..> java.util.Observable
+Controladores.ControladorJuego ..> java.util.Random
+Controladores.ControladorJuego ..> Dominio.ICasillero
+Controladores.ControladorJuego --|> java.util.Observer
+Controladores.ControladorListaJuegos ..> java.lang.Override
+Controladores.ControladorListaJuegos ..> Dominio.Fachada
+Controladores.ControladorListaJuegos ..> Dominio.Juego
+Controladores.ControladorListaJuegos ..> Dominio.Juego.Eventos
+Controladores.ControladorListaJuegos ..> java.util.ArrayList
+Controladores.ControladorListaJuegos ..> java.util.Observable
+Controladores.ControladorListaJuegos --|> java.util.Observer
+Controladores.ControladorNivel ..> Dominio.Fachada
+Controladores.ControladorNivel ..> Dominio.Juego
+Controladores.ControladorNivel ..> Dominio.Jugador
+Controladores.ControladorNivel ..> Vistas.VentanaJuego
+Controladores.ControladorReplayJuego ..> java.lang.Override
+Controladores.ControladorReplayJuego ..> Dominio.Fachada
+Controladores.ControladorReplayJuego ..> Dominio.Juego
+Controladores.ControladorReplayJuego ..> Dominio.Juego.Eventos
+Controladores.ControladorReplayJuego ..> Dominio.Turno
+Controladores.ControladorReplayJuego ..> java.util.LinkedList
+Controladores.ControladorReplayJuego ..> java.util.Observable
+Controladores.ControladorReplayJuego ..> Dominio.ICasillero
+Controladores.ControladorReplayJuego --|> java.util.Observer
+Controladores.ControladorUserLogin ..> java.lang.Override
+Controladores.ControladorUserLogin ..> Dominio.BuscaminaException
+Controladores.ControladorUserLogin ..> Dominio.Fachada
+Controladores.ControladorUserLogin ..> Dominio.Juego
+Controladores.ControladorUserLogin ..> Dominio.Jugador
+Controladores.ControladorUserLogin ..> Vistas.VentanaJuego
+Controladores.ControladorUserLogin ..> Vistas.VentanaNivel
+Controladores.ControladorUserLogin --|> Controladores.ControladorLogin
+Dominio.Administrador --|> Dominio.Usuario
+Dominio.Buscamina ..> java.util.ArrayList
+Dominio.BuscaminaException --|> java.lang.Exception
+Dominio.Casillero ..> java.lang.Override
+Dominio.Casillero ..> java.awt.Color
+Dominio.Casillero --|> Dominio.ICasillero
+Dominio.Fachada ..> java.util.ArrayList
+Dominio.Fachada --|> java.util.Observable
+Dominio.Juego ..> java.util.ArrayList
+Dominio.Juego ..> java.util.Date
+Dominio.Juego ..> java.util.LinkedList
+Dominio.Juego --|> java.util.Observable
+Dominio.Jugador --|> Dominio.Usuario
+Dominio.Jugador ..> java.util.ArrayList
+Dominio.Movimiento ..> java.awt.Color
+Dominio.SistemaUsuarios ..> java.util.ArrayList
+Dominio.Usuario ..> java.lang.Override
+Vistas.BotonCasillero --|> javax.swing.JButton
+Vistas.BotonCasillero ..> Dominio.ICasillero
+Vistas.Buscaminas ..> Dominio.Fachada
+Vistas.PanelControlReplay ..> java.lang.SuppressWarnings
+Vistas.PanelControlReplay ..> Controladores.ControladorReplayJuego
+Vistas.PanelControlReplay ..> java.text.DateFormat
+Vistas.PanelControlReplay ..> java.text.SimpleDateFormat
+Vistas.PanelControlReplay ..> java.util.Date
+Vistas.PanelControlReplay --|> javax.swing.JPanel
+Vistas.PanelDatos ..> java.lang.SuppressWarnings
+Vistas.PanelDatos ..> Controladores.ControladorJuego
+Vistas.PanelDatos --|> javax.swing.JPanel
+Vistas.PanelLista ..> java.lang.Override
+Vistas.PanelLista ..> java.lang.SuppressWarnings
+Vistas.PanelLista ..> Controladores.ControladorListaJuegos
+Vistas.PanelLista ..> Dominio.Juego
+Vistas.PanelLista ..> java.awt.BorderLayout
+Vistas.PanelLista ..> java.awt.Color
+Vistas.PanelLista ..> java.awt.Component
+Vistas.PanelLista ..> java.awt.event.MouseAdapter
+Vistas.PanelLista ..> java.awt.event.MouseEvent
+Vistas.PanelLista ..> java.util.ArrayList
+Vistas.PanelLista ..> javax.swing.JLabel
+Vistas.PanelLista ..> javax.swing.JList
+Vistas.PanelLista --|> javax.swing.JPanel
+Vistas.PanelLista ..> javax.swing.JScrollPane
+Vistas.PanelLista ..> javax.swing.ListCellRenderer
+Vistas.PanelLista ..> javax.swing.ListSelectionModel
+Vistas.PanelLogin ..> java.lang.SuppressWarnings
+Vistas.PanelLogin --|> javax.swing.JPanel
+Vistas.PanelLogin ..> Controladores.ControladorLogin
+Vistas.PanelTablero ..> java.lang.Override
+Vistas.PanelTablero ..> java.lang.SuppressWarnings
+Vistas.PanelTablero ..> Controladores.ControladorJuego
+Vistas.PanelTablero ..> Dominio.Jugador
+Vistas.PanelTablero ..> java.awt.GridLayout
+Vistas.PanelTablero ..> java.awt.event.ActionEvent
+Vistas.PanelTablero ..> java.util.ArrayList
+Vistas.PanelTablero --|> javax.swing.JPanel
+Vistas.PanelTablero ..> Dominio.ICasillero
+Vistas.PanelTablero --|> java.awt.event.ActionListener
+Vistas.VentanaAdminLogin ..> java.lang.Override
+Vistas.VentanaAdminLogin ..> java.lang.SuppressWarnings
+Vistas.VentanaAdminLogin ..> Controladores.ControladorAdminLogin
+Vistas.VentanaAdminLogin ..> java.awt.GridLayout
+Vistas.VentanaAdminLogin --|> javax.swing.JFrame
+Vistas.VentanaAdminLogin ..> javax.swing.JOptionPane
+Vistas.VentanaAdminLogin ..> javax.swing.JPanel
+Vistas.VentanaAdminLogin --|> Controladores.VistaAdminLogin
+Vistas.VentanaHome ..> java.lang.Override
+Vistas.VentanaHome ..> java.lang.SuppressWarnings
+Vistas.VentanaHome ..> Controladores.ControladorHome
+Vistas.VentanaHome --|> javax.swing.JFrame
+Vistas.VentanaHome ..> javax.swing.JOptionPane
+Vistas.VentanaHome --|> Controladores.VistaHome
+Vistas.VentanaJuego ..> java.lang.Override
+Vistas.VentanaJuego ..> java.lang.SuppressWarnings
+Vistas.VentanaJuego ..> Controladores.ControladorJuego
+Vistas.VentanaJuego ..> Dominio.Jugador
+Vistas.VentanaJuego ..> java.awt.GridLayout
+Vistas.VentanaJuego ..> java.util.ArrayList
+Vistas.VentanaJuego --|> javax.swing.JFrame
+Vistas.VentanaJuego ..> javax.swing.JOptionPane
+Vistas.VentanaJuego ..> javax.swing.JPanel
+Vistas.VentanaJuego ..> javax.swing.JSplitPane
+Vistas.VentanaJuego --|> Controladores.VistaJuego
+Vistas.VentanaJuego ..> Dominio.ICasillero
+Vistas.VentanaListaJuegos ..> java.lang.Override
+Vistas.VentanaListaJuegos ..> java.lang.SuppressWarnings
+Vistas.VentanaListaJuegos ..> Controladores.ControladorListaJuegos
+Vistas.VentanaListaJuegos ..> Dominio.Juego
+Vistas.VentanaListaJuegos ..> java.awt.GridLayout
+Vistas.VentanaListaJuegos ..> java.util.ArrayList
+Vistas.VentanaListaJuegos --|> javax.swing.JFrame
+Vistas.VentanaListaJuegos ..> javax.swing.JOptionPane
+Vistas.VentanaListaJuegos ..> javax.swing.JPanel
+Vistas.VentanaListaJuegos --|> Controladores.VistaListaJuegos
+Vistas.VentanaNivel ..> java.lang.Override
+Vistas.VentanaNivel ..> java.lang.SuppressWarnings
+Vistas.VentanaNivel ..> Controladores.ControladorJuego
+Vistas.VentanaNivel ..> Controladores.ControladorNivel
+Vistas.VentanaNivel ..> Controladores.ControladorUserLogin
+Vistas.VentanaNivel ..> Dominio.Jugador
+Vistas.VentanaNivel --|> javax.swing.JFrame
+Vistas.VentanaNivel ..> javax.swing.JOptionPane
+Vistas.VentanaNivel --|> Controladores.VistaUserNivel
+Vistas.VentanaReplayJuego ..> java.lang.Override
+Vistas.VentanaReplayJuego ..> java.lang.SuppressWarnings
+Vistas.VentanaReplayJuego ..> Controladores.ControladorReplayJuego
+Vistas.VentanaReplayJuego ..> Dominio.Juego
+Vistas.VentanaReplayJuego ..> java.awt.GridLayout
+Vistas.VentanaReplayJuego ..> java.awt.ScrollPane
+Vistas.VentanaReplayJuego ..> java.util.Date
+Vistas.VentanaReplayJuego ..> java.util.List
+Vistas.VentanaReplayJuego --|> javax.swing.JFrame
+Vistas.VentanaReplayJuego ..> javax.swing.JOptionPane
+Vistas.VentanaReplayJuego ..> javax.swing.JPanel
+Vistas.VentanaReplayJuego --|> Controladores.VistaReplayJuego
+Vistas.VentanaReplayJuego ..> Dominio.ICasillero
+Vistas.VentanaUserLogin ..> java.lang.Override
+Vistas.VentanaUserLogin ..> java.lang.SuppressWarnings
+Vistas.VentanaUserLogin ..> Controladores.ControladorUserLogin
+Vistas.VentanaUserLogin ..> java.awt.GridLayout
+Vistas.VentanaUserLogin --|> javax.swing.JFrame
+Vistas.VentanaUserLogin ..> javax.swing.JOptionPane
+Vistas.VentanaUserLogin ..> javax.swing.JPanel
+Vistas.VentanaUserLogin --|> Controladores.VistaUserLogin
+Controladores.VistaJuego ..> java.util.ArrayList
+Controladores.VistaJuego ..> Dominio.ICasillero
+Controladores.VistaListaJuegos ..> Dominio.Juego
+Controladores.VistaListaJuegos ..> java.util.ArrayList
+Controladores.VistaReplayJuego ..> java.util.Date
+Controladores.VistaReplayJuego ..> java.util.List
+Controladores.VistaReplayJuego ..> Dominio.ICasillero
+Dominio.ICasillero ..> Dominio.Jugador
+Dominio.ICasillero ..> java.awt.Color
+@enduml

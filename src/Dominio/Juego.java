@@ -24,10 +24,17 @@ public class Juego extends Observable {
     private Jugador jug1;
     private Jugador jug2;
     private Jugador ultApuesta;
+    private boolean mina;
 
+<<<<<<< HEAD
     private ArrayList<Turno> movimientos;
     private ArrayList<ICasillero> casilleros;
     private Turno turnoActual;
+=======
+    private ArrayList<Movimiento> movimientos;
+
+    private Movimiento turnoActual;
+>>>>>>> 932e3d9c28be3de6cbef035fbb7113d55647b7b0
     private float apuestaActual;
     private float apuestaPendiente;
     private int size;
@@ -37,13 +44,11 @@ public class Juego extends Observable {
 
     int contadorMinas = 0;
 
-    // private TimerApuesta timerApuesta;
-    // private TimerTurno timerTurno;
     private int oid;
 
     public enum Eventos {
 
-        JuegoTerminado, JuegoComenzado, NuevaApuesta, Bajo, Medio, Avanzado, juego
+        JuegoTerminado, PiezaMovida, JuegoComenzado, SinFichas, NuevaApuesta
 
     }
 
@@ -59,6 +64,13 @@ public class Juego extends Observable {
         movimientos = new ArrayList<>();
     }
 
+    public Juego(float ai, Jugador g, Jugador j1, Jugador j2) { //es de prueba para cargar las listas del administrador
+        apuestaInicial = ai;
+        ganador = g;
+        jug1 = j1;
+        jug2 = j2;
+    }
+
     //<editor-fold defaultstate="collapsed" desc="Getters & Setters">
     public Jugador getOponente(Jugador jugador) {
         return jugador.equals(jug1) ? jug2 : jug1;
@@ -68,11 +80,11 @@ public class Juego extends Observable {
         return ultApuesta;
     }
 
-    public ArrayList<Turno> getMovimientos() {
+    public ArrayList<Movimiento> getMovimientos() {
         return movimientos;
     }
 
-    public Turno getTurnoActual() {
+    public Movimiento getTurnoActual() {
         return turnoActual;
     }
 
@@ -147,7 +159,14 @@ public class Juego extends Observable {
     public void setSize(int size) {
         this.size = size;
     }
-    
+
+    public boolean isMina() {
+        return mina;
+    }
+
+    public void setMina(boolean mina) {
+        this.mina = mina;
+    }
 
 //</editor-fold>
     private void initJuego() {
@@ -155,7 +174,7 @@ public class Juego extends Observable {
         avisar(Eventos.JuegoComenzado);
     }
 
-    public void addTurno(Turno t) {
+    public void addTurno(Movimiento t) {
         movimientos.add(t);
     }
 
@@ -199,14 +218,6 @@ public class Juego extends Observable {
         }
     }
 
-    protected void tiempoFueraApuesta() {
-        abandonarJuego(getOponente(ultApuesta));
-    }
-
-    protected void tiempoFueraTurno() {
-        abandonarJuego(turnoActual.getJugador());
-    }
-
     public void abandonarJuego(Jugador j) {
         ganador = j.equals(jug1) ? jug2 : jug1;
         terminarJuego();
@@ -227,9 +238,9 @@ public class Juego extends Observable {
     }
 
     public void terminarJuego() {
-      ganador.agregarSaldo(apuestaActual * 2);
+        ganador.agregarSaldo(apuestaActual * 2);
         jug1.setJuegoActivo(null);
-       jug2.setJuegoActivo(null);
+        jug2.setJuegoActivo(null);
         avisar(Eventos.JuegoTerminado);
 
     }
@@ -246,7 +257,7 @@ public class Juego extends Observable {
         if (jug1 == null) {
             jug1 = j;
             initJugador(j);
-            turnoActual = new Turno(j);
+            turnoActual = new Movimiento(j);
         } else if (jug2 == null) {
             jug2 = j;
             initJuego();

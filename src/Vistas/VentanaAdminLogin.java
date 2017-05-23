@@ -60,7 +60,7 @@ public class VentanaAdminLogin extends javax.swing.JFrame implements VistaAdminL
     
     @Override
     public void abrirListaJuegos() {
-        
+        new VentanaListaJuegos().setVisible(true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
