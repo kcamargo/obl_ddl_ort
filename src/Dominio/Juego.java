@@ -269,6 +269,7 @@ public class Juego extends Observable {
                 this.terminarJuego();
             } else if (c.getEstado() == 1) {
                 c.destapar(j);
+                movimientos.add(turnoActual);
                 cambiarTurno(j);   
                 avisar(Eventos.juego);
             }
