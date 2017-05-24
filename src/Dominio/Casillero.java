@@ -13,11 +13,29 @@ import java.awt.Color;
  */
 public class Casillero implements ICasillero{
     
-   
-    private Movimiento movimiento;
+   private Movimiento movimiento;
     public int estado = 1;
+    public int ubicacion;
 
-   
+    public Casillero(Movimiento movimiento) {
+        this.movimiento = movimiento;
+        this.ubicacion = movimiento.getCasilleroDestapado();
+    }
+
+    public Casillero() {
+    }
+    
+
+     @Override
+    public int getUbicacion() {
+        return ubicacion;
+    }
+
+     @Override
+    public void setUbicacion(int ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
     public Color color;
     
     @Override
@@ -48,7 +66,8 @@ public class Casillero implements ICasillero{
     public void destapar(Jugador j) {
         //validar cosas, para eso tal vez delego esto a la partida
         //tal vez miPartida.destapar(this,jugador)  u otra cosa que quieran...
-        movimiento = new Movimiento(j);
+        movimiento = new Movimiento(j,ubicacion);
+        
         setEstado(2);
 
     }

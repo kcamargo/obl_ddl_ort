@@ -13,15 +13,29 @@ import java.awt.Color;
  */
 public class Movimiento {
 
+ 
     private Juego juego;
 
     private float apuesta;
     private Jugador jugador;
-    private Casillero casillero;
+    //private Casillero casillero;
+    private int posicion;
 
     public Movimiento(Jugador jugador) {
         if (jugador != null) {
             this.jugador = jugador;
+            
+        } else {
+            throw new NullPointerException();
+        }
+        apuesta = 0;
+    }
+
+    public Movimiento(Jugador jugador, int pos) {
+        if (jugador != null) {
+            this.jugador = jugador;
+            this.posicion= pos;
+
         } else {
             throw new NullPointerException();
         }
@@ -55,8 +69,12 @@ public class Movimiento {
         this.jugador = jugador;
     }
 
-    public Casillero getCasilleroDestapado() {
-        return casillero;
+//    public Casillero getCasilleroDestapado() {
+//        return casillero;
+//    }
+
+    public int getCasilleroDestapado() {
+        return posicion;
     }
 
 

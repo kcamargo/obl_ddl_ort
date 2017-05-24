@@ -18,7 +18,6 @@ import java.util.Random;
  */
 public class Juego extends Observable {
 
-
     private float apuestaInicial;
     // private Jugador turno;
     private Jugador ganador;
@@ -265,12 +264,17 @@ public class Juego extends Observable {
         if (j == turnoActual.getJugador()) {
             if (c.getEstado() == 3) {
                 System.out.println("EXPLOTO TODOOOOO");
-               // MostrarMina();
+                // MostrarMina();
+                asiganrGanador(j);
                 this.terminarJuego();
             } else if (c.getEstado() == 1) {
+                
+                Movimiento mov = new Movimiento(j, c.getUbicacion());
                 c.destapar(j);
-                movimientos.add(turnoActual);
-                cambiarTurno(j);   
+                
+                //movimientos.add(turnoActual);
+                movimientos.add(mov);
+                cambiarTurno(j);
                 avisar(Eventos.juego);
             }
         } else {
@@ -280,29 +284,27 @@ public class Juego extends Observable {
     }
 
     public void cambiarTurno(Jugador actual) {
-        boolean banderaMina=false;
+        boolean banderaMina = false;
         if (actual == this.jug1) {
-            this.turnoActual.setJugador(this.jug2);    
+            this.turnoActual.setJugador(this.jug2);
         } else {
             this.turnoActual.setJugador(this.jug1);
-            while (banderaMina== false && LugaresDisponible() == true) {
-             banderaMina= AgregarNuevaMina();
+            while (banderaMina == false && LugaresDisponible() == true) {
+                banderaMina = AgregarNuevaMina();
             }
         }
-    //    System.out.println("turno actual " + this.turnoActual.getJugador().getNombreCompleto());
+        //    System.out.println("turno actual " + this.turnoActual.getJugador().getNombreCompleto());
     }
-    
-    public void MostrarMina()
-    {
-        int i=0;
-        for (ICasillero c : casilleros) {   
-           if(c.getEstado() == 3)
-            {
+
+    public void MostrarMina() {
+        int i = 0;
+        for (ICasillero c : casilleros) {
+            if (c.getEstado() == 3) {
 //                c.setColor(Color.BLACK);
-            }  
-           i++;
-            System.out.println("color casillero "+ i + c.getColor());
-        }  
+            }
+            i++;
+            System.out.println("color casillero " + i + c.getColor());
+        }
     }
 
     private boolean LugaresDisponible() {
@@ -312,18 +314,15 @@ public class Juego extends Observable {
                 bandera = true;
             }
         }
-    return bandera;
+        return bandera;
     }
 
-    
-      public int GenerarMina(int cant) {
+    public int GenerarMina(int cant) {
         int num;
-        num = (int) (Math.random() * (cant*cant)) + 1;
+        num = (int) (Math.random() * (cant * cant)) + 1;
         return num;
-        
+
     }
-    
-    
 
     public boolean AgregarNuevaMina() {
         int nm = GenerarMina(size);
@@ -334,7 +333,7 @@ public class Juego extends Observable {
             cont++;
             if (c.getEstado() == 1 && c.getEstado() != 3 && cont == nm) {
                 c.setEstado(3);
-              
+
                 c.setColor(Color.BLACK);
                 bandera = true;
                 System.out.println("NUEVA MINA " + nm);
@@ -347,15 +346,16 @@ public class Juego extends Observable {
 
         if (casilleros == null) {
 //            int t = size;
-            t=size;
+            t = size;
             int n = GenerarMina(t);
             System.out.println("NUMERO MINA " + n);
             ArrayList<ICasillero> lista = new ArrayList();
             for (int x = 1; x <= (t * t); x++) {
                 Casillero c = new Casillero();
+                c.setUbicacion(x);
                 if (x == n) {
                     c.setEstado(3);
-                  
+
                     c.setColor(Color.BLACK);
                 }
                 lista.add(c);
@@ -366,5 +366,13 @@ public class Juego extends Observable {
         return casilleros;
     }
 
-    
+    private void asiganrGanador(Jugador j) {
+        if (this.jug1 == j) {
+            ganador = this.jug2;
+        } else {
+            ganador = this.jug1;
+        }
+
+    }
+
 }

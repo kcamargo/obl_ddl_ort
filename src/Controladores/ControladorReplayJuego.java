@@ -5,6 +5,7 @@
  */
 package Controladores;
 
+import Dominio.Casillero;
 import Dominio.Fachada;
 import Dominio.ICasillero;
 import Dominio.Juego;
@@ -51,11 +52,16 @@ public class ControladorReplayJuego implements Observer{
     }
 
     public void nextTurno() {
-        if(posicion < modelo.getMovimientos().size()) {
+       if(posicion < modelo.getMovimientos().size()) {
+           
+            
             Movimiento m = modelo.getMovimientos().get(posicion);
-            if(m.getCasilleroDestapado()!= null) {
+            
+            Casillero c = new Casillero(m);
+          //  if(m.getCasilleroDestapado()!= null) {
 //                if(m.getDireccion().equals(Casillero.Direcciones.derecha)) {
-                    casillerosAMostrar.addLast(m.getCasilleroDestapado());
+                    //casillerosAMostrar.addLast(m.getCasilleroDestapado());
+                              casillerosAMostrar.addLast(c);
 //                }else {
 //                    fichasEnMuestra.addFirst(m.getFichaMovida());
 //                }
@@ -63,9 +69,9 @@ public class ControladorReplayJuego implements Observer{
                 
 //                vista.cargarDatos(m.getJugador().getNombreCompleto(),modelo.ultDescarte(),apuesta, casillerosAMostrar);
                 posicion++;
-            }else {
-                vista.error("No hay más turnos disponibles.");
-            }
+//            }else {
+//                vista.error("No hay más turnos disponibles.");
+//            }
         }else {
             
             if(modelo.getGanador() == null) {

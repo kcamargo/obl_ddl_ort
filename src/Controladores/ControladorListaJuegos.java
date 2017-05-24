@@ -55,20 +55,6 @@ public class ControladorListaJuegos implements Observer {
         vista.listar(modelo.getJuegos());
         
     }
-    
-    private String juegoToString(Juego j) {
-        String s = "[%s] %s ($ %f) - %s ($ %f) : $%f => %s";
-        ArrayList<Object> args = new ArrayList<>();
-        args.add(j.getGanador() == null ? "En Juego" : "Finalizada");
-        args.add(j.getJug1().getNombreCompleto());
-        args.add(j.getJug1().getSaldo());
-        args.add(j.getJug2().getNombreCompleto());
-        args.add(j.getJug2().getSaldo());
-        args.add(j.getApuestaActual());
-        args.add(j.getGanador() != null ? j.getGanador().getNombreCompleto() : "N/A");
-        
-        return String.format(s, args.toArray());
-    }
 
     public void cargarRepeticion(Juego juego) {
         vista.cargarVentanaRepe(juego);

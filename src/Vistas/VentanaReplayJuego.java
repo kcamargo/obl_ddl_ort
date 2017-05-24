@@ -11,39 +11,39 @@ import Dominio.ICasillero;
 import Dominio.Juego;
 import java.awt.GridLayout;
 import java.awt.ScrollPane;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 
 /**
  *
  * @author Owner
  */
-public class VentanaReplayJuego extends javax.swing.JFrame implements VistaReplayJuego{
+public class VentanaReplayJuego extends javax.swing.JFrame implements VistaReplayJuego {
 
-   private ControladorReplayJuego controlador;
+    private ControladorReplayJuego controlador;
     private PanelControlReplay panelControl;
-    private JPanel panelFichas;
-    
+    private PanelTableroReplay panelReplay;
+    private Juego juego;
+
+    JSplitPane split;
+
     public VentanaReplayJuego(Juego j) {
         initComponents();
+        juego = j;
         controlador = new ControladorReplayJuego(j);
-        JPanel panel = (JPanel) getContentPane();
-        panel.setLayout(new GridLayout(2, 1));
-        
-        panelControl = new PanelControlReplay(controlador);
-        panelFichas = new JPanel();
-        
-        ScrollPane scroll = new ScrollPane();
-        scroll.add(panelFichas);
-        
-        panel.add(panelControl);
-        panel.add(scroll);
-        
+
+        panelReplay = new PanelTableroReplay(controlador);
+
+        split = new JSplitPane();
+        split.setTopComponent(new PanelTableroReplay(controlador));
+        setContentPane(split);
+
         controlador.setVista(this);
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,8 +73,7 @@ public class VentanaReplayJuego extends javax.swing.JFrame implements VistaRepla
     /**
      * @param args the command line arguments
      */
- 
-       @Override
+    @Override
     public void error(String message) {
         JOptionPane.showMessageDialog(this, message);
     }
@@ -82,26 +81,35 @@ public class VentanaReplayJuego extends javax.swing.JFrame implements VistaRepla
     @Override
     public void cargarDatos(String jugador, Date fecha, float apuesta, List<ICasillero> casilleros) {
         panelControl.cargarDatos(jugador, fecha, apuesta);
-        cargarFichas(casilleros);
+        mostrarTablero(juego.getSize(), (ArrayList<ICasillero>) casilleros);
     }
-    
-    private void cargarFichas(List<ICasillero> casilleros) {
-        panelFichas.removeAll();
-        GridLayout layout = new GridLayout(1, casilleros.size());
-        panelFichas.setLayout(layout);
-        for (ICasillero c : casilleros) {
-            BotonCasillero b = new BotonCasillero(c);
-            panelFichas.add(b);
-        }
-        revalidate();
-        repaint();
+
+//    private void cargarFichas(List<ICasillero> casilleros) {
+//        panelFichas.removeAll();
+//        GridLayout layout = new GridLayout(1, casilleros.size());
+//        panelFichas.setLayout(layout);
+//        for (ICasillero c : casilleros) {
+//            BotonCasillero b = new BotonCasillero(c);
+//            panelFichas.add(b);
+//        }
+//        revalidate();
+//        repaint();
+//    }
+    public void mostrarTablero(int tamaño, ArrayList<ICasillero> casilleros) {
+//        panelFichas.removeAll();
+        PanelTableroReplay p = new PanelTableroReplay(controlador);
+        p.mostrar(tamaño, casilleros);
+        split.setBottomComponent(p);
+        validate();
+        split.setDividerLocation(200);
+
     }
 
     @Override
     public void cargarHora(Date d) {
         panelControl.cargarHora(d);
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

@@ -23,12 +23,14 @@ class SistemaUsuarios {
     }
 
     public Administrador loginAdmin(Administrador admin) {
+        Administrador adm = null;
+        
         for (Administrador a : administradores) {
             if (a.equals(admin)) {
-                return a;
+               adm = a;
             }
         }
-        return null;
+        return adm;
     }
 
     public Jugador loginJugador(Jugador jugador) throws BuscaminaException {

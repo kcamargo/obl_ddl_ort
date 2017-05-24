@@ -83,7 +83,7 @@ public final class ControladorJuego implements Observer {
         juego.deleteObserver(this);
 //        vista.error("¡Ganó el jugador " + juego.getGanador().getNombreCompleto()
 //                + " con un premio de $" + juego.getApuestaActual() + "!");
-       // Fachada.getInstancia().logoutJugador(jugador);
+//        Fachada.getInstancia().logoutJugador(jugador);
 
         
          vista.cerrar();

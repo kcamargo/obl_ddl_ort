@@ -18,4 +18,6 @@ public interface ICasillero {
     public int getEstado();
     public void setEstado(int estado);
     public void destapar(Jugador j);
+    public int getUbicacion();
+    public void setUbicacion(int ubicacion);
 }

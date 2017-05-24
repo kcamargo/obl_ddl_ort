@@ -18,7 +18,7 @@ import java.util.ArrayList;
  *
  * @author Owner
  */
-public class PanelTablero extends javax.swing.JPanel implements ActionListener {
+public class PanelTableroReplay extends javax.swing.JPanel implements ActionListener {
 
     /**
      * Creates new form PanelTablero
@@ -28,13 +28,13 @@ public class PanelTablero extends javax.swing.JPanel implements ActionListener {
 
     private Jugador jugador;
 
-    public PanelTablero(ControladorJuego c, Jugador j) {
+    public PanelTableroReplay(ControladorJuego c, Jugador j) {
         initComponents();
         controlador = c;
         jugador = j;
     }
 
-    public PanelTablero(ControladorReplayJuego c) {
+    public PanelTableroReplay(ControladorReplayJuego c) {
         initComponents();
         controladorJuego = c;
     }
