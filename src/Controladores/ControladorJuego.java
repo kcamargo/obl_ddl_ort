@@ -72,7 +72,6 @@ public final class ControladorJuego implements Observer {
 
     public void setVista(VistaJuego vista) {
         this.vista = vista;
-//        this.vista.mostrarTablero(size,casilleros);
     }
 
     private void refreshVista() {
@@ -83,11 +82,10 @@ public final class ControladorJuego implements Observer {
     }
 
     private void juegoTerminado() {
-
         juego.deleteObserver(this);
-//        vista.error("¡Ganó el jugador " + juego.getGanador().getNombreCompleto()
-//                + " con un premio de $" + juego.getApuestaActual() + "!");
-//        Fachada.getInstancia().logoutJugador(jugador);
+        vista.error("¡Ganó el jugador " + juego.getGanador().getNombreCompleto()
+                + " con un premio de $" + juego.getApuestaActual() + "!");
+        Fachada.getInstancia().logoutJugador(jugador);
 
         vista.cerrar();
     }
@@ -100,14 +98,14 @@ public final class ControladorJuego implements Observer {
         }
     }
 
-    private void crearNuevaApuesta() { //sin poder probarlo
+    private void crearNuevaApuesta() {
         refreshVista();
         if (!jugador.equals(juego.getUltApuesta())) {
             vista.confirmarApuesta(juego.getApuestaPendiente());
         }
     }
 
-    public void contestarApuesta(boolean ok) { //sin poder probarlo
+    public void contestarApuesta(boolean ok) { 
         try {
             juego.contestarApuesta(ok, jugador);
             if(ok) refreshVista();
