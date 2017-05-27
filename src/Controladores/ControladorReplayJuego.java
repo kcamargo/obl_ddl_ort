@@ -30,13 +30,6 @@ public class ControladorReplayJuego implements Observer{
         initDatos(modelo);
     }
 
-    public ControladorReplayJuego(int oid) {
-        Juego j = Fachada.getInstancia().getJuegoByOid(oid);
-        initDatos(j);
-    }
-    
-    
-
     public void setVista(VistaReplayJuego vista) {
         this.vista = vista;
     }
@@ -90,8 +83,5 @@ public class ControladorReplayJuego implements Observer{
 //                break;
 //        }
     }
-//    
-//    public void cerrar() {
-//        modelo.deleteObserver(this);
-//    }
+
 }

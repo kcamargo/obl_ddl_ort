@@ -73,8 +73,5 @@ public class PanelControlReplay extends javax.swing.JPanel {
 //        lblHoraDescarte.setText(dateToString(d));
     }
     
-    private String dateToString(Date d) {
-        DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
-        return df.format(d);
-    }
+
 }

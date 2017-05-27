@@ -62,7 +62,7 @@ public class PanelDatos extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnApostarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApostarActionPerformed
-      //  controlador.apostar(Float.parseFloat(txtApuesta.getText()));
+        controlador.apostar(Float.parseFloat(txtApuesta.getText()));
     }//GEN-LAST:event_btnApostarActionPerformed
 
 

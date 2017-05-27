@@ -14,9 +14,7 @@ public class Usuario {
     private String nombreCompleto;
     private String nombreUsuario;
     private String password;
-    
-    private int oid;
-    
+
     public Usuario(String nombreUsuario, String password) {
         this.nombreUsuario = nombreUsuario;
         this.password = password;
@@ -35,14 +33,6 @@ public class Usuario {
         return nombreCompleto;
     }
 
-    public int getOid() {
-        return oid;
-    }
-
-    public void setOid(int oid) {
-        this.oid = oid;
-    }
-    
     public void setNombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
     }

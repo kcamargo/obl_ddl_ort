@@ -60,9 +60,5 @@ public class ControladorListaJuegos implements Observer {
         vista.cargarVentanaRepe(juego);
     }
     
-    public void cargarRepeticion(int oidJuego) {
-        Juego j = Fachada.getInstancia().getJuegoByOid(oidJuego);
-        vista.cargarVentanaRepe(j);
-    }
 
 }

@@ -51,14 +51,6 @@ public class Buscamina {
         return false;
     }
 
-    public Juego getJuegoByOid(int oid) {
-        for (Juego j : juegos) {
-            if (j.getOid() == oid) {
-                return j;
-            }
-        }
-        return null;
-    }
 
     public Juego getJuegoDisponible(Jugador j) {
         for (Juego a : juegos) {

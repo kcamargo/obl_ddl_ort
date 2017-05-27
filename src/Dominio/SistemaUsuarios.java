@@ -63,12 +63,4 @@ class SistemaUsuarios {
 
     }
 
-    public Jugador getJugadorByUser(String user) {
-        for (Jugador j : jugadores) {
-            if (j.equalsUser(user)) {
-                return j;
-            }
-        }
-        return null;
-    }
 }

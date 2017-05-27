@@ -26,7 +26,7 @@ public class VentanaReplayJuego extends javax.swing.JFrame implements VistaRepla
 
     private ControladorReplayJuego controlador;
     private PanelControlReplay panelControl;
-    private PanelTableroReplay panelReplay;
+//    private PanelTableroReplay panelReplay;
     private Juego juego;
 
     JSplitPane split;
@@ -36,7 +36,7 @@ public class VentanaReplayJuego extends javax.swing.JFrame implements VistaRepla
         juego = j;
         controlador = new ControladorReplayJuego(j);
 
-        panelReplay = new PanelTableroReplay(controlador);
+        panelControl = new PanelControlReplay(controlador);
 
         split = new JSplitPane();
         split.setTopComponent(new PanelTableroReplay(controlador));

@@ -160,7 +160,7 @@ public class Juego extends Observable {
         movimientos.add(t);
     }
 
-    public void aumentarApuesta(float apuesta, Jugador j) throws BuscaminaException {
+    public void aumentarApuesta(float apuesta, Jugador j) throws BuscaminaException { //sin poder probarlo
         if (ultApuesta != null && j.equals(ultApuesta)) {
             throw new BuscaminaException("Este jugador no puede realizar una apuesta.");
         }
@@ -185,7 +185,7 @@ public class Juego extends Observable {
 
     }
 
-    public void contestarApuesta(boolean aceptada, Jugador j) throws BuscaminaException {
+    public void contestarApuesta(boolean aceptada, Jugador j) throws BuscaminaException {//sin poder probarlo
         if (ganador == null) {
             if (j.equals(ultApuesta)) {
                 throw new BuscaminaException("El jugador contrario debe aceptar su apuesta.");
@@ -197,14 +197,6 @@ public class Juego extends Observable {
                 this.abandonarJuego(j);
             }
         }
-    }
-
-    protected void tiempoFueraApuesta() {
-        abandonarJuego(getOponente(ultApuesta));
-    }
-
-    protected void tiempoFueraTurno() {
-        abandonarJuego(turnoActual.getJugador());
     }
 
     public void abandonarJuego(Jugador j) {
