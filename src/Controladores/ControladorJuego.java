@@ -148,7 +148,6 @@ public final class ControladorJuego implements Observer {
     }
 
     public void vistaLista() {
-
         vista.mostrarTablero(size, casilleros);
     }
 

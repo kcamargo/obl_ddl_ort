@@ -24,7 +24,7 @@ public class PanelTableroReplay extends javax.swing.JPanel implements ActionList
      * Creates new form PanelTablero
      */
     private ControladorJuego controlador;
-    private ControladorReplayJuego controladorJuego;
+    private ControladorReplayJuego controladorReplay;
 
     private Jugador jugador;
 
@@ -36,17 +36,17 @@ public class PanelTableroReplay extends javax.swing.JPanel implements ActionList
 
     public PanelTableroReplay(ControladorReplayJuego c) {
         initComponents();
-        controladorJuego = c;
+        controladorReplay = c;
     }
 
     public void mostrar(int tamaño, ArrayList<ICasillero> casilleros) {
         GridLayout gl = new GridLayout(tamaño, tamaño);
         setLayout(gl);
-        for (ICasillero c : casilleros) {
-            BotonCasillero b = new BotonCasillero(c);
-            b.addActionListener(this);
-            add(b);
-        }
+//        for (ICasillero c : casilleros) {
+//            BotonCasillero b = new BotonCasillero(c);
+//            b.addActionListener(this);
+//            add(b);
+//        }
     }
 
     /**
@@ -63,8 +63,13 @@ public class PanelTableroReplay extends javax.swing.JPanel implements ActionList
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        BotonCasillero b = (BotonCasillero) e.getSource();
-        controlador.destaparTablero(b.getCasillero(), jugador);
+        if (jugador != null) {
+            BotonCasillero b = (BotonCasillero) e.getSource();
+            controlador.destaparTablero(b.getCasillero(), jugador);
+        } else {
+            BotonCasillero b = (BotonCasillero) e.getSource();
+            controladorReplay.destaparTablero();
+        }
 
     }
 

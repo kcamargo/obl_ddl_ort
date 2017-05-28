@@ -6,7 +6,7 @@
 package Controladores;
 
 import Dominio.ICasillero;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +17,8 @@ public interface VistaReplayJuego {
     
     public void error(String message);
     
-    public void cargarDatos(String jugador, Date fecha, float apuesta, List<ICasillero> casilleros);
+    public void cargarDatos(String jugador, float apuesta, List<ICasillero> casilleros);
+    
+     public void mostrarTablero(int tamaño, ArrayList<ICasillero> casilleros);
 
-    public void cargarHora(Date d);
 }

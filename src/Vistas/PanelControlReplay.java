@@ -23,10 +23,8 @@ public class PanelControlReplay extends javax.swing.JPanel {
         controlador = c;
     }
 
-    public void cargarDatos(String jugador,Date d, float apuesta) {
+    public void cargarDatos(String jugador, float apuesta) {
         lblJugador.setText(jugador);
-//        DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
-//        lblHoraDescarte.setText(dateToString(fecha));
         lblApuesta.setText("$" + apuesta);
     }
     
@@ -69,9 +67,6 @@ public class PanelControlReplay extends javax.swing.JPanel {
     private javax.swing.JLabel lblJugador;
     // End of variables declaration//GEN-END:variables
 
-    void cargarHora(Date d) {
-//        lblHoraDescarte.setText(dateToString(d));
-    }
-    
+  
 
 }

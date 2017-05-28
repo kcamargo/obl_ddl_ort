@@ -41,7 +41,7 @@ public class Juego extends Observable {
 
     public enum Eventos {
 
-        JuegoTerminado, JuegoComenzado, NuevaApuesta, juego
+        JuegoTerminado, JuegoComenzado, NuevaApuesta, juego, casilleroSelect
 
     }
 
@@ -185,7 +185,7 @@ public class Juego extends Observable {
 
     }
 
-    public void contestarApuesta(boolean aceptada, Jugador j) throws BuscaminaException {//sin poder probarlo
+    public void contestarApuesta(boolean aceptada, Jugador j) throws BuscaminaException {
         if (ganador == null) {
             if (j.equals(ultApuesta)) {
                 throw new BuscaminaException("El jugador contrario debe aceptar su apuesta.");
@@ -274,6 +274,28 @@ public class Juego extends Observable {
         }
 
     }
+        public void destaparReplay(ICasillero c) {
+//        if (j == turnoActual.getJugador()) {
+//            if (c.getEstado() == 3) {
+//                System.out.println("EXPLOTO TODOOOOO");
+//                // MostrarMina();
+//                asiganrGanador(j);
+//                this.terminarJuego();
+//            } else if (c.getEstado() == 1) {
+//                
+//                Movimiento mov = new Movimiento(j, c.getUbicacion());
+//                c.destapar(j);
+//                
+//                //movimientos.add(turnoActual);
+//                movimientos.add(mov);
+//                cambiarTurno(j);
+//                avisar(Eventos.juego);
+//            }
+//        } else {
+//            System.out.println("no es tu turno");
+//        }
+
+    }
 
     public void cambiarTurno(Jugador actual) {
         boolean banderaMina = false;
@@ -355,6 +377,10 @@ public class Juego extends Observable {
             casilleros = lista;
 
         }
+        return casilleros;
+    }
+    
+    public ArrayList<ICasillero> getCasilleros(){
         return casilleros;
     }
 

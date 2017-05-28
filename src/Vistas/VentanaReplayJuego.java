@@ -26,7 +26,6 @@ public class VentanaReplayJuego extends javax.swing.JFrame implements VistaRepla
 
     private ControladorReplayJuego controlador;
     private PanelControlReplay panelControl;
-//    private PanelTableroReplay panelReplay;
     private Juego juego;
 
     JSplitPane split;
@@ -79,24 +78,12 @@ public class VentanaReplayJuego extends javax.swing.JFrame implements VistaRepla
     }
 
     @Override
-    public void cargarDatos(String jugador, Date fecha, float apuesta, List<ICasillero> casilleros) {
-        panelControl.cargarDatos(jugador, fecha, apuesta);
+    public void cargarDatos(String jugador, float apuesta, List<ICasillero> casilleros) {
+        panelControl.cargarDatos(jugador, apuesta);
         mostrarTablero(juego.getSize(), (ArrayList<ICasillero>) casilleros);
     }
 
-//    private void cargarFichas(List<ICasillero> casilleros) {
-//        panelFichas.removeAll();
-//        GridLayout layout = new GridLayout(1, casilleros.size());
-//        panelFichas.setLayout(layout);
-//        for (ICasillero c : casilleros) {
-//            BotonCasillero b = new BotonCasillero(c);
-//            panelFichas.add(b);
-//        }
-//        revalidate();
-//        repaint();
-//    }
     public void mostrarTablero(int tamaño, ArrayList<ICasillero> casilleros) {
-//        panelFichas.removeAll();
         PanelTableroReplay p = new PanelTableroReplay(controlador);
         p.mostrar(tamaño, casilleros);
         split.setBottomComponent(p);
@@ -105,10 +92,6 @@ public class VentanaReplayJuego extends javax.swing.JFrame implements VistaRepla
 
     }
 
-    @Override
-    public void cargarHora(Date d) {
-        panelControl.cargarHora(d);
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
