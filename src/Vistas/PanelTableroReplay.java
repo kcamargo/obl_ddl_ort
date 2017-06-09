@@ -42,11 +42,11 @@ public class PanelTableroReplay extends javax.swing.JPanel implements ActionList
     public void mostrar(int tamaño, ArrayList<ICasillero> casilleros) {
         GridLayout gl = new GridLayout(tamaño, tamaño);
         setLayout(gl);
-//        for (ICasillero c : casilleros) {
-//            BotonCasillero b = new BotonCasillero(c);
-//            b.addActionListener(this);
-//            add(b);
-//        }
+        for (ICasillero c : casilleros) {
+            BotonCasillero b = new BotonCasillero(c);
+            b.addActionListener(this);
+            add(b);
+        }
     }
 
     /**
