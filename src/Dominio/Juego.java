@@ -19,7 +19,6 @@ import java.util.Random;
 public class Juego extends Observable {
 
     private float apuestaInicial;
-    // private Jugador turno;
     private Jugador ganador;
     private Jugador jug1;
     private Jugador jug2;
@@ -32,11 +31,12 @@ public class Juego extends Observable {
     private int size;
     private boolean comenzo;
     private boolean apuestaAceptada;
+    
+    private Date ultDescarte;
 
-    int contadorMinas = 0;
+//    private TimerApuesta timerApuesta;
+//    private TimerTurno timerTurno;
 
-    // private TimerApuesta timerApuesta;
-    // private TimerTurno timerTurno;
     private int oid;
 
     public enum Eventos {
