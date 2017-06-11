@@ -7,6 +7,7 @@ package Persistencia;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,7 +19,7 @@ public interface Mapeador {
     
     public void setOid(int oid);
 
-    public String getSqlInsertar();
+    public ArrayList<String> getSqlInsertar();
 
     public String getSqlModificar();
 

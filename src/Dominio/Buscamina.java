@@ -5,7 +5,11 @@
  */
 package Dominio;
 
+import Mappers.MapperJuego;
+import Persistencia.BaseDatos;
+import Persistencia.Persistencia;
 import java.util.ArrayList;
+import static Dominio.SistemaUsuarios.URL;
 
 /**
  *
@@ -23,10 +27,8 @@ public class Buscamina {
         //cargarJuegos();
     }
 
-
-    
-     public void agregarAJuego(Jugador j) throws BuscaminaException {
-        if(juegoEnEspera!= null){
+    public void agregarAJuego(Jugador j) throws BuscaminaException {
+        if (juegoEnEspera != null) {
             juegoEnEspera.addJugador(j);
             if (juegoEnEspera.getJug2() != null) {
                 juegos.add(juegoEnEspera);
@@ -34,7 +36,7 @@ public class Buscamina {
                 juegoEnEspera = new Juego(APUESTAINICIAL);
             }
         }
-   
+
     }
 
     public ArrayList<Juego> getJuegos() {
@@ -51,7 +53,6 @@ public class Buscamina {
         return false;
     }
 
-
     public Juego getJuegoDisponible(Jugador j) {
         for (Juego a : juegos) {
             if (a.getJug1().equals(j) || a.getJug2().equals(j)) {
@@ -67,6 +68,23 @@ public class Buscamina {
 //        juegoEnEspera = new Juego(APUESTAINICIAL);
 //        }
         return juegoEnEspera;
+    }
+
+    public void cargarJuegos() {
+        BaseDatos bd = BaseDatos.getInstancia();
+        bd.conectar(URL, "root", "root");
+        Persistencia p = new Persistencia();
+        juegos = p.obtenerTodos(new MapperJuego());
+        bd.desconectar();
+    }
+
+    public Juego getJuegoByOid(int oid) {
+        for (Juego j : juegos) {
+            if (j.getOid() == oid) {
+                return j;
+            }
+        }
+        return null;
     }
 
     private ArrayList<Juego> cargarJugosPrueba() {// para borrar

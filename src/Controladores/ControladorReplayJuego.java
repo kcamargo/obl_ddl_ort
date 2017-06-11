@@ -6,9 +6,9 @@
 package Controladores;
 
 import Dominio.Casillero;
+import Dominio.Fachada;
 import Dominio.ICasillero;
 import Dominio.Juego;
-import static Dominio.Juego.Eventos.juego;
 import Dominio.Movimiento;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -29,6 +29,11 @@ public class ControladorReplayJuego implements Observer {
 
     public ControladorReplayJuego(Juego modelo) {
         initDatos(modelo);
+    }
+
+    public ControladorReplayJuego(int oid) {
+        Juego j = Fachada.getInstancia().getJuegoByOid(oid);
+        initDatos(j);
     }
 
     public void setVista(VistaReplayJuego vista) {
@@ -71,6 +76,7 @@ public class ControladorReplayJuego implements Observer {
     public void update(Observable o, Object arg) {
         switch ((Juego.Eventos) arg) {
             case casilleroSelect:
+                vista.cargarHora(modelo.ultDescarte());
                 break;
             default:
                 throw new AssertionError(((Juego.Eventos) arg).name());

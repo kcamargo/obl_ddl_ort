@@ -2,11 +2,10 @@ package Vistas;
 
 import Controladores.ControladorJuego;
 
-
 public class PanelDatos extends javax.swing.JPanel {
 
     private final ControladorJuego controlador;
-    
+
     public PanelDatos(ControladorJuego c) {
         initComponents();
         controlador = c;
@@ -23,9 +22,11 @@ public class PanelDatos extends javax.swing.JPanel {
 
         lblOponente = new javax.swing.JLabel();
         lblSaldo2 = new javax.swing.JLabel();
+        lblTimerApuesta = new javax.swing.JLabel();
         btnApostar = new javax.swing.JButton();
         lblJugador = new javax.swing.JLabel();
         lblSaldo = new javax.swing.JLabel();
+        lblTimerTurno = new javax.swing.JLabel();
         txtApuesta = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(750, 70));
@@ -39,6 +40,10 @@ public class PanelDatos extends javax.swing.JPanel {
         lblSaldo2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSaldo2.setText("$-----");
         add(lblSaldo2);
+
+        lblTimerApuesta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTimerApuesta.setText("Timer Apuesta:");
+        add(lblTimerApuesta);
 
         btnApostar.setText("Apostar");
         btnApostar.addActionListener(new java.awt.event.ActionListener() {
@@ -56,6 +61,10 @@ public class PanelDatos extends javax.swing.JPanel {
         lblSaldo.setText("$-----");
         add(lblSaldo);
 
+        lblTimerTurno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTimerTurno.setText("Tiempo Restante:");
+        add(lblTimerTurno);
+
         txtApuesta.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtApuesta.setText("0");
         add(txtApuesta);
@@ -72,24 +81,33 @@ public class PanelDatos extends javax.swing.JPanel {
     private javax.swing.JLabel lblOponente;
     private javax.swing.JLabel lblSaldo;
     private javax.swing.JLabel lblSaldo2;
+    private javax.swing.JLabel lblTimerApuesta;
+    private javax.swing.JLabel lblTimerTurno;
     private javax.swing.JTextField txtApuesta;
     // End of variables declaration//GEN-END:variables
 
     public void refreshDatos(String jugador, String oponente, float saldo, float saldo2, float apuesta) {
-       lblJugador.setText("Jug.: " + jugador);
-       lblOponente.setText("Op.: " + oponente);
-       lblSaldo.setText("Saldo Jug1: $" + saldo);
-       lblSaldo2.setText("Saldo Jug2: $" + saldo2);
-       txtApuesta.setText("Apuesta: $" + apuesta);
+        lblJugador.setText("Jug.: " + jugador);
+        lblOponente.setText("Op.: " + oponente);
+        lblSaldo.setText("Saldo Jug1: $" + saldo);
+        lblSaldo2.setText("Saldo Jug2: $" + saldo2);
+        txtApuesta.setText("Apuesta: $" + apuesta);
     }
-
 
     public void deshabilitar() {
         btnApostar.setEnabled(false);
     }
-    
+
     public void habilitar() {
         btnApostar.setEnabled(true);
+    }
+
+    void mostrarTiempoTurno(int counter) {
+        lblTimerTurno.setText("Tiempo Restante: " + counter);
+    }
+
+    void mostrarTiempoApuesta(int counter) {
+        lblTimerApuesta.setText("Timer de Apuesta: " + counter);
     }
 
 }

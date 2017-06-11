@@ -10,7 +10,6 @@ import Dominio.Juego;
 import static Dominio.Juego.Eventos.JuegoComenzado;
 import static Dominio.Juego.Eventos.JuegoTerminado;
 import static Dominio.Juego.Eventos.NuevaApuesta;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -52,8 +51,9 @@ public class ControladorListaJuegos implements Observer {
         
     }
 
-    public void cargarRepeticion(Juego juego) {
-        vista.cargarVentanaRepe(juego);
+    public void cargarRepeticion(int oidJuego) {
+        Juego j = Fachada.getInstancia().getJuegoByOid(oidJuego);
+        vista.cargarVentanaRepe(j);
     }
     
 

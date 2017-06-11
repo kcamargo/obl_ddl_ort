@@ -6,17 +6,13 @@
 package Controladores;
 
 import Dominio.BuscaminaException;
-import Dominio.Casillero;
-import Dominio.Buscamina;
 import Dominio.Fachada;
-import Dominio.ICasillero;
 import Dominio.Juego;
 import Dominio.Jugador;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 import Dominio.ICasillero;
-import java.util.Random;
 
 /**
  *
@@ -105,10 +101,12 @@ public final class ControladorJuego implements Observer {
         }
     }
 
-    public void contestarApuesta(boolean ok) { 
+    public void contestarApuesta(boolean ok) {
         try {
             juego.contestarApuesta(ok, jugador);
-            if(ok) refreshVista();
+            if (ok) {
+                refreshVista();
+            }
         } catch (BuscaminaException ex) {
             vista.error(ex.getMessage());
         }
@@ -133,6 +131,12 @@ public final class ControladorJuego implements Observer {
             case JuegoComenzado:
                 initJuego();
                 break;
+            case TimerApuesta:
+                handleTimerApuesta();
+                break;
+            case TimerTurno:
+                handleTimerTurno();
+                break;
             case juego:
                 initJuego();
                 break;
@@ -151,4 +155,11 @@ public final class ControladorJuego implements Observer {
         vista.mostrarTablero(size, casilleros);
     }
 
+    private void handleTimerApuesta() {
+        vista.mostrarTiempoApuesta(juego.getTimerApuesta().getCounter());
+    }
+
+    private void handleTimerTurno() {
+        vista.mostrarTiempoTurno(juego.getTimerTurno().getCounter());
+    }
 }

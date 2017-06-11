@@ -5,6 +5,10 @@
  */
 package Dominio;
 
+import Mappers.MapperAdministrador;
+import Mappers.MapperJugador;
+import Persistencia.BaseDatos;
+import Persistencia.Persistencia;
 import java.util.ArrayList;
 
 /**
@@ -16,6 +20,10 @@ class SistemaUsuarios {
     private ArrayList<Administrador> administradores;
     private ArrayList<Jugador> jugadores;
 
+    public static final String URL = "jdbc:mysql://localhost/buscaminas";
+
+    ;
+
     public SistemaUsuarios() {
         administradores = new ArrayList<>();
         jugadores = new ArrayList<>();
@@ -24,10 +32,10 @@ class SistemaUsuarios {
 
     public Administrador loginAdmin(Administrador admin) {
         Administrador adm = null;
-        
+
         for (Administrador a : administradores) {
             if (a.equals(admin)) {
-               adm = a;
+                adm = a;
             }
         }
         return adm;
@@ -53,14 +61,28 @@ class SistemaUsuarios {
     }
 
     private void cargarDatosPrueba() {
-        jugadores.add(new Jugador("a", "a", "Pepe Gómez",23400));
-        jugadores.add(new Jugador("s", "s", "Jorge Ramírez",30040));
-        jugadores.add(new Jugador("toto", "1234", "Toto Pérez",25890));
-        jugadores.add(new Jugador("ernesto", "1234", "Ernesto Pérez",5890));
-        jugadores.add(new Jugador("luis", "1234", "Luis José Pérez",205890));
-        administradores.add(new Administrador("koko", "1234", "Gilberto González"));
-        administradores.add(new Administrador("coco", "1234", "Joaquín Severino"));
+//        jugadores.add(new Jugador("a", "a", "Pepe Gómez",23400));
+//        jugadores.add(new Jugador("s", "s", "Jorge Ramírez",30040));
+//        jugadores.add(new Jugador("toto", "1234", "Toto Pérez",25890));
+//        jugadores.add(new Jugador("ernesto", "1234", "Ernesto Pérez",5890));
+//        jugadores.add(new Jugador("luis", "1234", "Luis José Pérez",205890));
+//        administradores.add(new Administrador("koko", "1234", "Gilberto González"));
+//        administradores.add(new Administrador("coco", "1234", "Joaquín Severino"));
+        BaseDatos bd = BaseDatos.getInstancia();
+        bd.conectar(URL, "root", "root");
+        Persistencia p = new Persistencia();
+        jugadores = p.obtenerTodos(new MapperJugador());
+        administradores = p.obtenerTodos(new MapperAdministrador());
+        bd.desconectar();
+    }
 
+    public Jugador getJugadorByUser(String user) {
+        for (Jugador j : jugadores) {
+            if (j.equalsUser(user)) {
+                return j;
+            }
+        }
+        return null;
     }
 
 }

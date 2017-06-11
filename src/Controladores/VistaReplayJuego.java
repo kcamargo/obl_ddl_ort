@@ -7,6 +7,7 @@ package Controladores;
 
 import Dominio.ICasillero;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,4 +22,5 @@ public interface VistaReplayJuego {
     
      public void mostrarTablero(int tamaño, ArrayList<ICasillero> casilleros);
 
+     public void cargarHora(Date d);
 }

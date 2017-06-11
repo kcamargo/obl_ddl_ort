@@ -39,7 +39,6 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
         datos = new PanelDatos(controlador);
 
-
         split = new JSplitPane();
         split.setTopComponent(new PanelDatos(controlador));
         setContentPane(split);
@@ -91,11 +90,10 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
     @Override
     public void confirmarApuesta(float apuestaPendiente) {
-        int result = JOptionPane.showConfirmDialog(this, "¿Desea igualar la apuesta de: $" + apuestaPendiente + "?","¡Atención!", JOptionPane.YES_NO_OPTION);
-        
+        int result = JOptionPane.showConfirmDialog(this, "¿Desea igualar la apuesta de: $" + apuestaPendiente + "?", "¡Atención!", JOptionPane.YES_NO_OPTION);
+
         controlador.contestarApuesta(result == JOptionPane.YES_OPTION);
     }
-    
 
     @Override
     public void deshabilitar() {
@@ -117,6 +115,15 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
     }
 
+    @Override
+    public void mostrarTiempoTurno(int counter) {
+        datos.mostrarTiempoTurno(counter);
+    }
+
+    @Override
+    public void mostrarTiempoApuesta(int counter) {
+        datos.mostrarTiempoApuesta(counter);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

@@ -58,5 +58,13 @@ public class Usuario {
         Usuario u = (Usuario)obj;
         return u.nombreUsuario.equals(nombreUsuario) && u.password.equals(password);
     }
+
+    public int getOid() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setOid(int oid) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

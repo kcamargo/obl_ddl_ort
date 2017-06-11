@@ -14,10 +14,8 @@ import Dominio.ICasillero;
  */
 public interface VistaJuego {
 
+    public void mostrarDatos(String jugador, String oponente, float saldo1, float saldo2, float apuesta);
 
-    public void mostrarDatos(String jugador, String oponente, float saldo1,float saldo2, float apuesta);
-
-    
     public void mostrarTablero(int tamaño, ArrayList<ICasillero> casilleros);
 
     public void error(String message);
@@ -29,5 +27,9 @@ public interface VistaJuego {
     public void deshabilitar();
 
     public void habilitar();
+
+    public void mostrarTiempoTurno(int counter);
+
+    public void mostrarTiempoApuesta(int counter);
 
 }

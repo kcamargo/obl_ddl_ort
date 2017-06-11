@@ -5,12 +5,14 @@
  */
 package Dominio;
 
+import Mappers.MapperJuego;
+import Mappers.MapperJugador;
+import Persistencia.BaseDatos;
+import Persistencia.Persistencia;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.Observable;
-import java.util.Random;
 
 /**
  *
@@ -31,18 +33,17 @@ public class Juego extends Observable {
     private int size;
     private boolean comenzo;
     private boolean apuestaAceptada;
-    
+
     private Date ultDescarte;
 
-//    private TimerApuesta timerApuesta;
-//    private TimerTurno timerTurno;
+    private TimerApuesta timerApuesta;
+    private TimerTurno timerTurno;
 
     private int oid;
 
     public enum Eventos {
 
-        JuegoTerminado, JuegoComenzado, NuevaApuesta, juego, casilleroSelect
-
+        JuegoTerminado, JuegoComenzado, NuevaApuesta, juego, casilleroSelect, TimerApuesta, TimerTurno
     }
 
     public Juego(float apuestaInicial) {
@@ -117,6 +118,14 @@ public class Juego extends Observable {
         return oid;
     }
 
+    public Date ultDescarte() {
+        return ultDescarte;
+    }
+
+    public void setUltDescarte(Date ultDescarte) {
+        this.ultDescarte = ultDescarte;
+    }
+
     public void setOid(int oid) {
         this.oid = oid;
     }
@@ -149,11 +158,29 @@ public class Juego extends Observable {
         this.size = size;
     }
 
+    public Dominio.TimerApuesta getTimerApuesta() {
+        return timerApuesta;
+    }
+
+    public Dominio.TimerTurno getTimerTurno() {
+        return timerTurno;
+    }
+
 //</editor-fold>
     private void initJuego() {
         comenzo = true;
-
+        startTimerTurno();
         avisar(Eventos.JuegoComenzado);
+    }
+
+    private void startTimerTurno() {
+        timerTurno = new TimerTurno(30, this);
+        timerTurno.start();
+    }
+
+    private void startTimerApuesta() {
+        timerApuesta = new TimerApuesta(10, this);
+        timerApuesta.start();
     }
 
     public void addTurno(Movimiento t) {
@@ -180,6 +207,8 @@ public class Juego extends Observable {
         j.agregarSaldo(apuesta * -1);
         apuestaActual += apuesta;
         apuestaAceptada = false;
+        timerTurno.pause();
+        startTimerApuesta();
         apuestaPendiente = apuesta;
         avisar(Eventos.NuevaApuesta);
 
@@ -193,10 +222,20 @@ public class Juego extends Observable {
             if (aceptada) {
                 j.agregarSaldo(apuestaPendiente * -1);
                 apuestaAceptada = true;
+                timerApuesta.stop();
+                timerTurno.start();
             } else {
                 this.abandonarJuego(j);
             }
         }
+    }
+
+    protected void tiempoFueraApuesta() {
+        abandonarJuego(getOponente(ultApuesta));
+    }
+
+    protected void tiempoFueraTurno() {
+        abandonarJuego(turnoActual.getJugador());
     }
 
     public void abandonarJuego(Jugador j) {
@@ -222,6 +261,7 @@ public class Juego extends Observable {
         //  ganador.agregarSaldo(apuestaActual * 2);
         jug1.setJuegoActivo(null);
         jug2.setJuegoActivo(null);
+        actualizarDatosBD();
         avisar(Eventos.JuegoTerminado);
 
     }
@@ -229,7 +269,7 @@ public class Juego extends Observable {
 
     private void initJugador(Jugador j) {
         j.setJuegoActivo(this);
-        j.agregarSaldo(apuestaInicial * -1);
+//        j.agregarSaldo(apuestaInicial * -1);
     }
 
 //  
@@ -260,10 +300,10 @@ public class Juego extends Observable {
                 asiganrGanador(j);
                 this.terminarJuego();
             } else if (c.getEstado() == 1) {
-                
+
                 Movimiento mov = new Movimiento(j, c.getUbicacion());
                 c.destapar(j);
-                
+
                 //movimientos.add(turnoActual);
                 movimientos.add(mov);
                 cambiarTurno(j);
@@ -274,7 +314,8 @@ public class Juego extends Observable {
         }
 
     }
-        public void destaparReplay(ICasillero c) {
+
+    public void destaparReplay(ICasillero c) {
 //        if (j == turnoActual.getJugador()) {
 //            if (c.getEstado() == 3) {
 //                System.out.println("EXPLOTO TODOOOOO");
@@ -379,8 +420,8 @@ public class Juego extends Observable {
         }
         return casilleros;
     }
-    
-    public ArrayList<ICasillero> getCasilleros(){
+
+    public ArrayList<ICasillero> getCasilleros() {
         return casilleros;
     }
 
@@ -391,6 +432,19 @@ public class Juego extends Observable {
             ganador = this.jug1;
         }
 
+    }
+
+    private void actualizarDatosBD() {
+        BaseDatos bd = BaseDatos.getInstancia();
+        bd.conectar(SistemaUsuarios.URL, "root", "root");
+        Persistencia p = new Persistencia();
+        MapperJugador m = new MapperJugador(jug1);
+        p.guardar(m);
+        m.setU(jug2);
+        p.guardar(m);
+        MapperJuego j = new MapperJuego(this);
+        p.guardar(j);
+        bd.desconectar();
     }
 
 }
