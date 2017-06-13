@@ -78,8 +78,8 @@ public class VentanaReplayJuego extends javax.swing.JFrame implements VistaRepla
     }
 
     @Override
-    public void cargarDatos(String jugador, float apuesta, List<ICasillero> casilleros) {
-        panelControl.cargarDatos(jugador, apuesta);
+    public void cargarDatos(String jugador, Date fecha, float apuesta, List<ICasillero> casilleros) {
+        panelControl.cargarDatos(jugador, fecha, apuesta);
         mostrarTablero(juego.getSize(), (ArrayList<ICasillero>) casilleros);
     }
 
@@ -90,6 +90,11 @@ public class VentanaReplayJuego extends javax.swing.JFrame implements VistaRepla
         validate();
         split.setDividerLocation(200);
 
+    }
+
+    @Override
+    public void cargarHora(Date d) {
+        panelControl.cargarHora(d);
     }
 
 

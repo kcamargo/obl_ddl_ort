@@ -28,18 +28,16 @@ public class Jugador extends Usuario{
         super(usuario, password);
     }
 
-//    public Jugador() {
-//        
-//    }
+    public Jugador() {
+        
+    }
     
      public Jugador(String usuario,String password, String nombreCompleto, float saldo) {
         super(usuario, password,nombreCompleto);
         this.saldo = saldo;
     }
 
-    public Jugador() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
 
     public float getSaldo() {
         return saldo;

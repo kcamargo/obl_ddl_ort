@@ -25,8 +25,9 @@ public class Fachada extends Observable {
     }
 
     public static Fachada getInstancia() {
-        if (instancia == null) {
+        if(instancia == null) {
             instancia = new Fachada();
+            instancia.cargarDatos();
         }
         return instancia;
     }

@@ -55,12 +55,13 @@ public class PanelLista extends javax.swing.JPanel {
         setLayout(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void setMouseListener() {
+//TODO
+    private void setMouseListener() { 
         lista.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent evt) {
                 if (evt.getClickCount() == 2) {
-                    controlador.cargarRepeticion((Juego)lista.getSelectedValue());
+//                    controlador.cargarRepeticion((Juego)lista.getSelectedValue());
                 } 
             }
         });

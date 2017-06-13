@@ -95,29 +95,31 @@ public class Persistencia {
         }
     }
 
-    public ArrayList buscar(Mapeador map, String condWhere) {
-        String sql = map.getSqlSeleccionar();
-        if (condWhere != null) {
-            sql += " WHERE " + condWhere;
-        }
-
+    public ArrayList buscar(Mapeador p, String where){
+        String sql = p.getSqlSeleccionar() + " " + where;
         ResultSet rs = bd.consultar(sql);
-        ArrayList lista = new ArrayList();
+        ArrayList resultado=new ArrayList();
+        int oid,oidAnt=-1;
         try {
-
-            while (rs.next()) {
-                map.crearNuevo();
-                map.leer(rs);
-                lista.add(map.getObjeto());
+            Object o;
+            while(rs.next()){
+                oid = rs.getInt("oid"); //restriccion
+                if(oid!=oidAnt){
+                    p.crearNuevo();
+                    o = p.getObjeto();
+                    resultado.add(o);
+                    oidAnt = oid;
+                }
+                p.leer(rs);
             }
         } catch (SQLException ex) {
-            System.out.println("Error al buscar:" + ex.getMessage());
+            System.out.println("Error al obtener todos:" + ex.getMessage());
         }
-        return lista;
+        return resultado;
     }
 
-    public ArrayList obtenerTodos(Mapeador map) {
-        return buscar(map, null);
+    public ArrayList obtenerTodos(Mapeador p){
+        return buscar(p,"");
     }
 
 }

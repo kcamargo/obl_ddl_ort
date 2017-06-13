@@ -17,23 +17,25 @@ import java.util.Date;
 public class PanelControlReplay extends javax.swing.JPanel {
 
     private ControladorReplayJuego controlador;
-    
+
     public PanelControlReplay(ControladorReplayJuego c) {
         initComponents();
         controlador = c;
     }
 
-    public void cargarDatos(String jugador, float apuesta) {
+    public void cargarDatos(String jugador, Date fecha, float apuesta) {
         lblJugador.setText(jugador);
+        DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+        lblHoraDescarte.setText(dateToString(fecha));
         lblApuesta.setText("$" + apuesta);
     }
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         lblJugador = new javax.swing.JLabel();
+        lblHoraDescarte = new javax.swing.JLabel();
         lblApuesta = new javax.swing.JLabel();
         btnTurno = new javax.swing.JButton();
 
@@ -42,6 +44,10 @@ public class PanelControlReplay extends javax.swing.JPanel {
         lblJugador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblJugador.setText("Jugador");
         add(lblJugador);
+
+        lblHoraDescarte.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblHoraDescarte.setText("Último Descarte");
+        add(lblHoraDescarte);
 
         lblApuesta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblApuesta.setText("Monto Apostado");
@@ -64,9 +70,17 @@ public class PanelControlReplay extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnTurno;
     private javax.swing.JLabel lblApuesta;
+    private javax.swing.JLabel lblHoraDescarte;
     private javax.swing.JLabel lblJugador;
     // End of variables declaration//GEN-END:variables
+    
+    void cargarHora(Date d) {
+        lblHoraDescarte.setText(dateToString(d));
+    }
 
-  
+    private String dateToString(Date d) {
+        DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+        return df.format(d);
+    }
 
 }

@@ -60,7 +60,7 @@ public class ControladorReplayJuego implements Observer {
             casillerosAMostrar.addFirst(c);
 
             apuesta += m.getApuesta();
-            vista.cargarDatos(m.getJugador().getNombreCompleto(), apuesta, casillerosAMostrar);
+            vista.cargarDatos(m.getJugador().getNombreCompleto(),modelo.ultDescarte(), apuesta, casillerosAMostrar);
             posicion++;
         } else {
             vista.error("No hay más turnos disponibles.");

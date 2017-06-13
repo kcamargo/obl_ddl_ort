@@ -18,7 +18,7 @@ public interface VistaReplayJuego {
     
     public void error(String message);
     
-    public void cargarDatos(String jugador, float apuesta, List<ICasillero> casilleros);
+    public void cargarDatos(String jugador, Date fecha, float apuesta, List<ICasillero> casilleros);
     
      public void mostrarTablero(int tamaño, ArrayList<ICasillero> casilleros);
 

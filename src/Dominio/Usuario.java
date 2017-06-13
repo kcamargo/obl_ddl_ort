@@ -10,16 +10,18 @@ package Dominio;
  * @author Owner
  */
 public class Usuario {
-    
+
     private String nombreCompleto;
     private String nombreUsuario;
     private String password;
+    
+    private int oid;
 
     public Usuario(String nombreUsuario, String password) {
         this.nombreUsuario = nombreUsuario;
         this.password = password;
     }
-    
+
     public Usuario(String nombreUsuario, String password, String nombreCompleto) {
         this.nombreUsuario = nombreUsuario;
         this.password = password;
@@ -55,16 +57,16 @@ public class Usuario {
 
     @Override
     public boolean equals(Object obj) {
-        Usuario u = (Usuario)obj;
+        Usuario u = (Usuario) obj;
         return u.nombreUsuario.equals(nombreUsuario) && u.password.equals(password);
     }
 
     public int getOid() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return oid;
     }
 
     public void setOid(int oid) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.oid = oid;
     }
-    
+
 }

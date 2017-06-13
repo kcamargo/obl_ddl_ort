@@ -25,6 +25,12 @@
         <Property name="text" type="java.lang.String" value="Jugador"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JLabel" name="lblHoraDescarte">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="&#xda;ltimo Descarte"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JLabel" name="lblApuesta">
       <Properties>
         <Property name="horizontalAlignment" type="int" value="0"/>
