@@ -16,25 +16,23 @@ import java.util.ArrayList;
 public interface Mapeador {
 
     public int getOid();
-    
+
     public void setOid(int oid);
 
-    public ArrayList<String> getSqlInsertar();
+    public ArrayList<String> getSqlInsert();
 
-    public String getSqlModificar();
+    public ArrayList<String> getSqlUpdate();
 
-    public String getSqlBorrar();
+    public ArrayList<String> getSqlDelete();
 
     public String getSqlRestaurar();
 
     public void leer(ResultSet rs) throws SQLException;
 
-    public String getSqlSeleccionar();
+    public String getSqlSelect();
 
     public void crearNuevo();
 
     public Object getObjeto();
-
-    
     
 }

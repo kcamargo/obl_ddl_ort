@@ -11,33 +11,34 @@ import Dominio.Administrador;
  *
  * @author Owner
  */
-public class MapperAdministrador extends MapperUsuario {
-
+public class MapperAdministrador extends MapperUsuario{
+    
     public MapperAdministrador(Administrador a) {
         super(a);
     }
 
     public MapperAdministrador() {
     }
-
+    
     public Administrador getAdmin() {
         return (Administrador) this.u;
     }
 
     @Override
     public String getSqlRestaurar() {
-        return "SELECT Usuario.* "
-                + "FROM Usuario "
-                + "JOIN Administrador "
-                + "ON Administrador.user = Usuario.user "
-                + "WHERE oid = " + getOid();
+        return "SELECT usuario.* " +
+            "FROM usuario " +
+            "JOIN administrador " +
+            "ON administrador.user = usuario.user " +
+            "WHERE oid = " + getOid();
     }
 
-    public String getSqlSeleccionar() {
-        return "SELECT Usuario.* "
-                + "FROM Usuario "
-                + "JOIN Administrador "
-                + "ON Administrador.user = Usuario.user";
+    @Override
+    public String getSqlSelect() {
+        return "SELECT usuario.* " +
+            "FROM usuario " +
+            "JOIN administrador " +
+            "ON administrador.user = usuario.user";
     }
 
     @Override

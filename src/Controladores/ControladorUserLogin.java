@@ -31,23 +31,23 @@ public class ControladorUserLogin implements ControladorLogin{
     }
 
     @Override
-    public void login(String user, String pass) {
+    public void loginJugador(String user, String pass, int size) {
         try {
             Jugador j = modelo.loginJugador(new Jugador(user, pass));
             if (j == null) {
                 vista.error("El usuario y la contraseña no coinciden.");
             } else {
                 vista.cerrar();
-                Juego juego = modelo.getJuegoDisponible(j);
-                if(juego == null) {
-                    new VentanaNivel(j).setVisible(true);//hay que cambiarlo
-                } else {
-                   new VentanaJuego(j, juego.getSize()).setVisible(true);
-                }     
+                new VentanaJuego(j, size).setVisible(true);
             }
         } catch (BuscaminaException ex) {
             vista.error(ex.getMessage());
         }
 
+    }
+
+    @Override
+    public void login(String user, String pass) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

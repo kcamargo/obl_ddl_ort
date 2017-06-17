@@ -45,12 +45,12 @@ public class MapperJuego implements Mapeador {
     }
 
     @Override
-    public ArrayList<String> getSqlInsertar() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<String> getSqlInsert() {
         ArrayList<String> s = new ArrayList<>();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = sdf.format(j.ultDescarte());
-        s.add("INSERT INTO Juego VALUES(" + getOid() + ",'" + j.getJug1().getNombreUsuario()
+
+        s.add("INSERT INTO juego VALUES(" + getOid() + ",'" + j.getJug1().getNombreUsuario()
                 + "','" + j.getJug2().getNombreUsuario() + "','"
                 + j.getGanador().getNombreUsuario() + "'," + j.getApuestaActual()
                 + ",'" + date + "'," + j.getApuestaInicial() + ");");
@@ -60,20 +60,20 @@ public class MapperJuego implements Mapeador {
 
     private void generarLineas(ArrayList<String> sqls) {
         int nro = 1;
-        for (Movimiento t : j.getMovimientos()) {
-            sqls.add("INSERT INTO Movimiento VALUES('" + t.getJugador().getNombreUsuario()
-                    + "'," + j.getOid() + "," + nro + "," + t.getApuesta() + "," + t.getCasilleroDestapado() + ")");
+        for (Movimiento m : j.getMovimientos()) {
+            sqls.add("INSERT INTO movimiento VALUES('" + m.getJugador().getNombreUsuario()
+                    + "'," + j.getOid() + "," + nro + "," + m.getApuesta() + ")");
             nro++;
         }
     }
 
     @Override
-    public String getSqlModificar() {
+    public ArrayList<String> getSqlUpdate() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String getSqlBorrar() {
+    public ArrayList<String> getSqlDelete() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -103,17 +103,17 @@ public class MapperJuego implements Mapeador {
     }
 
     private void cargarLinea(ResultSet rs) throws SQLException {
-        Movimiento t = new Movimiento(Fachada.getInstancia().getJugadorByUser(rs.getString("jugador")));
-        t.setApuesta(rs.getFloat("apuesta"));
-        j.addTurno(t);
+        Movimiento m = new Movimiento(Fachada.getInstancia().getJugadorByUser(rs.getString("jugador")));
+        m.setApuesta(rs.getFloat("apuesta"));
+        j.addTurno(m);
     }
 
     @Override
-    public String getSqlSeleccionar() {
-        return "SELECT * FROM JUEGO\n"
-                + "LEFT OUTER JOIN Turno \n"
-                + "ON Turno.OID = Juego.OID \n"
-                + "ORDER BY Juego.oid, numturno;";
+    public String getSqlSelect() {
+        return "SELECT * FROM juego\n"
+                + "LEFT OUTER JOIN movimiento \n"
+                + "ON movimiento.OID = juego.OID \n"
+                + "ORDER BY juego.oid, numturno;";
     }
 
     @Override

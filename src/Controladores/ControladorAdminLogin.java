@@ -35,4 +35,9 @@ public class ControladorAdminLogin implements ControladorLogin{
             vista.cerrar();
         }
     }
+
+    @Override
+    public void loginJugador(String user, String pass, int size) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

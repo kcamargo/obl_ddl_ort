@@ -15,8 +15,7 @@ import java.util.ArrayList;
  *
  * @author Owner
  */
-public class MapperUsuario implements Mapeador {
-
+public class MapperUsuario implements Mapeador{
     protected Usuario u;
 
     public MapperUsuario(Usuario u) {
@@ -41,28 +40,23 @@ public class MapperUsuario implements Mapeador {
     }
 
     @Override
-    public ArrayList<String> getSqlInsertar() {
-    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
-//        return "INSERT INTO usuario (oid,nombre,password) values "
-//                + "(" + getOid() + ",'" + u.getNombreUsuario() + "','" + u.getPassword() + "')";
+    public ArrayList<String> getSqlInsert() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String getSqlModificar() {
-        return "UPDATE usuario set nombre = '" + u.getNombreUsuario() + "' "
-                + ", password = '" + u.getPassword() + "'"
-                + " where oid=" + getOid();
+    public ArrayList<String> getSqlUpdate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public String getSqlBorrar() {
-        return "DELETE FROM usuario WHERE oid=" + getOid();
+    public ArrayList<String> getSqlDelete() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public String getSqlRestaurar() {
-        return "SELECT * FROM usuario where oid=" + getOid();
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -74,8 +68,8 @@ public class MapperUsuario implements Mapeador {
     }
 
     @Override
-    public String getSqlSeleccionar() {
-        return "SELECT * FROM usuario";
+    public String getSqlSelect() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -87,5 +81,6 @@ public class MapperUsuario implements Mapeador {
     public Object getObjeto() {
         return u;
     }
-
+    
+    
 }

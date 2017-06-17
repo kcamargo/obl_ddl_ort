@@ -11,4 +11,6 @@ package Controladores;
  */
 public interface ControladorLogin {
     public void login(String user, String pass);
+    
+    public void loginJugador(String user, String pass, int size);
 }

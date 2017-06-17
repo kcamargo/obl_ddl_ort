@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @author Owner
  */
 public class MapperJugador extends MapperUsuario{
-     
+    
     public MapperJugador(Jugador j) {
         super(j);
     }
@@ -29,10 +29,10 @@ public class MapperJugador extends MapperUsuario{
 
     @Override
     public String getSqlRestaurar() {
-        return "SELECT Usuario.*, Jugador.saldo " +
-            "FROM Usuario " +
-            "JOIN Jugador " +
-            "ON Jugador.user = Usuario.user " +
+        return "SELECT usuario.*, jugador.saldo " +
+            "FROM usuario " +
+            "JOIN jugador " +
+            "ON jugador.user = usuario.user " +
             "WHERE oid = " + getOid();
     }
 
@@ -42,11 +42,12 @@ public class MapperJugador extends MapperUsuario{
         getJug().setSaldo(rs.getFloat("saldo"));
     }
 
-    public String getSqlSeleccionar() {
-        return "SELECT Usuario.*, Jugador.saldo " +
-            "FROM Usuario " +
-            "JOIN Jugador " +
-            "ON Jugador.user = Usuario.user";
+    @Override
+    public String getSqlSelect() {
+        return "SELECT usuario.*, jugador.saldo " +
+            "FROM usuario " +
+            "JOIN jugador " +
+            "ON jugador.user = usuario.user";
     }
 
     @Override
@@ -54,11 +55,13 @@ public class MapperJugador extends MapperUsuario{
         u = new Jugador();
     }
     
-   
-    public String getSqlModificar() {
-        return "UPDATE usuario set nombre = '" + u.getNombreUsuario() + "' "
-                + ", password = '" + u.getPassword() + "'"
-                + " where oid=" + getOid();
+    @Override
+    public ArrayList<String> getSqlUpdate() {
+        ArrayList<String> salida = new ArrayList<>();
+        salida.add("UPDATE jugador SET Saldo = " + getJug().getSaldo()
+            + " WHERE User = '" + getJug().getNombreUsuario() + "'");
+        return salida;
     }
+    
     
 }

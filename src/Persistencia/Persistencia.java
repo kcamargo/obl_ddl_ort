@@ -17,86 +17,73 @@ import Dominio.Usuario;
  * @author docenteFI
  */
 public class Persistencia {
-
-    private static Persistencia instancia = new Persistencia();
-    private BaseDatos bd = BaseDatos.getInstancia();
-
-    public static Persistencia getInstancia() {
-        return instancia;
-    }
-
-    public Persistencia() {
-    }
-
-    public int proximoOid() { //cambiar string
-        String sql = "SELECT valor FROM parametros WHERE nombre = 'oid'";//cambiar string
+    
+    private final BaseDatos bd = BaseDatos.getInstancia();
+    
+     public int proximoOid(){
+        String sql = "SELECT valor FROM parametros WHERE nombre = 'oid'";
         ResultSet rs = bd.consultar(sql);
         try {
-            if (rs.next()) {
+            if(rs.next()){
                 int oidActual = rs.getInt("valor");
-                sql = "UPDATE parametros set valor = " + (oidActual + 1)
-                        + " WHERE nombre = 'oid'";
+                sql = "UPDATE parametros set valor = " + (oidActual+1) + 
+                      " WHERE nombre = 'oid'";
                 bd.modificar(sql);
                 return oidActual;
-            } else {
-                System.out.println("FALTA REGISTRO OID");
-            }
+            }else System.out.println("FALTA REGISTRO OID");
         } catch (SQLException ex) {
             System.out.println("Error al obtener proximo oid");
         }
         return -1;
     }
-
-    public void guardar(Mapeador obj) {
-        if (obj.getOid() < 1) {
-            insertar(obj);
-        } else {
-            modificar(obj);
-        }
+    
+    public void guardar(Mapeador p){
+        if(p.getOid()==0){
+            insertar(p);
+        }else actualizar(p);
     }
 
-    private void insertar(Mapeador obj) {
+    private void insertar(Mapeador p) {
         int oid = proximoOid();
-        obj.setOid(oid);
-        ArrayList<String> sql = obj.getSqlInsertar();
-        if (!bd.transaccion(sql)) {
+        p.setOid(oid);
+        ArrayList<String> sqls = p.getSqlInsert();
+        if(!bd.transaccion(sqls)){
             System.out.println("Error al insertar");
-            obj.setOid(0);
-        }
-
-    }
-
-    private void modificar(Mapeador obj) {
-        String sql = obj.getSqlModificar();
-        if (bd.modificar(sql) < 1) {
-            System.out.println("Error al modificar objeto");
+            p.setOid(0);
         }
     }
 
-    public void borrar(Mapeador obj) {
-        String sql = obj.getSqlBorrar();
-        int f = bd.modificar(sql);
-        if (f > 0) {
-            obj.setOid(0); //ya no esta en la base
+    private void actualizar(Mapeador p) {
+        ArrayList<String> sqls = p.getSqlUpdate();
+        if(!bd.transaccion(sqls)){
+            System.out.println("Error al actualizar");
         }
     }
-
-    public void restaurar(Mapeador obj) {
-        if (obj.getOid() > 0) {
-            String sql = obj.getSqlRestaurar();
-            ResultSet rs = bd.consultar(sql);
-            try {
-                rs.next();
-                obj.leer(rs);
-                rs.close();
-            } catch (SQLException ex) {
-                System.out.println("Error al restaurar:" + ex.getMessage());
+    public void borrar(Mapeador p){
+        ArrayList<String> sqls = p.getSqlDelete();
+        if(bd.transaccion(sqls)){
+            p.setOid(0);
+        }else System.out.println("Error al borrar");
+    }
+    
+    
+    public void restaurar(Mapeador p){
+        String sql = p.getSqlRestaurar();
+        ResultSet rs = bd.consultar(sql);
+        try {
+            while(rs.next()){
+                 p.leer(rs);
             }
+            rs.close();
+        } catch (SQLException ex) {
+            System.out.println("Error al restaurar: " + ex.getMessage());
         }
     }
-
+    public ArrayList obtenerTodos(Mapeador p){
+        return buscar(p,"");
+    }
     public ArrayList buscar(Mapeador p, String where){
-        String sql = p.getSqlSeleccionar() + " " + where;
+        String sql = p.getSqlSelect() + " " + where;
         ResultSet rs = bd.consultar(sql);
         ArrayList resultado=new ArrayList();
         int oid,oidAnt=-1;
@@ -117,9 +104,4 @@ public class Persistencia {
         }
         return resultado;
     }
-
-    public ArrayList obtenerTodos(Mapeador p){
-        return buscar(p,"");
-    }
-
 }

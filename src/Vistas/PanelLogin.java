@@ -6,6 +6,7 @@
 package Vistas;
 
 import Controladores.ControladorLogin;
+import Controladores.ControladorNivel;
 
 /**
  *
@@ -14,14 +15,14 @@ import Controladores.ControladorLogin;
 public class PanelLogin extends javax.swing.JPanel {
 
     private ControladorLogin controlador;
-    
+
     public PanelLogin(ControladorLogin a) {
         initComponents();
         controlador = a;
     }
-    
+
     private void login() {
-        controlador.login(txtUser.getText(), new String(txtPass.getPassword()));
+        controlador.loginJugador(txtUser.getText(),new String(txtPass.getPassword()),valores());
     }
 
     /**
@@ -38,6 +39,8 @@ public class PanelLogin extends javax.swing.JPanel {
         txtUser = new javax.swing.JTextField();
         txtPass = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        tamano = new javax.swing.JTextField();
 
         setLayout(null);
 
@@ -72,7 +75,13 @@ public class PanelLogin extends javax.swing.JPanel {
             }
         });
         add(btnLogin);
-        btnLogin.setBounds(140, 130, 100, 23);
+        btnLogin.setBounds(130, 150, 100, 23);
+
+        jLabel2.setText("Nivel:");
+        add(jLabel2);
+        jLabel2.setBounds(80, 120, 27, 14);
+        add(tamano);
+        tamano.setBounds(160, 120, 130, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
@@ -91,8 +100,18 @@ public class PanelLogin extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblUser;
+    private javax.swing.JTextField tamano;
     private javax.swing.JPasswordField txtPass;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
+
+
+    private int valores() {
+        int size = 0;
+        size = Integer.parseInt(this.tamano.getText());
+        return size;
+    }
+
 }

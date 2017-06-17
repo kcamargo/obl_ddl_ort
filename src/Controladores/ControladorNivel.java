@@ -21,10 +21,10 @@ public class ControladorNivel {
         this.modelo = Fachada.getInstancia();
     }
     
-    public void setSize(Jugador j, int size) {
+    public void setSize(int size) {
         Juego juego = modelo.getJuegoEnEspera();
         juego.setSize(size);
         
-        new VentanaJuego(j, size).setVisible(true);
+//        new VentanaJuego(j,).setVisible(true);
     }
 }

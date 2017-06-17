@@ -35,7 +35,7 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
         //En realidad no quiero la lista, quiero el juego activo que pertenece a ese jugador de la ventana
         //Hacer un metodo que busque que juego activo tiene el jugador de la ventana, hecho en sistema
 
-        controlador = new ControladorJuego(size, this, jugador);
+        controlador = new ControladorJuego(this, jugador, size);
 
         datos = new PanelDatos(controlador);
 
@@ -45,6 +45,7 @@ public class VentanaJuego extends javax.swing.JFrame implements VistaJuego {
 
         // controlador.setVista(this);
         controlador.vistaLista();
+        controlador.setJugador(j);
     }
 
     /**

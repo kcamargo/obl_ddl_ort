@@ -91,7 +91,7 @@ public class VentanaNivel extends javax.swing.JFrame implements VistaUserNivel {
     // End of variables declaration//GEN-END:variables
 
     private void ingresar(int size) {
-        controlador.setSize(jugador, size);
+//        controlador.setSize(jugador, size);
     }
     
     private void valores(){

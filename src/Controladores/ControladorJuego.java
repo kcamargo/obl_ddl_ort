@@ -23,16 +23,22 @@ public final class ControladorJuego implements Observer {
     private Juego juego;
 
     private Jugador jugador;
+    private Jugador oponente;
+
     private int size;
     private VistaJuego vista;
     private ArrayList<ICasillero> casilleros;
 
-    public ControladorJuego(int tamaño, VistaJuego vista, Jugador j) {
+    public ControladorJuego(VistaJuego vista, Jugador j, int tamano) {
         this.vista = vista;
-        size = tamaño;
+        size = tamano;
         jugador = j;
 
         juego = j.getJuegoActivo();
+        if (juego.getSize() == 0) {
+            juego.setSize(size);
+        }
+
         juego.addObserver(this);
         casilleros = juego.casilleros(size);
 
@@ -45,11 +51,11 @@ public final class ControladorJuego implements Observer {
 
     }
 
-    public void setJugador() {
-//        this.jugador = j;
-//        this.juego = jugador.getJuegoActivo();
-//        this.oponente = juego.getOponente(jugador);
-        // juego.addObserver(this);
+    public void setJugador(Jugador j) {
+        this.jugador = j;
+        this.juego = jugador.getJuegoActivo();
+        this.oponente = juego.getOponente(jugador);
+        juego.addObserver(this);
         if (juego.comenzo()) {
             //  generarCasilleros(size);
             refreshVista();
