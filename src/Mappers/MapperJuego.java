@@ -48,8 +48,12 @@ public class MapperJuego implements Mapeador {
     public ArrayList<String> getSqlInsert() {
         ArrayList<String> s = new ArrayList<>();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String date = sdf.format(j.ultDescarte());
-
+        String date = null;
+        if(j.ultDescarte() !=  null){
+            date = sdf.format(j.ultDescarte());
+        }else{
+            date = sdf.format(new Date());
+        }        
         s.add("INSERT INTO juego VALUES(" + getOid() + ",'" + j.getJug1().getNombreUsuario()
                 + "','" + j.getJug2().getNombreUsuario() + "','"
                 + j.getGanador().getNombreUsuario() + "'," + j.getApuestaActual()

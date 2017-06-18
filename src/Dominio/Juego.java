@@ -174,11 +174,11 @@ public class Juego extends Observable {
     }
 
     private void startTimerTurno() {
-        timerTurno = new TimerTurno(30, this);
+        timerTurno = new TimerTurno(10, this);
         timerTurno.start();
     }
 
-    private void startTimerApuesta() {
+private void startTimerApuesta() {
         timerApuesta = new TimerApuesta(10, this);
         timerApuesta.start();
     }
@@ -307,6 +307,8 @@ public class Juego extends Observable {
                 //movimientos.add(turnoActual);
                 movimientos.add(mov);
                 cambiarTurno(j);
+                timerTurno.stop();
+                startTimerTurno();
                 avisar(Eventos.juego);
             }
         } else {
@@ -348,7 +350,7 @@ public class Juego extends Observable {
                 banderaMina = AgregarNuevaMina();
             }
         }
-        //    System.out.println("turno actual " + this.turnoActual.getJugador().getNombreCompleto());
+            System.out.println("turno actual " + this.turnoActual.getJugador().getNombreCompleto());
     }
 
     public void MostrarMina() {

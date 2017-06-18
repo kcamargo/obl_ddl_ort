@@ -45,7 +45,7 @@ public final class ControladorJuego implements Observer {
     }
 
     private void initJuego() {
-        //    this.juego.setJug2(juego.getOponente(jugador));   
+        this.juego.setJug2(juego.getOponente(jugador));
         vista.habilitar();
         refreshVista();
 
@@ -79,7 +79,7 @@ public final class ControladorJuego implements Observer {
     private void refreshVista() {
         vista.mostrarDatos(juego.getJug1().getNombreCompleto(), juego.getJug2().getNombreCompleto(),
                 juego.getJug1().getSaldo(), juego.getJug2().getSaldo(), juego.getApuestaActual());
-        vista.mostrarTablero(size, casilleros);
+        vista.mostrarTablero(juego.getSize(), casilleros);
 
     }
 
@@ -154,11 +154,11 @@ public final class ControladorJuego implements Observer {
 
     public void destaparTablero(ICasillero casillero, Jugador j) {
         juego.destapar(casillero, j);
-        vista.mostrarTablero(size, casilleros);
+        vista.mostrarTablero(juego.getSize(), casilleros);
     }
 
     public void vistaLista() {
-        vista.mostrarTablero(size, casilleros);
+        vista.mostrarTablero(juego.getSize(), casilleros);
     }
 
     private void handleTimerApuesta() {
