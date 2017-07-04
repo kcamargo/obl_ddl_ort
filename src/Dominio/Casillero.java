@@ -14,6 +14,7 @@ import java.awt.Color;
 public class Casillero implements ICasillero{
     
    private Movimiento movimiento;
+   public Mina mina;
     public int estado = 1;
     public int ubicacion;
 
@@ -23,6 +24,7 @@ public class Casillero implements ICasillero{
     }
 
     public Casillero() {
+       this.mina=null;
     }
     
 
@@ -58,7 +60,15 @@ public class Casillero implements ICasillero{
             return Color.GRAY;
               
         } else {
+            if(mina==null){
             return movimiento.getJugador().getColor();
+            }
+            else
+            {
+                
+                return Color.GREEN;
+            }
+            
         }
     }
 
@@ -67,9 +77,17 @@ public class Casillero implements ICasillero{
         //validar cosas, para eso tal vez delego esto a la partida
         //tal vez miPartida.destapar(this,jugador)  u otra cosa que quieran...
         movimiento = new Movimiento(j,ubicacion);
-        
         setEstado(2);
 
+    }
+
+    @Override
+    public void setMina(Mina uM) {
+        this.mina=uM;
+      }
+  @Override
+    public Mina getMina() {
+        return mina;
     }
 
   

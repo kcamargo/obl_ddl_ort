@@ -178,7 +178,7 @@ public class Juego extends Observable {
         timerTurno.start();
     }
 
-private void startTimerApuesta() {
+    private void startTimerApuesta() {
         timerApuesta = new TimerApuesta(10, this);
         timerApuesta.start();
     }
@@ -196,7 +196,7 @@ private void startTimerApuesta() {
             throw new BuscaminaException("No puede apostar. Existe una apuesta pendiente.");
         }
 
-        float apuestaMaxima = Math.min(jug1.getSaldo(), jug2.getSaldo());
+        double apuestaMaxima = Math.min(jug1.getSaldo(), jug2.getSaldo());
 
         if (apuesta > apuestaMaxima) {
             throw new BuscaminaException("La apuesta no puede ser mayor a " + apuestaMaxima);
@@ -294,27 +294,62 @@ private void startTimerApuesta() {
 
     public void destapar(ICasillero c, Jugador j) {
         if (j == turnoActual.getJugador()) {
-            if (c.getEstado() == 3) {
-                System.out.println("EXPLOTO TODOOOOO");
-                // MostrarMina();
-                asiganrGanador(j);
-                this.terminarJuego();
+            if (c.getMina() != null) {
+                switch ((c.getMina().nombre)) {
+                    case "E":
+                        System.out.println("EXPLOTO TODOOOOO");
+                        asiganrGanador(j);
+                        this.terminarJuego();
+                        break;
+                    case "T":
+                        System.out.println("SALDO JUGADOR Actual " + j.getSaldo());
+                        ValorTrampa(j);
+                        System.out.println("SALDO JUGADOR TRAMPA " + j.getSaldo());
+                        SiguienteTurno(j, c);
+                        break;
+                    case "S":
+                        System.out.println("SALDO Actual " + j.getSaldo());
+                        ValorSuerte(j);
+                        System.out.println("SALDO suerte " + j.getSaldo());
+                        SiguienteTurno(j, c);
+                        break;
+                    default:
+                        throw new AssertionError(c.getMina().nombre);
+                }
             } else if (c.getEstado() == 1) {
-
-                Movimiento mov = new Movimiento(j, c.getUbicacion());
-                c.destapar(j);
-
-                //movimientos.add(turnoActual);
-                movimientos.add(mov);
-                cambiarTurno(j);
-                timerTurno.stop();
-                startTimerTurno();
-                avisar(Eventos.juego);
+                SiguienteTurno(j, c);
             }
         } else {
             System.out.println("no es tu turno");
         }
+    }
+    
+       private void SiguienteTurno(Jugador j, ICasillero c) {
+        Movimiento mov = new Movimiento(j, c.getUbicacion());
+        c.destapar(j);
 
+        //movimientos.add(turnoActual);
+        movimientos.add(mov);
+        cambiarTurno(j);
+        avisar(Eventos.juego);
+    }
+
+    private void ValorTrampa(Jugador j) {
+        double valorTrampa = 0;
+        Trampa unaT = new Trampa();
+        valorTrampa = j.getSaldo() * unaT.getValorDesc();
+        if (j.equals(jug1)) {
+            jug1.setSaldo(jug1.getSaldo() - valorTrampa);
+            jug2.setSaldo(jug2.getSaldo() + valorTrampa);
+        } else {
+            jug1.setSaldo(jug1.getSaldo() + valorTrampa);
+            jug2.setSaldo(jug2.getSaldo() - valorTrampa);
+        }
+    }
+
+    private void ValorSuerte(Jugador j) {
+        Suerte unaS = new Suerte();
+        j.setSaldo(j.getSaldo() * unaS.getValorIncrem());
     }
 
     public void destaparReplay(ICasillero c) {
@@ -340,78 +375,107 @@ private void startTimerApuesta() {
 
     }
 
-    public void cambiarTurno(Jugador actual) {
+  public void cambiarTurno(Jugador actual) {
         boolean banderaMina = false;
         if (actual == this.jug1) {
             this.turnoActual.setJugador(this.jug2);
+            if (LugaresDisponible() <=2) {
+                AgregarMinaExplosiva();
+            }
+            
+
         } else {
             this.turnoActual.setJugador(this.jug1);
-            while (banderaMina == false && LugaresDisponible() == true) {
+
+            while (banderaMina == false && LugaresDisponible() >2) {
                 banderaMina = AgregarNuevaMina();
             }
-        }
-            System.out.println("turno actual " + this.turnoActual.getJugador().getNombreCompleto());
-    }
-
-    public void MostrarMina() {
-        int i = 0;
-        for (ICasillero c : casilleros) {
-            if (c.getEstado() == 3) {
-//                c.setColor(Color.BLACK);
+            if (LugaresDisponible() <=2) {
+                AgregarMinaExplosiva();
             }
-            i++;
-            System.out.println("color casillero " + i + c.getColor());
+
         }
+        System.out.println("Lugares dispo: " + LugaresDisponible());
+
     }
 
-    private boolean LugaresDisponible() {
-        boolean bandera = false;
+
+    private int LugaresDisponible() {
+        int bandera = 0;
         for (ICasillero c : casilleros) {
-            if (c.getEstado() == 2) {
-                bandera = true;
+            if (c.getEstado() == 1 && c.getMina() == null) {
+                bandera++;
             }
         }
         return bandera;
     }
 
-    public int GenerarMina(int cant) {
-        int num;
-        num = (int) (Math.random() * (cant * cant)) + 1;
-        return num;
+    public Mina GenerarMina(int cant) {
+        Mina unaMina = CrearMina();
+        unaMina.ubicacion = (int) (Math.random() * (cant * cant)) + 1;
+
+        return unaMina;
+
+    }
+
+    public int GenerarExplosiva() {
+
+        return (int) (Math.random() * (2)) + 1;
 
     }
 
     public boolean AgregarNuevaMina() {
-        int nm = GenerarMina(size);
+        Mina uM = GenerarMina(size);
         int cont = 0;
         boolean bandera = false;
 
         for (ICasillero c : casilleros) {
             cont++;
-            if (c.getEstado() == 1 && c.getEstado() != 3 && cont == nm) {
-                c.setEstado(3);
+            if (c.getEstado() == 1 && c.getMina() == null && cont == uM.ubicacion) {
+                c.setMina(uM);
 
                 c.setColor(Color.BLACK);
                 bandera = true;
-                System.out.println("NUEVA MINA " + nm);
+                System.out.println("NUEVA MINA " + uM.ubicacion + uM.nombre);
             }
         }
         return bandera;
     }
 
-    public ArrayList<ICasillero> casilleros(int t) {
+    public void AgregarMinaExplosiva() {
+
+        Explosiva e = new Explosiva();
+        int lugarDisponible = GenerarExplosiva();
+      
+        int cont = 1;
+        int ubicacion=0;
+        for (ICasillero c : casilleros) {
+            ubicacion++;
+            if (c.getEstado() == 1&&c.getMina()==null) {
+                if (cont == lugarDisponible) {
+                    e.ubicacion=ubicacion;
+                    c.setMina(e);
+                    System.out.println("NUEVA MINA " + e.ubicacion + e.nombre);
+                }
+                cont++;
+            }
+
+        }
+
+    }
+
+     public ArrayList<ICasillero> casilleros(int t) {
 
         if (casilleros == null) {
-//            int t = size;
             t = size;
-            int n = GenerarMina(t);
-            System.out.println("NUMERO MINA " + n);
+            Mina uM = GenerarMina(t);
+            System.out.println("NUMERO MINA " + uM.ubicacion + uM.nombre);
             ArrayList<ICasillero> lista = new ArrayList();
             for (int x = 1; x <= (t * t); x++) {
                 Casillero c = new Casillero();
                 c.setUbicacion(x);
-                if (x == n) {
-                    c.setEstado(3);
+                if (x == uM.ubicacion) {
+                    c.setMina(uM);
 
                     c.setColor(Color.BLACK);
                 }
@@ -421,6 +485,26 @@ private void startTimerApuesta() {
 
         }
         return casilleros;
+    }
+
+    private Mina CrearMina() {
+        Mina unaMina;
+        int tipoMina = (int) (Math.random() * (3)) + 1;
+        switch ((tipoMina)) {
+            case 1:
+                unaMina = new Explosiva();
+                break;
+            case 2:
+                unaMina = new Trampa();
+                break;
+            case 3:
+                unaMina = new Suerte();
+                break;
+            default:
+                throw new AssertionError(tipoMina);
+
+        }
+        return unaMina;
     }
 
     public ArrayList<ICasillero> getCasilleros() {

@@ -86,7 +86,7 @@ public class PanelDatos extends javax.swing.JPanel {
     private javax.swing.JTextField txtApuesta;
     // End of variables declaration//GEN-END:variables
 
-    public void refreshDatos(String jugador, String oponente, float saldo, float saldo2, float apuesta) {
+    public void refreshDatos(String jugador, String oponente, double saldo, double saldo2, float apuesta) {
         lblJugador.setText("Jug.: " + jugador);
         lblOponente.setText("Op.: " + oponente);
         lblSaldo.setText("Saldo Jug1: $" + saldo);

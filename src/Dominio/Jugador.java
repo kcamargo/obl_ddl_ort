@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Jugador extends Usuario{
 
 
-    private float saldo;
+    private double saldo;
     private boolean logueado;
     private Juego juegoActivo;
     private Color color;
@@ -37,9 +37,7 @@ public class Jugador extends Usuario{
         this.saldo = saldo;
     }
 
-
-
-    public float getSaldo() {
+    public double getSaldo() {
         return saldo;
     }
 
@@ -60,11 +58,11 @@ public class Jugador extends Usuario{
     }
 
     
-    public void agregarSaldo(float saldo) {
+    public void agregarSaldo(double saldo) {
         this.saldo += saldo;
     }
 
-    public void setSaldo(float saldo) {
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 

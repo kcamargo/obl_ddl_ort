@@ -20,4 +20,6 @@ public interface ICasillero {
     public void destapar(Jugador j);
     public int getUbicacion();
     public void setUbicacion(int ubicacion);
+    public Mina getMina();
+    public void setMina(Mina uM);
 }

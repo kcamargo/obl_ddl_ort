@@ -130,7 +130,7 @@ class JuegoRenderer extends JLabel implements ListCellRenderer<Juego> {
         return String.format(s, args.toArray());
     }
 
-    public static String fmt(float d) {
+    public static String fmt(double d) {
         if (d == (long) d) {
             return String.format("%d", (long) d);
         } else {

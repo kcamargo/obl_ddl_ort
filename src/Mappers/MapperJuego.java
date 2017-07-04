@@ -66,7 +66,7 @@ public class MapperJuego implements Mapeador {
         int nro = 1;
         for (Movimiento m : j.getMovimientos()) {
             sqls.add("INSERT INTO movimiento VALUES('" + m.getJugador().getNombreUsuario()
-                    + "'," + j.getOid() + "," + nro + "," + m.getApuesta() + ")");
+                    + "'," + j.getOid() + "," + nro + "," + m.getApuesta() + ","+ m.getCasilleroDestapado() + ")");
             nro++;
         }
     }
