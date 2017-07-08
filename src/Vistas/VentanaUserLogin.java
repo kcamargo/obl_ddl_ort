@@ -7,6 +7,7 @@ package Vistas;
 
 import Controladores.ControladorUserLogin;
 import Controladores.VistaUserLogin;
+import Dominio.Jugador;
 import java.awt.GridLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -59,6 +60,13 @@ public class VentanaUserLogin extends javax.swing.JFrame implements VistaUserLog
     @Override
     public void cerrar() {
         this.dispose();
+    }
+
+    @Override
+    public void ingresar(Jugador j, int size) {
+        dispose();
+        new VentanaJuego(j, size).setVisible(true);
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

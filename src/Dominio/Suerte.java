@@ -11,10 +11,12 @@ package Dominio;
  */
 public class Suerte extends Mina {
     double valorIncrem;
+    public static final String NOMBRE = "S";
 
-    public Suerte() {
+    public Suerte(String nombre) {
+        super(nombre);
         this.valorIncrem = 1.1;
-        this.nombre="S";
+        this.nombre=NOMBRE;
     }
 
     public double getValorIncrem() {
@@ -24,5 +26,11 @@ public class Suerte extends Mina {
     public void setValorIncrem(double valorIncrem) {
         this.valorIncrem = valorIncrem;
     }
+    
+     public void ValorSuerte(Jugador j) {
+        
+        j.setSaldo(j.getSaldo() * this.getValorIncrem());
+    }
+
     
 }

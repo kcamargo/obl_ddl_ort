@@ -10,9 +10,12 @@ package Dominio;
  * @author User
  */
 public class Explosiva extends Mina {
+    
+    public static final String NOMBRE = "E";
 
-    public Explosiva() {
-        this.nombre="E";
+    public Explosiva(String nombre) {
+        super(nombre);
+        this.nombre=NOMBRE;
     }
     
     

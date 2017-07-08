@@ -5,6 +5,8 @@
  */
 package Controladores;
 
+import Dominio.Jugador;
+
 /**
  *
  * @author Owner
@@ -14,4 +16,7 @@ public interface VistaUserLogin {
     public void error(String message);
 
     public void cerrar();
+    
+    public void ingresar(Jugador j, int size);
+    
 }

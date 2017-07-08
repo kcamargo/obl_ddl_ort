@@ -144,7 +144,7 @@ public final class ControladorJuego implements Observer {
                 handleTimerTurno();
                 break;
             case juego:
-                initJuego();
+                refreshVista();
                 break;
             default:
                 throw new AssertionError(((Juego.Eventos) arg).name());

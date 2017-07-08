@@ -174,12 +174,12 @@ public class Juego extends Observable {
     }
 
     private void startTimerTurno() {
-        timerTurno = new TimerTurno(10, this);
+        timerTurno = new TimerTurno(100, this);
         timerTurno.start();
     }
 
     private void startTimerApuesta() {
-        timerApuesta = new TimerApuesta(10, this);
+        timerApuesta = new TimerApuesta(100, this);
         timerApuesta.start();
     }
 
@@ -258,7 +258,6 @@ public class Juego extends Observable {
     }
 
     public void terminarJuego() {
-        //  ganador.agregarSaldo(apuestaActual * 2);
         jug1.setJuegoActivo(null);
         jug2.setJuegoActivo(null);
         actualizarDatosBD();
@@ -269,7 +268,6 @@ public class Juego extends Observable {
 
     private void initJugador(Jugador j) {
         j.setJuegoActivo(this);
-//        j.agregarSaldo(apuestaInicial * -1);
     }
 
 //  
@@ -295,36 +293,39 @@ public class Juego extends Observable {
     public void destapar(ICasillero c, Jugador j) {
         if (j == turnoActual.getJugador()) {
             if (c.getMina() != null) {
-                switch ((c.getMina().nombre)) {
+                switch ((c.getMina().getNombre())) {
                     case "E":
-                        System.out.println("EXPLOTO TODOOOOO");
                         asiganrGanador(j);
                         this.terminarJuego();
                         break;
                     case "T":
-                        System.out.println("SALDO JUGADOR Actual " + j.getSaldo());
-                        ValorTrampa(j);
-                        System.out.println("SALDO JUGADOR TRAMPA " + j.getSaldo());
+                        Trampa t = (Trampa) c.getMina();
+                        if (j.equals(jug1)) {
+                            t.ValorTrampa(jug1, jug2);
+                        } else {
+                            t.ValorTrampa(jug2, jug1);
+                        }
                         SiguienteTurno(j, c);
                         break;
                     case "S":
-                        System.out.println("SALDO Actual " + j.getSaldo());
-                        ValorSuerte(j);
-                        System.out.println("SALDO suerte " + j.getSaldo());
+                        Suerte s = (Suerte) c.getMina();
+                        s.ValorSuerte(j);
                         SiguienteTurno(j, c);
                         break;
                     default:
-                        throw new AssertionError(c.getMina().nombre);
+                        throw new AssertionError(c.getMina().getNombre());
                 }
             } else if (c.getEstado() == 1) {
                 SiguienteTurno(j, c);
+                timerTurno.stop();
+                startTimerTurno();
             }
         } else {
             System.out.println("no es tu turno");
         }
     }
-    
-       private void SiguienteTurno(Jugador j, ICasillero c) {
+
+    private void SiguienteTurno(Jugador j, ICasillero c) {
         Movimiento mov = new Movimiento(j, c.getUbicacion());
         c.destapar(j);
 
@@ -334,24 +335,23 @@ public class Juego extends Observable {
         avisar(Eventos.juego);
     }
 
-    private void ValorTrampa(Jugador j) {
-        double valorTrampa = 0;
-        Trampa unaT = new Trampa();
-        valorTrampa = j.getSaldo() * unaT.getValorDesc();
-        if (j.equals(jug1)) {
-            jug1.setSaldo(jug1.getSaldo() - valorTrampa);
-            jug2.setSaldo(jug2.getSaldo() + valorTrampa);
-        } else {
-            jug1.setSaldo(jug1.getSaldo() + valorTrampa);
-            jug2.setSaldo(jug2.getSaldo() - valorTrampa);
-        }
-    }
-
-    private void ValorSuerte(Jugador j) {
-        Suerte unaS = new Suerte();
-        j.setSaldo(j.getSaldo() * unaS.getValorIncrem());
-    }
-
+//    private void ValorTrampa(Jugador j) {
+//        double valorTrampa = 0;
+//        Trampa unaT = new Trampa();
+//        valorTrampa = j.getSaldo() * unaT.getValorDesc();
+//        if (j.equals(jug1)) {
+//            jug1.setSaldo(jug1.getSaldo() - valorTrampa);
+//            jug2.setSaldo(jug2.getSaldo() + valorTrampa);
+//        } else {
+//            jug1.setSaldo(jug1.getSaldo() + valorTrampa);
+//            jug2.setSaldo(jug2.getSaldo() - valorTrampa);
+//        }
+//    }
+//
+//    private void ValorSuerte(Jugador j) {
+//        Suerte unaS = new Suerte();
+//        j.setSaldo(j.getSaldo() * unaS.getValorIncrem());
+//    }
     public void destaparReplay(ICasillero c) {
 //        if (j == turnoActual.getJugador()) {
 //            if (c.getEstado() == 3) {
@@ -375,22 +375,20 @@ public class Juego extends Observable {
 
     }
 
-  public void cambiarTurno(Jugador actual) {
+    public void cambiarTurno(Jugador actual) {
         boolean banderaMina = false;
-        if (actual == this.jug1) {
+        if (actual.equalsUser(this.jug1.getNombreUsuario())) {
             this.turnoActual.setJugador(this.jug2);
-            if (LugaresDisponible() <=2) {
+            if (LugaresDisponible() <= 2) {
                 AgregarMinaExplosiva();
             }
-            
-
         } else {
             this.turnoActual.setJugador(this.jug1);
 
-            while (banderaMina == false && LugaresDisponible() >2) {
+            while (banderaMina == false && LugaresDisponible() > 2) {
                 banderaMina = AgregarNuevaMina();
             }
-            if (LugaresDisponible() <=2) {
+            if (LugaresDisponible() <= 2) {
                 AgregarMinaExplosiva();
             }
 
@@ -398,7 +396,6 @@ public class Juego extends Observable {
         System.out.println("Lugares dispo: " + LugaresDisponible());
 
     }
-
 
     private int LugaresDisponible() {
         int bandera = 0;
@@ -444,16 +441,16 @@ public class Juego extends Observable {
 
     public void AgregarMinaExplosiva() {
 
-        Explosiva e = new Explosiva();
+        Explosiva e = new Explosiva("E");
         int lugarDisponible = GenerarExplosiva();
-      
+
         int cont = 1;
-        int ubicacion=0;
+        int ubicacion = 0;
         for (ICasillero c : casilleros) {
             ubicacion++;
-            if (c.getEstado() == 1&&c.getMina()==null) {
+            if (c.getEstado() == 1 && c.getMina() == null) {
                 if (cont == lugarDisponible) {
-                    e.ubicacion=ubicacion;
+                    e.ubicacion = ubicacion;
                     c.setMina(e);
                     System.out.println("NUEVA MINA " + e.ubicacion + e.nombre);
                 }
@@ -464,7 +461,7 @@ public class Juego extends Observable {
 
     }
 
-     public ArrayList<ICasillero> casilleros(int t) {
+    public ArrayList<ICasillero> casilleros(int t) {
 
         if (casilleros == null) {
             t = size;
@@ -492,13 +489,13 @@ public class Juego extends Observable {
         int tipoMina = (int) (Math.random() * (3)) + 1;
         switch ((tipoMina)) {
             case 1:
-                unaMina = new Explosiva();
+                unaMina = new Explosiva("E");
                 break;
             case 2:
-                unaMina = new Trampa();
+                unaMina = new Trampa("T");
                 break;
             case 3:
-                unaMina = new Suerte();
+                unaMina = new Suerte("S");
                 break;
             default:
                 throw new AssertionError(tipoMina);

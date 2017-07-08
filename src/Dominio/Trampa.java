@@ -10,11 +10,14 @@ package Dominio;
  * @author User
  */
 public class Trampa extends Mina {
-     double valorDesc;
 
-    public Trampa() {
+    double valorDesc;
+    public static final String NOMBRE = "T";
+
+    public Trampa(String nombre) {
+        super(nombre);
         this.valorDesc = .25;
-        this.nombre="T";
+        this.nombre = NOMBRE;
     }
 
     public double getValorDesc() {
@@ -24,5 +27,15 @@ public class Trampa extends Mina {
     public void setValorDesc(double valorDesc) {
         this.valorDesc = valorDesc;
     }
-    
+
+    public void ValorTrampa(Jugador jActual, Jugador j2) {
+        double valorTrampa = 0;
+
+        valorTrampa = jActual.getSaldo() * valorDesc;
+
+        jActual.setSaldo(jActual.getSaldo() - valorTrampa);
+        j2.setSaldo(j2.getSaldo() + valorTrampa);
+
+    }
+
 }

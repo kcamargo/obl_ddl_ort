@@ -16,16 +16,17 @@ import Vistas.VentanaNivel;
  *
  * @author Owner
  */
-public class ControladorUserLogin implements ControladorLogin{
+public class ControladorUserLogin implements ControladorLogin {
 
     private VistaUserLogin vista;
     private Fachada modelo;
     private ControladorJuego controlador;
-    
+
     public ControladorUserLogin() {
         this.modelo = Fachada.getInstancia();
     }
 
+ 
     public void setVista(VistaUserLogin vista) {
         this.vista = vista;
     }
@@ -38,7 +39,8 @@ public class ControladorUserLogin implements ControladorLogin{
                 vista.error("El usuario y la contraseña no coinciden.");
             } else {
                 vista.cerrar();
-                new VentanaJuego(j, size).setVisible(true);
+                vista.ingresar(j, size);
+//                new VentanaJuego(j, size).setVisible(true);
             }
         } catch (BuscaminaException ex) {
             vista.error(ex.getMessage());

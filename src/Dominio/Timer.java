@@ -12,7 +12,7 @@ public abstract class Timer implements Runnable {
         this.j = j;
     }
 
-    private static final int millis = 1000;
+    private static final int millis = 3000;
 
     public void start() {
         activo = true;
